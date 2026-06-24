@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Dashboard | Premium Analytics</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#0B0E14',
+                            surface: '#151A23',
+                            border: '#2A3143'
+                        },
+                        accent: {
+                            cyan: '#38BDF8',
+                            purple: '#818CF8',
+                            green: '#34D399',
+                            red: '#F87171',
+                            yellow: '#FBBF24'
+                        }
+                    },
+                    backgroundImage: {
+                        'glass': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                        'glass-hover': 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B0E14;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(129, 140, 248, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.08) 0%, transparent 50%);
+            color: #E2E8F0;
+        }
+
+        .glass-card {
+            background: theme('backgroundImage.glass');
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid theme('colors.dark.border');
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: theme('backgroundImage.glass-hover');
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: theme('colors.dark.border'); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4A5568; }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        .view-section { 
+            display: none; 
+            opacity: 0; 
+            transform: translateY(15px);
+            transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .view-section.active { 
+            display: block; 
+            opacity: 1; 
+            transform: translateY(0);
+        }
+        
+        /* скрытие интерфейса для превью-режима */
+        html.preview-active body > *:not(#preview-container) {
+            display: none !important;
+        }
+        html.preview-active body {
+            overflow: hidden !important;
+            height: 100vh !important;
+            width: 100vw !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        html.preview-active #preview-container {
+            display: flex !important;
+        }
+    </style>
+    <script>
+        // скрываем лишнее если в айфрейме
+        if (new URLSearchParams(window.location.search).get('preview') === 'true') {
+            document.documentElement.classList.add('preview-active');
+        }
+    </script>
+</head>
+<body class="h-[100dvh] flex flex-col md:flex-row overflow-hidden selection:bg-accent-cyan selection:text-dark-bg bg-dark-bg">
+    
+    <div id="preview-container" class="hidden fixed inset-0 items-center justify-center bg-dark-bg select-none z-[100]">
+        <div class="flex items-center gap-5 md:gap-7">
+            <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-accent-purple to-accent-cyan flex items-center justify-center text-white font-display font-bold text-3xl md:text-4xl shadow-[0_0_30px_rgba(129,140,248,0.5)]">
+                N
+            </div>
+            <span class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-wide text-white">NovaFi</span>
+        </div>
+    </div>
+
+    <aside class="hidden md:flex w-64 glass-card border-y-0 border-l-0 flex-col z-20">
+        <div class="p-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-purple to-accent-cyan flex items-center justify-center text-white font-display font-bold text-xl shadow-[0_0_20px_rgba(129,140,248,0.4)]">
+                N
+            </div>
+            <span class="font-display font-bold text-xl tracking-wide text-white">NovaFi</span>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-2">
+            <button data-target="view-dashboard" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10 text-white border border-white/5 shadow-inner transition-all">
+                <i class="ph ph-squares-four text-xl text-accent-cyan nav-icon"></i>
+                <span class="font-medium">Дашборд</span>
+            </button>
+            
+            <button data-target="view-analytics" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group">
+                <i class="ph ph-chart-line-up text-xl group-hover:text-accent-purple transition-colors nav-icon"></i>
+                <span class="font-medium">Аналитика</span>
+            </button>
+
+            <button data-target="view-wallets" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group">
+                <i class="ph ph-wallet text-xl group-hover:text-accent-green transition-colors nav-icon"></i>
+                <span class="font-medium">Кошельки</span>
+            </button>
+
+            <button data-target="view-exchange" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group">
+                <i class="ph ph-arrows-left-right text-xl group-hover:text-accent-yellow transition-colors nav-icon"></i>
+                <span class="font-medium">Обмен</span>
+            </button>
+        </nav>
+
+        <div class="p-4 mt-auto">
+            <div class="glass-card rounded-xl p-4 flex items-center gap-3 cursor-pointer hover:bg-white/5">
+                <img src="https://ui-avatars.com/api/?name=Alex+M&background=151A23&color=fff&rounded=true" alt="User" class="w-10 h-10 rounded-full border border-dark-border">
+                <div>
+                    <p class="text-sm font-medium text-white">Алекс М.</p>
+                    <p class="text-xs text-slate-400">Pro-подписка</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-full relative z-10 pb-[68px] md:pb-0">
+        
+        <header class="px-4 md:px-8 py-4 md:py-6 flex justify-between items-center sticky top-0 bg-dark-bg/80 backdrop-blur-md z-50 border-b border-dark-border/50">
+            <div>
+                <h1 id="header-title" class="font-display text-2xl font-bold text-white">Обзор активов</h1>
+                <p id="header-subtitle" class="text-sm text-slate-400 mt-1">Добро пожаловать обратно, вот ваша статистика на сегодня.</p>
+            </div>
+            
+            <div class="flex items-center gap-3 md:gap-4">
+                <div class="relative hidden md:block">
+                    <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input id="global-search" type="text" placeholder="Поиск токена..." class="bg-dark-surface border border-dark-border rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/50 transition-all w-64 placeholder-slate-500 text-white">
+                </div>
+                
+                <div class="relative">
+                    <button id="btn-notifications" class="relative w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-white transition-colors focus:outline-none">
+                        <i class="ph ph-bell text-lg"></i>
+                        <span id="notif-badge" class="absolute top-2 right-2 w-2 h-2 bg-accent-red rounded-full shadow-[0_0_8px_rgba(255,61,113,0.8)]"></span>
+                    </button>
+                    
+                    <div id="notifications-dropdown" class="absolute right-0 top-12 w-80 bg-[#151A23]/70 backdrop-blur-2xl border border-white/10 rounded-xl p-4 hidden flex-col shadow-[0_10px_40px_rgba(0,0,0,0.8)] z-50 transform origin-top-right transition-all scale-95 opacity-0">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-medium text-white">Уведомления</h3>
+                            <button class="text-xs text-accent-cyan hover:underline btn-mark-read">Отметить все</button>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                <p class="text-sm text-white font-medium flex items-center gap-2"><i class="ph-fill ph-check-circle text-accent-green"></i> Вход выполнен</p>
+                                <p class="text-xs text-slate-400 mt-1">Новый вход с устройства Windows, IP 192.168.1.1</p>
+                            </div>
+                            <div class="p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                <p class="text-sm text-white font-medium flex items-center gap-2"><i class="ph-fill ph-trend-up text-accent-cyan"></i> BTC вырос на 5%</p>
+                                <p class="text-xs text-slate-400 mt-1">Ваш портфель увеличился на $1,240 за час.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto overflow-x-hidden">
+            
+            <div id="view-dashboard" class="view-section active p-8 space-y-8">
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl p-6 relative overflow-hidden group cursor-pointer hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
+                        <div class="absolute -right-6 -top-6 w-24 h-24 bg-accent-purple/20 rounded-full blur-2xl group-hover:bg-accent-purple/30 group-hover:scale-110 transition-all duration-300"></div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-dark-surface border border-dark-border flex items-center justify-center">
+                                <i class="ph ph-wallet text-xl text-accent-purple"></i>
+                            </div>
+                            <span class="flex items-center gap-1 text-xs font-medium text-accent-green bg-accent-green/10 px-2 py-1 rounded-full border border-accent-green/20">
+                                <i class="ph ph-trend-up"></i> +2.4%
+                            </span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-1">Общий баланс</p>
+                        <h2 id="total-balance" class="font-display text-3xl font-bold text-white">$124,563.00</h2>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-6 relative overflow-hidden group cursor-pointer hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
+                        <div class="absolute -right-6 -top-6 w-24 h-24 bg-accent-cyan/20 rounded-full blur-2xl group-hover:bg-accent-cyan/30 group-hover:scale-110 transition-all duration-300"></div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-dark-surface border border-dark-border flex items-center justify-center">
+                                <i class="ph ph-chart-polar text-xl text-accent-cyan"></i>
+                            </div>
+                            <span class="flex items-center gap-1 text-xs font-medium text-accent-green bg-accent-green/10 px-2 py-1 rounded-full border border-accent-green/20">
+                                <i class="ph ph-trend-up"></i> +12.5%
+                            </span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-1">Рост за 24 часа</p>
+                        <h2 class="font-display text-3xl font-bold text-white">+$14,230.50</h2>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-6 relative overflow-hidden group cursor-pointer hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
+                        <div class="absolute -right-6 -top-6 w-24 h-24 bg-accent-green/20 rounded-full blur-2xl group-hover:bg-accent-green/30 group-hover:scale-110 transition-all duration-300"></div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-dark-surface border border-dark-border flex items-center justify-center">
+                                <i class="ph ph-coins text-xl text-accent-green"></i>
+                            </div>
+                            <span class="flex items-center gap-1 text-xs font-medium text-slate-400 bg-dark-surface px-2 py-1 rounded-full border border-dark-border">За все время</span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-1">Общая прибыль</p>
+                        <h2 class="font-display text-3xl font-bold text-white">+$45,890.20</h2>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6">
+                        <div>
+                            <h3 class="font-display text-lg font-semibold text-white flex items-center gap-2">
+                                <i class="ph-fill ph-currency-btc text-accent-yellow text-xl"></i>
+                                Bitcoin (BTC)
+                            </h3>
+                            <div class="flex items-baseline gap-3 mt-1 flex-wrap">
+                                <span class="text-2xl font-bold text-white tracking-tight whitespace-nowrap" id="current-btc-price">$...</span>
+                                <span class="text-sm font-medium whitespace-nowrap" id="btc-price-change">...</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-1 bg-dark-surface p-1 rounded-lg border border-dark-border self-start sm:self-auto">
+                            <button class="timeframe-btn px-3 py-1 text-xs font-medium rounded-md text-slate-400 hover:text-white transition-colors">1H</button>
+                            <button class="timeframe-btn px-3 py-1 text-xs font-medium rounded-md text-slate-400 hover:text-white transition-colors">1D</button>
+                            <button class="timeframe-btn px-3 py-1 text-xs font-medium rounded-md text-slate-400 hover:text-white transition-colors">1W</button>
+                            <button class="timeframe-btn px-3 py-1 text-xs font-medium rounded-md bg-dark-border text-white shadow-sm">1M</button>
+                        </div>
+                    </div>
+                    <div class="h-[400px] w-full relative">
+                        <canvas id="mainChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-display text-lg font-semibold text-white">Последние транзакции</h3>
+                        <button onclick="document.querySelector('[data-target=view-wallets]').click()" class="text-sm text-accent-cyan hover:text-white transition-colors flex items-center gap-1 group">
+                            Все транзакции <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-xs text-slate-400 border-b border-dark-border">
+                                    <th class="pb-3 font-medium px-4">Тип / Актив</th>
+                                    <th class="pb-3 font-medium px-4">Сумма</th>
+                                    <th class="pb-3 font-medium px-4">Дата</th>
+                                    <th class="pb-3 font-medium px-4">Адрес</th>
+                                    <th class="pb-3 font-medium px-4 text-right">Статус</th>
+                                    <th class="pb-3 font-medium px-4 text-right">Действие</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="border-b border-dark-border/50 hover:bg-white/5 transition-colors">
+                                    <td class="py-4 px-4 flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-accent-green/10 flex items-center justify-center text-accent-green"><i class="ph ph-arrow-down-left"></i></div>
+                                        <div><p class="font-medium text-white">Пополнение</p><p class="text-xs text-slate-500">Ethereum</p></div>
+                                    </td>
+                                    <td class="py-4 px-4 text-white font-medium">+4.5 ETH</td>
+                                    <td class="py-4 px-4 text-slate-400">Сегодня, 14:30</td>
+                                    <td class="py-4 px-4 text-slate-500 font-mono text-xs">0x1a...4f9c</td>
+                                    <td class="py-4 px-4 text-right"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-accent-green/10 text-accent-green border border-accent-green/20">Успешно</span></td>
+                                    <td class="py-4 px-4 text-right"><button class="btn-tx-details text-slate-400 hover:text-white px-2 py-1 bg-dark-surface rounded-md border border-dark-border" data-type="deposit" data-amount="+4.5 ETH" data-fiat="≈ $15,750.00" data-date="23 Июн 2026, 14:30" data-network="Ethereum (ERC-20)" data-hash="0x8f2d...b19e" data-status="Завершено" data-status-color="text-accent-green">Детали</button></td>
+                                </tr>
+                                <tr class="border-b border-dark-border/50 hover:bg-white/5 transition-colors">
+                                    <td class="py-4 px-4 flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-accent-yellow/10 flex items-center justify-center text-accent-yellow"><i class="ph ph-arrow-up-right"></i></div>
+                                        <div><p class="font-medium text-white">Вывод</p><p class="text-xs text-slate-500">Bitcoin</p></div>
+                                    </td>
+                                    <td class="py-4 px-4 text-white font-medium">-0.15 BTC</td>
+                                    <td class="py-4 px-4 text-slate-400">Вчера, 09:15</td>
+                                    <td class="py-4 px-4 text-slate-500 font-mono text-xs">bc1q...m7x9</td>
+                                    <td class="py-4 px-4 text-right"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-accent-yellow/10 text-accent-yellow border border-accent-yellow/20">В обработке</span></td>
+                                    <td class="py-4 px-4 text-right"><button class="btn-tx-details text-slate-400 hover:text-white px-2 py-1 bg-dark-surface rounded-md border border-dark-border" data-type="withdraw" data-amount="-0.15 BTC" data-fiat="≈ $9,675.00" data-date="22 Июн 2026, 09:15" data-network="Bitcoin Network" data-hash="bc1q...m7x9" data-status="В обработке" data-status-color="text-accent-yellow">Детали</button></td>
+                                </tr>
+                                <tr class="border-b border-dark-border/50 hover:bg-white/5 transition-colors">
+                                    <td class="py-4 px-4 flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-[#627EEA]/10 flex items-center justify-center text-[#627EEA]"><i class="ph ph-arrows-left-right"></i></div>
+                                        <div><p class="font-medium text-white">Обмен</p><p class="text-xs text-slate-500">USDT → SOL</p></div>
+                                    </td>
+                                    <td class="py-4 px-4 text-white font-medium">145 SOL</td>
+                                    <td class="py-4 px-4 text-slate-400">20 Июн 2026, 18:45</td>
+                                    <td class="py-4 px-4 text-slate-500 font-mono text-xs">Smart Contract</td>
+                                    <td class="py-4 px-4 text-right"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-accent-green/10 text-accent-green border border-accent-green/20">Успешно</span></td>
+                                    <td class="py-4 px-4 text-right"><button class="btn-tx-details text-slate-400 hover:text-white px-2 py-1 bg-dark-surface rounded-md border border-dark-border" data-type="swap" data-amount="145 SOL" data-fiat="≈ $19,575.00" data-date="20 Июн 2026, 18:45" data-network="Solana" data-hash="4vJh...p912" data-status="Успешно" data-status-color="text-accent-green">Детали</button></td>
+                                </tr>
+                                <tr class="border-b border-dark-border/50 hover:bg-white/5 transition-colors">
+                                    <td class="py-4 px-4 flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-accent-red/10 flex items-center justify-center text-accent-red"><i class="ph ph-arrow-up-right"></i></div>
+                                        <div><p class="font-medium text-white">Отправка</p><p class="text-xs text-slate-500">Tether</p></div>
+                                    </td>
+                                    <td class="py-4 px-4 text-white font-medium">-1,000 USDT</td>
+                                    <td class="py-4 px-4 text-slate-400">18 Июн 2026, 11:20</td>
+                                    <td class="py-4 px-4 text-slate-500 font-mono text-xs">0x4b...1a2c</td>
+                                    <td class="py-4 px-4 text-right"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-accent-red/10 text-accent-red border border-accent-red/20">Отклонено</span></td>
+                                    <td class="py-4 px-4 text-right"><button class="btn-tx-details text-slate-400 hover:text-white px-2 py-1 bg-dark-surface rounded-md border border-dark-border" data-type="error" data-amount="-1,000 USDT" data-fiat="≈ $1,000.00" data-date="18 Июн 2026, 11:20" data-network="Ethereum (ERC-20)" data-hash="0x11...ff99" data-status="Ошибка сети" data-status-color="text-accent-red">Детали</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-analytics" class="view-section p-8 space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <div class="glass-card rounded-2xl p-6">
+                        <h3 class="font-display text-lg font-semibold text-white mb-6">Распределение портфеля</h3>
+                        <div class="relative h-64 w-full flex justify-center">
+                            <canvas id="portfolioChart"></canvas>
+                        </div>
+                        <div class="mt-6 grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2 text-sm"><span class="w-3 h-3 rounded-full bg-accent-yellow"></span><span class="text-white">BTC (45%)</span></div>
+                            <div class="flex items-center gap-2 text-sm"><span class="w-3 h-3 rounded-full bg-[#627EEA]"></span><span class="text-white">ETH (30%)</span></div>
+                            <div class="flex items-center gap-2 text-sm"><span class="w-3 h-3 rounded-full bg-[#26A17B]"></span><span class="text-white">USDT (15%)</span></div>
+                            <div class="flex items-center gap-2 text-sm"><span class="w-3 h-3 rounded-full bg-[#14F195]"></span><span class="text-white">SOL (10%)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-6">
+                        <h3 class="font-display text-lg font-semibold text-white mb-6">Доходность активов (30 дней)</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-xl bg-dark-surface border border-dark-border flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <i class="ph-fill ph-currency-btc text-2xl text-accent-yellow"></i>
+                                    <div><p class="text-white font-medium">Bitcoin</p><p class="text-xs text-slate-400">BTC</p></div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-medium">+$4,230.00</p>
+                                    <p class="text-xs text-accent-green">+8.4%</p>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-dark-surface border border-dark-border flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <i class="ph-fill ph-currency-eth text-2xl text-[#627EEA]"></i>
+                                    <div><p class="text-white font-medium">Ethereum</p><p class="text-xs text-slate-400">ETH</p></div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-medium">+$890.50</p>
+                                    <p class="text-xs text-accent-green">+12.1%</p>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-dark-surface border border-dark-border flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <i class="ph-fill ph-coins text-2xl text-[#14F195]"></i>
+                                    <div><p class="text-white font-medium">Solana</p><p class="text-xs text-slate-400">SOL</p></div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-medium">-$120.00</p>
+                                    <p class="text-xs text-accent-red">-3.2%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-wallets" class="view-section p-8 space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-display font-bold text-white">Мои активы</h2>
+                    <button class="bg-accent-cyan text-dark-bg px-4 py-2 rounded-lg font-medium hover:bg-accent-cyan/90 transition-colors">
+                        + Добавить токен
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-4" id="wallet-list">
+                    
+                    <div class="glass-card p-5 rounded-2xl flex flex-wrap gap-4 justify-between items-center wallet-item" data-token="bitcoin btc">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-dark-surface flex items-center justify-center border border-dark-border">
+                                <i class="ph-fill ph-currency-btc text-2xl text-accent-yellow"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Bitcoin</h3>
+                                <p class="text-sm text-slate-400">BTC</p>
+                            </div>
+                        </div>
+                        <div class="text-right mr-auto md:mr-0 md:ml-auto">
+                            <p class="text-xl font-bold text-white">1.45 BTC</p>
+                            <p class="text-sm text-slate-400">≈ $93,525.00</p>
+                        </div>
+                        <div class="flex gap-2 w-full md:w-auto mt-4 md:mt-0">
+                            <button class="flex-1 md:flex-none px-4 py-2 rounded-lg bg-dark-surface border border-dark-border text-white hover:bg-white/5 transition-colors text-sm font-medium">Пополнить</button>
+                            <button class="flex-1 md:flex-none px-4 py-2 rounded-lg bg-dark-surface border border-dark-border text-white hover:bg-white/5 transition-colors text-sm font-medium">Вывести</button>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl flex flex-wrap gap-4 justify-between items-center wallet-item" data-token="ethereum eth">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-dark-surface flex items-center justify-center border border-dark-border">
+                                <i class="ph-fill ph-currency-eth text-2xl text-[#627EEA]"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Ethereum</h3>
+                                <p class="text-sm text-slate-400">ETH</p>
+                            </div>
+                        </div>
+                        <div class="text-right mr-auto md:mr-0 md:ml-auto">
+                            <p class="text-xl font-bold text-white">12.5 ETH</p>
+                            <p class="text-sm text-slate-400">≈ $43,750.00</p>
+                        </div>
+                        <div class="flex gap-2 w-full md:w-auto mt-4 md:mt-0">
+                            <button class="flex-1 md:flex-none px-4 py-2 rounded-lg bg-dark-surface border border-dark-border text-white hover:bg-white/5 transition-colors text-sm font-medium">Пополнить</button>
+                            <button class="flex-1 md:flex-none px-4 py-2 rounded-lg bg-dark-surface border border-dark-border text-white hover:bg-white/5 transition-colors text-sm font-medium">Вывести</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-exchange" class="view-section p-8 flex justify-center items-start min-h-full">
+                <div class="glass-card p-6 rounded-3xl w-full max-w-md mt-10">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-display font-bold text-white">Своп активов</h2>
+                        <button class="text-slate-400 hover:text-white btn-swap-settings"><i class="ph ph-gear text-xl"></i></button>
+                    </div>
+
+                    <div class="space-y-2 relative">
+                        
+                        <div class="bg-dark-surface border border-dark-border rounded-2xl p-4">
+                            <p class="text-xs text-slate-400 mb-2">Вы отдаете</p>
+                            <div class="flex justify-between items-center">
+                                <input id="swap-input-give" type="number" value="1.0" class="bg-transparent text-2xl font-bold text-white outline-none w-1/2" />
+                                <button class="flex items-center gap-2 bg-dark-bg px-3 py-1.5 rounded-xl border border-dark-border text-white hover:bg-white/5 btn-select-token">
+                                    <i class="ph-fill ph-currency-eth text-[#627EEA]"></i> ETH <i class="ph ph-caret-down text-slate-400"></i>
+                                </button>
+                            </div>
+                            <p id="swap-balance-give" class="text-xs text-slate-500 mt-2">Баланс: 12.5 ETH</p>
+                        </div>
+
+                        <button class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-dark-bg border border-dark-border rounded-xl flex items-center justify-center text-white hover:text-accent-cyan hover:border-accent-cyan transition-colors z-10 shadow-lg btn-swap-direction">
+                            <i class="ph ph-arrows-down-up"></i>
+                        </button>
+
+                        <div class="bg-dark-surface border border-dark-border rounded-2xl p-4">
+                            <p class="text-xs text-slate-400 mb-2">Вы получаете (оценочно)</p>
+                            <div class="flex justify-between items-center">
+                                <input id="swap-input-receive" type="number" value="3500.50" readonly class="bg-transparent text-2xl font-bold text-white outline-none w-1/2 opacity-80" />
+                                <button class="flex items-center gap-2 bg-dark-bg px-3 py-1.5 rounded-xl border border-dark-border text-white hover:bg-white/5 btn-select-token">
+                                    <i class="ph-fill ph-currency-dollar text-[#26A17B]"></i> USDT <i class="ph ph-caret-down text-slate-400"></i>
+                                </button>
+                            </div>
+                            <p id="swap-balance-receive" class="text-xs text-slate-500 mt-2">Баланс: 5,420.00 USDT</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 rounded-xl bg-dark-surface/50 border border-dark-border/50 text-sm">
+                        <div class="flex justify-between text-slate-400 mb-2"><span>Курс</span><span class="text-white">1 ETH = 3,500.50 USDT</span></div>
+                        <div class="flex justify-between text-slate-400"><span>Комиссия сети</span><span class="text-white">~$5.20</span></div>
+                    </div>
+
+                    <button id="btn-confirm-exchange" class="w-full mt-6 bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-bold py-4 rounded-xl hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(129,140,248,0.3)]">
+                        Подтвердить обмен
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <nav class="md:hidden fixed bottom-0 left-0 w-full glass-card border-t border-dark-border z-50 flex justify-around items-center p-3 pb-safe bg-[#0B0E14]/90 backdrop-blur-lg">
+        <button data-target="view-dashboard" class="nav-btn-mobile flex flex-col items-center gap-1 text-accent-cyan transition-colors">
+            <i class="ph ph-squares-four text-xl"></i>
+            <span class="text-[10px] font-medium">Дашборд</span>
+        </button>
+        <button data-target="view-analytics" class="nav-btn-mobile flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors">
+            <i class="ph ph-chart-line-up text-xl"></i>
+            <span class="text-[10px] font-medium">Аналитика</span>
+        </button>
+        <button data-target="view-wallets" class="nav-btn-mobile flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors">
+            <i class="ph ph-wallet text-xl"></i>
+            <span class="text-[10px] font-medium">Кошельки</span>
+        </button>
+        <button data-target="view-exchange" class="nav-btn-mobile flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors">
+            <i class="ph ph-arrows-left-right text-xl"></i>
+            <span class="text-[10px] font-medium">Обмен</span>
+        </button>
+    </nav>
+
+    <div id="modal-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="tx-modal" class="glass-card w-full max-w-lg p-6 rounded-2xl transform scale-95 transition-transform duration-300 mx-4 border border-dark-border">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-display font-bold text-white">Детали транзакции</h3>
+                <button id="btn-close-modal" class="text-slate-400 hover:text-white p-1 bg-dark-surface rounded-lg"><i class="ph ph-x text-xl"></i></button>
+            </div>
+            
+            <div class="flex flex-col items-center justify-center mb-8">
+                <div id="modal-icon-container" class="w-16 h-16 rounded-full bg-accent-green/10 flex items-center justify-center text-accent-green mb-3">
+                    <i id="modal-icon" class="ph ph-check-circle text-4xl"></i>
+                </div>
+                <h2 id="modal-amount" class="text-3xl font-bold text-white">+4.5 ETH</h2>
+                <p id="modal-fiat" class="text-slate-400 mt-1">≈ $15,750.00</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex justify-between items-center p-3 rounded-lg bg-dark-surface border border-dark-border">
+                    <span class="text-sm text-slate-400">Статус</span>
+                    <span id="modal-status" class="text-sm font-medium text-accent-green">Завершено</span>
+                </div>
+                <div class="flex justify-between items-center p-3 rounded-lg bg-dark-surface border border-dark-border">
+                    <span class="text-sm text-slate-400">Дата и время</span>
+                    <span id="modal-date" class="text-sm font-medium text-white">23 Июн 2026, 14:30</span>
+                </div>
+                <div class="flex justify-between items-center p-3 rounded-lg bg-dark-surface border border-dark-border">
+                    <span class="text-sm text-slate-400">Сеть</span>
+                    <span id="modal-network" class="text-sm font-medium text-white">Ethereum (ERC-20)</span>
+                </div>
+                <div class="flex justify-between items-center p-3 rounded-lg bg-dark-surface border border-dark-border">
+                    <span class="text-sm text-slate-400">Хэш транзакции</span>
+                    <a id="modal-hash" href="#" class="text-sm font-mono text-accent-cyan hover:underline">0x8f2d...b19e</a>
+                </div>
+            </div>
+            
+            <button id="modal-explorer-btn" class="w-full mt-6 bg-dark-surface border border-dark-border text-white font-medium py-3 rounded-xl hover:bg-white/5 transition-colors">
+                Посмотреть в обозревателе
+            </button>
+        </div>
+    </div>
+
+    <div id="toast-container" class="fixed bottom-20 md:bottom-6 left-1/2 md:left-auto md:right-6 -translate-x-1/2 md:translate-x-0 z-[100] flex flex-col gap-3 pointer-events-none items-center md:items-end w-[calc(100%-2rem)] md:w-auto max-w-xs sm:max-w-sm"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./app.js?v=7"></script>
+</body>
+</html>
