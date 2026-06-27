@@ -5,7 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lusty | Портфолио</title>
-    
+
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://lusty1337.github.io">
+    <meta property="og:title"       content="lusty — Frontend · Backend · UI/UX · Telegram-боты">
+    <meta property="og:description" content="Создаю интерфейсы, в которых хочется дышать. Никакого визуального шума. Только суть.">
+    <meta property="og:image"       content="https://lusty1337.github.io/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:image"       content="https://lusty1337.github.io/og-image.png">
+
+    <!-- превью для телеграм и соцсетей -->
+    <meta name="description" content="Создаю веб-интерфейсы, Telegram-боты и автоматизацию. Никакого визуального шума — только суть.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lusty1337.github.io">
+    <meta property="og:title" content="lusty — фронтенд, бэкенд, дизайн">
+    <meta property="og:description" content="Создаю веб-интерфейсы, Telegram-боты и автоматизацию. Никакого визуального шума — только суть.">
+    <meta property="og:image" content="https://lusty1337.github.io/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="lusty">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -155,7 +177,6 @@
         }
 
         
-        /* фиксы для телефонов (на пк не влияет) */
         @media (max-width: 767px) {
             html {
                 scroll-snap-type: y proximity;
@@ -248,6 +269,14 @@
                 flex-shrink: 0;
             }
         }
+        @media (hover: none) {
+            .card-left:active, .card-center:active, .card-right:active {
+                transform: scale(0.98) !important;
+                transition: transform 0.1s ease !important;
+            }
+        }
+
+
         /* если cdn упал */
         .flex { display: flex; }
         .flex-col { flex-direction: column; }
@@ -1613,7 +1642,8 @@
                 class="btn-water hidden md:inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-semibold text-sm shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:shadow-[0_0_50px_rgba(34,211,238,0.5)] transition-all duration-700 ease-out">
                 Начать проект
             </a>
-            <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+            <button id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+                <span class="w-6 h-0.5 bg-slate-900 transition-all duration-300 rounded-full"></span>
                 <span class="w-6 h-0.5 bg-slate-900 transition-all duration-300 rounded-full"></span>
                 <span class="w-6 h-0.5 bg-slate-900 transition-all duration-300 rounded-full"></span>
             </button>
@@ -1760,10 +1790,17 @@
                             <span
                                 class="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/50 border border-white/60 text-xs md:text-sm font-medium text-slate-600 backdrop-blur-sm">Vanilla JS</span>
                         </div>
-                        <a href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700 mt-1 md:mt-4">
-                            Открыть на весь экран →
-                        </a>
+                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
+                            <a href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                Открыть на весь экран →
+                            </a>
+                            <a href="https://github.com/lusty1337/vibecoder-landing/tree/main/projects/creator-landing-portfolio" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Исходный код
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1789,10 +1826,17 @@
                             <span
                                 class="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/50 border border-white/60 text-xs md:text-sm font-medium text-slate-600 backdrop-blur-sm">API</span>
                         </div>
-                        <a href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700 mt-1 md:mt-4">
-                            Открыть на весь экран →
-                        </a>
+                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
+                            <a href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                Открыть на весь экран →
+                            </a>
+                            <a href="https://github.com/lusty1337/vibecoder-landing/tree/main/projects/crypto-dashboard-portfolio" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Исходный код
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1817,10 +1861,17 @@
                             <span
                                 class="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/50 border border-white/60 text-xs md:text-sm font-medium text-slate-600 backdrop-blur-sm">UI/UX</span>
                         </div>
-                        <a href="./projects/tin-workshop-portfolio/index.html" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700 mt-1 md:mt-4">
-                            Открыть на весь экран →
-                        </a>
+                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
+                            <a href="./projects/tin-workshop-portfolio/index.html" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                Открыть на весь экран →
+                            </a>
+                            <a href="https://github.com/lusty1337/vibecoder-landing/tree/main/projects/tin-workshop-portfolio" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Исходный код
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1924,7 +1975,92 @@
         document.querySelectorAll('.observe-center').forEach((el) => observerCenter.observe(el));
         document.querySelectorAll('.observe-strict').forEach((el) => observerStrict.observe(el));
 
-        // мобильное меню
+        document.querySelectorAll('.sandbox-preview').forEach(preview => {
+            preview.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            preview.style.transformStyle = 'preserve-3d';
+
+            preview.addEventListener('mousemove', (e) => {
+                const rect = preview.getBoundingClientRect();
+                const rotateX = ((e.clientY - rect.top  - rect.height / 2) / (rect.height / 2)) * -8;
+                const rotateY = ((e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2)) *  8;
+                // при движении transition короткий — иначе карточка "плывёт" за курсором с задержкой
+                preview.style.transition = 'transform 0.1s ease-out';
+                preview.style.transform  = `perspective(1000px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            preview.addEventListener('mouseleave', () => {
+                preview.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                preview.style.transform  = 'perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg)';
+            });
+        });
+
+        // курсор берём с внешней карточки — iframe там не мешает
+        // свечение рисуем на превью через box-shadow — overflow:hidden его не режет
+        const glowColors = ['34,211,238', '99,102,241', '255,90,0']; // cyan, indigo, orange
+
+        Array.from(document.querySelectorAll('#projects .group')).forEach((outerCard, i) => {
+            const preview = outerCard.querySelector('.sandbox-preview');
+            if (!preview) return;
+            preview.dataset.glowColor = glowColors[i] || glowColors[0];
+
+            outerCard.addEventListener('mouseenter', () => {
+                const c = preview.dataset.glowColor;
+                preview.style.transition = 'transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 1.4s cubic-bezier(0.16,1,0.3,1)';
+                preview.style.boxShadow  = `0 0 28px 4px rgba(${c},0.15)`;
+            });
+            outerCard.addEventListener('mouseleave', () => {
+                preview.style.transition = 'transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 1.4s cubic-bezier(0.16,1,0.3,1)';
+                preview.style.boxShadow  = '';
+            });
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            document.querySelectorAll('#projects .group').forEach(outerCard => {
+                const preview = outerCard.querySelector('.sandbox-preview');
+                if (!preview) return;
+                const r = outerCard.getBoundingClientRect();
+                if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
+                const cx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+                const cy = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+                const d  = Math.sqrt(cx * cx + cy * cy) / Math.SQRT2;
+                const c  = preview.dataset.glowColor || '34,211,238';
+                const ox = cx * 30;
+                const oy = cy * 30;
+                preview.style.transition = 'transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 0.08s linear';
+                preview.style.boxShadow  = `${ox}px ${oy}px 48px 5px rgba(${c},${(0.26 + d * 0.07).toFixed(2)}), 0 0 20px rgba(${c},${(0.08 * (1 - d * 0.5)).toFixed(2)})`;
+            });
+        });
+
+        // тач: тап по превью = интерактивный режим, тап вне = выход
+        if (window.matchMedia('(hover: none)').matches) {
+            document.querySelectorAll('.sandbox-preview').forEach(preview => {
+                const iframe  = preview.querySelector('iframe');
+                const overlay = document.createElement('div');
+                overlay.style.cssText = 'position:absolute;inset:0;z-index:10;touch-action:none;';
+                preview.appendChild(overlay);
+
+                const deactivate = (e) => {
+                    if (!preview.contains(e.target)) {
+                        iframe.style.pointerEvents = '';
+                        overlay.style.display = '';
+                        document.removeEventListener('touchstart', deactivate, true);
+                        document.removeEventListener('click',      deactivate, true);
+                    }
+                };
+
+                overlay.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    iframe.style.pointerEvents = 'auto';
+                    overlay.style.display = 'none';
+                    // небольшой таймаут чтобы этот же клик не закрыл сразу
+                    setTimeout(() => {
+                        document.addEventListener('touchstart', deactivate, true);
+                        document.addEventListener('click',      deactivate, true);
+                    }, 50);
+                });
+            });
+        }
+
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -1936,14 +2072,18 @@
                 mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
                 mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
                 document.body.style.overflow = 'hidden';
-                mobileBtn.children[0].style.transform = 'translateY(4px) rotate(45deg)';
-                mobileBtn.children[1].style.transform = 'translateY(-4px) rotate(-45deg)';
+                mobileBtn.setAttribute('aria-expanded', 'true');
+                mobileBtn.children[0].style.transform = 'translateY(8px) rotate(45deg)';
+                mobileBtn.children[1].style.opacity = '0';
+                mobileBtn.children[2].style.transform = 'translateY(-8px) rotate(-45deg)';
             } else {
                 mobileMenu.classList.add('opacity-0', 'pointer-events-none');
                 mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
                 document.body.style.overflow = '';
+                mobileBtn.setAttribute('aria-expanded', 'false');
                 mobileBtn.children[0].style.transform = '';
-                mobileBtn.children[1].style.transform = '';
+                mobileBtn.children[1].style.opacity = '';
+                mobileBtn.children[2].style.transform = '';
             }
         };
 
