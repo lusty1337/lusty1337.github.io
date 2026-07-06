@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth overflow-x-hidden bg-[#FDFBF9] text-slate-600">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lusty | Портфолио</title>
+
+
+    <!-- превью для телеграм и соцсетей -->
+    <meta name="description" content="Разработка сайтов, дашбордов и Telegram-ботов. Чистый код на Tailwind, адаптив, интеграции с API и автоматизация.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lusty1337.github.io">
+    <meta property="og:title" content="lusty — сайты, боты, автоматизация">
+    <meta property="og:description" content="Разработка сайтов, дашбордов и Telegram-ботов. Чистый код на Tailwind, адаптив, интеграции с API и автоматизация.">
+    <meta property="og:image" content="https://lusty1337.github.io/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="lusty">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lusty1337.github.io/og-image.png">
+
+    <link rel="stylesheet" href="/src/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800;900&amp;family=Playfair+Display:wght@700;900&amp;display=swap"
+        rel="stylesheet">
+
+    <script>
+        // прячем блоки ДО первой отрисовки, но только если реально умеем их анимировать.
+        // не подтянулся gsap — класс снимется и контент останется видимым
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('anim-on');
+        }
+    </script>
+</head>
+
+<body
+    class="font-sans antialiased overflow-x-hidden relative min-h-screen selection:bg-cyan-200 selection:text-cyan-900">
+
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-100/40 blur-[120px]"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-teal-100/30 blur-[150px]">
+        </div>
+    </div>
+
+    <header
+        class="w-full py-3 md:py-6 px-4 md:px-6 fixed top-0 z-[60] bg-[#FDFBF9]/80 md:bg-[#FDFBF9]/50 backdrop-blur-md md:backdrop-blur-xl border-b border-white/50 transition-all duration-700 ease-out">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative z-[61]">
+            <a href="#"
+                class="text-xl md:text-2xl font-black text-slate-900 tracking-tighter hover:opacity-70 transition-opacity duration-700">lusty.</a>
+            <nav class="hidden md:flex gap-12">
+                <a href="#"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Главная</a>
+                <a href="#about"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Обо мне</a>
+                <a href="#projects"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Проекты</a>
+                <a href="#contact"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Связь</a>
+            </nav>
+            <a href="#contact"
+                class="btn-water hidden md:inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-semibold text-sm shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:shadow-[0_0_50px_rgba(34,211,238,0.5)] transition-all duration-700 ease-out">
+                Начать проект
+            </a>
+            <button id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+                <span class="w-6 h-0.5 bg-slate-900 transition-all duration-300 rounded-full"></span>
+                <span class="w-6 h-0.5 bg-slate-900 transition-all duration-300 rounded-full"></span>
+                <span class="w-6 h-0.5 bg-slate-900 transition-all duration-300 rounded-full"></span>
+            </button>
+        </div>
+        <div id="mobile-menu" class="fixed inset-0 bg-[#FDFBF9]/95 backdrop-blur-lg z-[60] flex flex-col items-center justify-center gap-10 opacity-0 pointer-events-none transition-all duration-500 h-screen">
+            <nav class="flex flex-col items-center gap-8 text-2xl font-medium text-slate-800">
+                <a href="#" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Главная</a>
+                <a href="#about" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Обо мне</a>
+                <a href="#projects" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Проекты</a>
+                <a href="#contact" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Связь</a>
+            </nav>
+            <a href="#contact" class="mobile-link btn-water inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-semibold text-base shadow-[0_0_30px_rgba(34,211,238,0.3)] mt-4">
+                Начать проект
+            </a>
+        </div>
+    </header>
+
+    <main class="relative z-10 w-full overflow-hidden space-y-16 md:space-y-20">
+        <section class="min-h-[100svh] px-4 md:px-6 max-w-7xl mx-auto flex flex-col justify-center items-center text-center relative pt-20 md:pt-32 pb-10">
+            <div class="reveal flex flex-col items-center">
+                <h1 class="text-4xl xs:text-5xl md:text-8xl lg:text-9xl font-black text-slate-900 tracking-tighter mb-4 md:mb-8 leading-[1.0] md:leading-[0.9]">
+                    Сайты, боты, <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">автоматизация.</span>
+                </h1>
+                <p class="max-w-sm xs:max-w-2xl text-base xs:text-lg md:text-2xl text-slate-500 font-light leading-relaxed mb-6 md:mb-12">
+                    Разрабатываю сайты и лендинги (сайты-визитки) любой сложности, Telegram-ботов и Telegram Mini Apps. Чистый код без тяжёлых библиотек, адаптив под любой экран и устройство, быстрая загрузка.
+                </p>
+                <a href="#projects"
+                    class="btn-water w-auto inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white text-sm md:text-base font-semibold shadow-[0_0_40px_rgba(34,211,238,0.4)] hover:shadow-[0_0_60px_rgba(34,211,238,0.6)] hover:scale-105 transition-all duration-700 ease-out">
+                    Смотреть проекты
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="px-4 md:px-6 max-w-7xl mx-auto flex flex-col justify-center space-y-12 md:space-y-24 scroll-mt-32">
+            <div class="reveal">
+                <h2
+                    class="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 md:mb-8 leading-tight">
+                    Привет! Я Егор.
+                    <span class="block mt-2 md:mt-4 whitespace-normal md:whitespace-nowrap">
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 relative inline-block group cursor-default">
+                            lusty
+                            <span
+                                class="absolute -bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full opacity-50 blur-[1px] group-hover:blur-[3px] group-hover:opacity-100 transition-all duration-700"></span>
+                        </span>
+                        <span class="inline text-xl sm:text-2xl md:text-4xl lg:text-5xl text-slate-400 font-light">— это мой псевдоним.</span>
+                    </span>
+                </h2>
+                <p class="text-base md:text-2xl text-slate-500 font-light leading-relaxed max-w-4xl">
+                    Fullstack-разработчик: закрываю проект целиком, от вёрстки до сервера. Пишу на чистом коде —
+                    HTML, Tailwind CSS, JavaScript — и подключаю тяжёлые библиотеки только там, где они реально нужны.
+                    Беру на себя весь цикл: интерфейс, логика, интеграции с API, деплой и поддержка.
+                </p>
+            </div>
+            <div class="space-y-6 md:space-y-16 competencies-reveal">
+                <h3 class="text-xl md:text-4xl font-black text-slate-800 tracking-tight card-title">Мои компетенции</h3>
+
+                <div class="comp-grid grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div
+                        class="comp-card bg-white/40 backdrop-blur-md border border-white/60 p-6 md:p-8 rounded-2xl md:rounded-[2rem] shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 group card-left">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-cyan-100/50 flex items-center justify-center mb-6 text-cyan-500 group-hover:scale-110 group-hover:bg-cyan-100 transition-all duration-700">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <h4
+                            class="text-xl font-bold text-slate-900 mb-4 group-hover:text-cyan-500 transition-colors duration-700">
+                            Frontend</h4>
+                        <p class="text-slate-500 leading-relaxed text-lg font-light">
+                            Лендинги, дашборды и веб-приложения. HTML/CSS с Tailwind, TypeScript, React для сложных интерфейсов — и чистый Vanilla JS там, где его хватает. Адаптив от 320px, анимации на GSAP, 3D на Three.js.
+                        </p>
+                    </div>
+
+                    <div class="comp-card bg-white/40 backdrop-blur-md border border-white/60 p-6 md:p-8 rounded-2xl md:rounded-[2rem] shadow-xl shadow-teal-900/5 hover:shadow-teal-900/10 group card-center">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-teal-100/50 flex items-center justify-center mb-6 text-teal-500 group-hover:scale-110 group-hover:bg-teal-100 transition-all duration-700">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4">
+                                </path>
+                            </svg>
+                        </div>
+                        <h4
+                            class="text-xl font-bold text-slate-900 mb-4 group-hover:text-teal-500 transition-colors duration-700">
+                            Backend &amp; Automation</h4>
+                        <p class="text-slate-500 leading-relaxed text-lg font-light">
+                            Python (FastAPI) и Node.js для серверной части. Telegram-боты и Mini Apps, базы данных (PostgreSQL, SQLite), парсеры, автоматизация. Интеграции с внешними API и платёжными системами.
+                        </p>
+                    </div>
+
+                    <div class="comp-card bg-white/40 backdrop-blur-md border border-white/60 p-6 md:p-8 rounded-2xl md:rounded-[2rem] shadow-xl shadow-sky-900/5 hover:shadow-sky-900/10 group card-right">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-sky-100/50 flex items-center justify-center mb-6 text-sky-500 group-hover:scale-110 group-hover:bg-sky-100 transition-all duration-700">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01">
+                                </path>
+                            </svg>
+                        </div>
+                        <h4
+                            class="text-xl font-bold text-slate-900 mb-4 group-hover:text-sky-500 transition-colors duration-700">
+                            Apps &amp; Infra</h4>
+                        <p class="text-slate-500 leading-relaxed text-lg font-light">
+                            Git и GitHub для версионирования, Docker для изоляции окружения, GitHub Actions для CI/CD. Деплой на Linux VPS через Nginx или на Vercel. От нуля до рабочего продакшна.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-4 md:px-6 max-w-7xl mx-auto reveal">
+            <div class="stack-card bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2rem] p-6 md:p-10 shadow-xl shadow-cyan-900/5">
+                <h3 class="text-xl md:text-4xl font-black text-slate-800 tracking-tight mb-8 md:mb-12">Стек</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+                    <div>
+                        <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-4">Frontend</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML5 · CSS3</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="6,182,212">Tailwind CSS</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="49,120,198">TypeScript</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="97,218,251">React</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="136,206,2">GSAP</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="34,211,238">Three.js</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="100,108,255">Vite</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-4">Backend</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="55,118,171">Python</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="0,150,136">FastAPI</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="51,153,51">Node.js</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="51,103,145">PostgreSQL</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="0,59,87">SQLite</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="34,211,238">REST API · WebSocket</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="42,171,238">Aiogram</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-4">Apps &amp; Infra</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="240,80,50">Git · GitHub</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="36,150,237">Docker</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="32,136,255">GitHub Actions</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="252,198,36">Linux</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="0,150,57">Nginx</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="100,116,139">Vercel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="px-4 md:px-6 max-w-7xl mx-auto space-y-10 md:space-y-32 pt-8 md:pt-32 scroll-mt-32">
+            <div class="text-center reveal">
+                <h2 class="text-2xl md:text-6xl font-black text-slate-900 tracking-tight mb-2 md:mb-6">Проекты.</h2>
+                <p class="text-sm md:text-lg text-slate-500 max-w-xl mx-auto">Живые демо — можно потыкать прямо здесь, в окне превью. Исходники открыты на GitHub.</p>
+            </div>
+
+            <div
+                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
+                <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
+                    <div class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(34,211,238,0.25)]">
+                        <img src="./preview-creator.png" alt="Превью Creator Portfolio"
+                            class="w-full h-full object-cover absolute inset-0" loading="lazy">
+                    </div>
+                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
+                        <h3
+                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
+                            Creator Portfolio</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML5</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="6,182,212">Tailwind CSS</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Задача</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Одностраничный лендинг-портфолио с тёмной и светлой темой и плавными переходами между секциями.</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Что сделано</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Вёрстка с нуля, переключатель тёмной/светлой темы с сохранением в localStorage, модальные окна проектов, кастомные scroll-анимации и форма с валидацией. Ноль сторонних библиотек.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
+                            <a href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                Открыть на весь экран →
+                            </a>
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/gh-pages/projects/creator-landing-portfolio" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Исходный код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
+                <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-12 items-center">
+                    <div class="sandbox-preview dark-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(99,102,241,0.3)]">
+                        <img src="./preview-novafi.png" alt="Превью NovaFi Dashboard"
+                            class="w-full h-full object-cover absolute inset-0" loading="lazy">
+                    </div>
+                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
+                        <h3
+                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
+                            NovaFi Dashboard</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS · SPA</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="255,99,132">Chart.js</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="34,211,238">REST API</span>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Задача</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Крипто-дашборд с живыми данными, графиками и интерактивными состояниями — без фреймворка.</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Что сделано</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">SPA-навигация между вкладками, запросы к API биржи, отрисовка графиков, рабочий своп с пересчётом баланса, модалки транзакций и тосты-уведомления.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
+                            <a href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                Открыть на весь экран →
+                            </a>
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/gh-pages/projects/crypto-dashboard-portfolio" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Исходный код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
+                <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
+                    <div class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(255,90,0,0.25)]">
+                        <img src="./preview-tin.png" alt="Превью Tin Master 3D"
+                            class="w-full h-full object-cover absolute inset-0" loading="lazy">
+                    </div>
+                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
+                        <h3
+                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
+                            Tin Master 3D</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="34,211,238">Three.js · WebGL</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="6,182,212">Tailwind CSS</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Задача</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Сайт для цеха металлообработки: лазерная резка, гибка по чертежам, отливы, доборные элементы и профили под ключ. Клиенту нужно наглядно подбирать цвет изделия по палитре RAL.</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Что сделано</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">3D-конфигуратор на Three.js: управление камерой, смена цвета металла по палитре RAL в реальном времени, генерация геометрии отливов и доборных элементов, адаптив под телефон.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
+                            <a href="./projects/tin-workshop-portfolio/index.html" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                Открыть на весь экран →
+                            </a>
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/gh-pages/projects/tin-workshop-portfolio" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Исходный код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="contact"
+            class="px-4 md:px-6 max-w-4xl mx-auto text-center pt-12 md:pt-24 flex flex-col items-center scroll-mt-32">
+            <div class="reveal flex flex-col items-center w-full">
+                <h2 class="text-3xl md:text-7xl font-black text-slate-900 tracking-tight mb-3 md:mb-8">Расскажите о проекте</h2>
+                <p class="text-base md:text-xl text-slate-500 mb-6 md:mb-12 font-light max-w-sm md:max-w-none">Опишите задачу — отвечу в течение дня, обсудим сроки и стоимость.</p>
+
+                <a href="mailto:hellolusty@proton.me"
+                    class="text-lg xs:text-xl sm:text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 hover:opacity-80 transition-opacity duration-700 py-1 md:py-2 whitespace-nowrap px-2 md:px-4">
+                    hellolusty@proton.me
+                </a>
+
+                <span class="block my-4 md:my-10 text-lg md:text-xl text-slate-400 font-light">или</span>
+
+                <a href="https://t.me/lustyinyourmind" target="_blank" rel="noopener noreferrer"
+                    class="btn-water w-full xs:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 md:py-4 rounded-full bg-[#2AABEE] text-white text-base md:text-lg font-semibold shadow-[0_0_30px_rgba(42,171,238,0.3)] hover:shadow-[0_0_50px_rgba(42,171,238,0.5)] hover:scale-105 transition-all duration-700 ease-out group will-change-transform">
+                    <svg class="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-12 transition-transform duration-700" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z">
+                        </path>
+                    </svg>
+                    Написать в Telegram
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="pt-8 md:pt-12 pb-4 md:pb-6 border-t border-white/50 text-center mt-8 md:mt-12">
+        <p class="text-slate-400 font-medium">© 2026 lusty.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

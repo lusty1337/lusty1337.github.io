@@ -1,0 +1,13 @@
+# локальные генераторы картинок — не часть сайта
+make-og-image.html
+make-previews.html
+
+# тестовые и временные файлы
+test_crypto.html
+
+# папка IDE и инструментов
+.claude/
+
+# vite
+node_modules/
+dist/
