@@ -22,9 +22,6 @@
     <meta name="twitter:image" content="https://lusty1337.github.io/og-image.png">
 
     <link rel="stylesheet" href="/src/style.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800;900&amp;family=Playfair+Display:wght@700;900&amp;display=swap"
-        rel="stylesheet">
 
     <script>
         // прячем блоки ДО первой отрисовки, но только если реально умеем их анимировать.
@@ -64,9 +61,9 @@
                 Начать проект
             </a>
             <button id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
-                <span class="w-6 h-0.5 bg-slate-900 transition-all duration-300 rounded-full"></span>
-                <span class="w-6 h-0.5 bg-slate-900 transition-all duration-300 rounded-full"></span>
-                <span class="w-6 h-0.5 bg-slate-900 transition-all duration-300 rounded-full"></span>
+                <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
             </button>
         </div>
         <div id="mobile-menu" class="fixed inset-0 bg-[#FDFBF9]/95 backdrop-blur-lg z-[60] flex flex-col items-center justify-center gap-10 opacity-0 pointer-events-none transition-all duration-500 h-screen">
@@ -231,8 +228,8 @@
                 class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
                 <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
                     <div class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(34,211,238,0.25)]">
-                        <img src="./preview-creator.png" alt="Превью Creator Portfolio"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy">
+                        <img src="./preview-creator.webp" alt="Превью Creator Portfolio"
+                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
                     </div>
                     <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
                         <h3
@@ -252,7 +249,7 @@
                             <p class="text-sm md:text-base text-slate-500 leading-relaxed">Вёрстка с нуля, переключатель тёмной/светлой темы с сохранением в localStorage, модальные окна проектов, кастомные scroll-анимации и форма с валидацией. Ноль сторонних библиотек.</p>
                         </div>
                         <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer"
+                            <a href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Creator Portfolio на весь экран"
                                 class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 Открыть на весь экран →
                             </a>
@@ -270,8 +267,8 @@
                 class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
                 <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-12 items-center">
                     <div class="sandbox-preview dark-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(99,102,241,0.3)]">
-                        <img src="./preview-novafi.png" alt="Превью NovaFi Dashboard"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy">
+                        <img src="./preview-novafi.webp" alt="Превью NovaFi Dashboard"
+                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
                     </div>
                     <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
                         <h3
@@ -291,7 +288,7 @@
                             <p class="text-sm md:text-base text-slate-500 leading-relaxed">SPA-навигация между вкладками, запросы к API биржи, отрисовка графиков, рабочий своп с пересчётом баланса, модалки транзакций и тосты-уведомления.</p>
                         </div>
                         <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer"
+                            <a href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть NovaFi Dashboard на весь экран"
                                 class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 Открыть на весь экран →
                             </a>
@@ -309,8 +306,8 @@
                 class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
                 <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
                     <div class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(255,90,0,0.25)]">
-                        <img src="./preview-tin.png" alt="Превью Tin Master 3D"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy">
+                        <img src="./preview-tin.webp" alt="Превью Tin Master 3D"
+                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
                     </div>
                     <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
                         <h3
@@ -330,11 +327,88 @@
                             <p class="text-sm md:text-base text-slate-500 leading-relaxed">3D-конфигуратор на Three.js: управление камерой, смена цвета металла по палитре RAL в реальном времени, генерация геометрии отливов и доборных элементов, адаптив под телефон.</p>
                         </div>
                         <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="./projects/tin-workshop-portfolio/index.html" target="_blank" rel="noopener noreferrer"
+                            <a href="./projects/tin-workshop-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Tin Master 3D на весь экран"
                                 class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 Открыть на весь экран →
                             </a>
                             <a href="https://github.com/lusty1337/lusty1337.github.io/tree/gh-pages/projects/tin-workshop-portfolio" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Исходный код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
+                <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-12 items-center">
+                    <div class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(255,90,0,0.25)]">
+                        <img src="./preview-pizza.webp" alt="Превью Pizza Landing"
+                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                    </div>
+                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
+                        <h3
+                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
+                            Pizza Landing</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML / CSS</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Задача</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Промо-лендинг пиццерии с атмосферным тёмным дизайном, интерактивным меню и UX, который хочется трогать.</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Что сделано</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Верстка с нуля: фильтрация меню по категориям, анимированные карточки, выезжающая корзина, тач-свайпы. Адаптив от 320px. Без сторонних JS-библиотек.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
+                            <a href="./projects/pizza-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Pizza Landing на весь экран"
+                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                Открыть на весь экран →
+                            </a>
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/gh-pages/projects/pizza-landing-portfolio" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Исходный код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
+                <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
+                    <div class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(168,85,247,0.3)]">
+                        <img src="./preview-smartysorter.webp" alt="Превью SmartySorter"
+                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                    </div>
+                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
+                        <h3
+                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
+                            SmartySorter</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="55,118,171">Python</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="99,102,241">pywebview</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="100,116,139">Windows .exe</span>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Задача</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Десктопный сортировщик файлов для Windows — с приятным интерфейсом, гибкой настройкой категорий и без единого стороннего фреймворка на фронте.</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Что сделано</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Бэкенд на Python в связке с pywebview — нативное окно вместо Electron. Сортировка по категориям в один клик, полноценный undo с восстановлением структуры папок, защита от перезаписи при конфликте имён, редактируемые категории расширений, локализация на 3 языка и тёмная/светлая тема с синхронизацией с ОС.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
+                            <a href="https://github.com/lusty1337/SmartySorter/releases/latest" target="_blank" rel="noopener noreferrer" aria-label="Скачать SmartySorter"
+                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                Скачать ↓
+                            </a>
+                            <a href="https://github.com/lusty1337/SmartySorter" target="_blank" rel="noopener noreferrer"
                                 class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 Исходный код
@@ -375,11 +449,8 @@
     </main>
 
     <footer class="pt-8 md:pt-12 pb-4 md:pb-6 border-t border-white/50 text-center mt-8 md:mt-12">
-        <p class="text-slate-400 font-medium">© 2026 lusty.</p>
+        <p class="text-slate-500 font-medium">© 2026 lusty.</p>
     </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script type="module" src="/src/main.js"></script>
 </body>

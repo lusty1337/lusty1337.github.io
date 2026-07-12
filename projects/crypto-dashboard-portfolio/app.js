@@ -229,7 +229,9 @@ const fetchBinanceData = async (timeframe) => {
     else                          { interval = '1d'; limit = 30; }
 
     try {
-        const res     = await fetch(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=${interval}&limit=${limit}`);
+        // без таймаута зависший запрос (бинанс блокирует часть регионов) держит график пустым десятки секунд —
+        // режем коротко и сразу уходим на моки
+        const res     = await fetch(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=${interval}&limit=${limit}`, { signal: AbortSignal.timeout(3000) });
         const rawData = await res.json();
         if (!Array.isArray(rawData)) throw new Error('bad format');
 

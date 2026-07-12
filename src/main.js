@@ -1,61 +1,56 @@
-// появление секций на gsap. если библиотека не подтянулась с cdn —
-// снимаем anim-on, чтобы контент остался видимым без анимаций
-if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-    const isMobile = window.innerWidth < 768;
+gsap.registerPlugin(ScrollTrigger);
 
-    // на мобилках не reverse'им — один проход без лишней работы GPU
-    const REPLAY = isMobile ? 'play none none none' : 'restart none none reverse';
-    const MOVE_Y = isMobile ? 20 : 40;
+const isMobile = window.innerWidth < 768;
 
-    gsap.utils.toArray('.reveal').forEach((el) => {
-        gsap.fromTo(el,
-            { opacity: 0, y: MOVE_Y },
-            {
-                opacity: 1, y: 0, duration: isMobile ? 0.6 : 1, ease: 'power3.out',
-                scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: REPLAY }
-            }
-        );
-    });
+const REPLAY = isMobile ? 'play none none reset' : 'restart none none reverse';
+const MOVE_Y = isMobile ? 20 : 40;
 
-    // компетенции — на десктопе каскадом от контейнера, на мобилке каждая карточка сама
-    const compReveal = document.querySelector('.competencies-reveal');
-    if (compReveal) {
-        const items = compReveal.querySelectorAll('.card-title, .comp-card');
-        if (isMobile) {
-            // на телефоне карточки в столбик — каждая появляется сама при доскролле
-            items.forEach((el) => {
-                gsap.fromTo(el,
-                    { opacity: 0, y: MOVE_Y },
-                    {
-                        opacity: 1, y: 0, duration: 0.5, ease: 'power3.out',
-                        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: REPLAY }
-                    }
-                );
-            });
-        } else {
-            gsap.fromTo(items,
+gsap.utils.toArray('.reveal').forEach((el) => {
+    gsap.fromTo(el,
+        { opacity: 0, y: MOVE_Y },
+        {
+            opacity: 1, y: 0, duration: isMobile ? 0.6 : 1, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: REPLAY }
+        }
+    );
+});
+
+// компетенции — на десктопе каскадом от контейнера, на мобилке каждая карточка сама
+const compReveal = document.querySelector('.competencies-reveal');
+if (compReveal) {
+    const items = compReveal.querySelectorAll('.card-title, .comp-card');
+    if (isMobile) {
+        items.forEach((el) => {
+            gsap.fromTo(el,
                 { opacity: 0, y: MOVE_Y },
                 {
-                    opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-                    stagger: 0.12,
-                    scrollTrigger: { trigger: compReveal, start: 'top 70%', toggleActions: REPLAY }
+                    opacity: 1, y: 0, duration: 0.5, ease: 'power3.out',
+                    scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: REPLAY }
                 }
             );
-        }
+        });
+    } else {
+        gsap.fromTo(items,
+            { opacity: 0, y: MOVE_Y },
+            {
+                opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+                stagger: 0.12,
+                scrollTrigger: { trigger: compReveal, start: 'top 70%', toggleActions: REPLAY }
+            }
+        );
     }
-
-    // шрифты догружаются и сдвигают вёрстку — пересчитываем точки триггеров
-    window.addEventListener('load', () => ScrollTrigger.refresh());
-} else {
-    document.documentElement.classList.remove('anim-on');
 }
+
+// шрифты догружаются и сдвигают вёрстку — пересчитываем точки триггеров
+window.addEventListener('load', () => ScrollTrigger.refresh());
 
 // наклон + свечение только на превью, всё в одном обработчике
 // на тач-устройствах не вешаем — иначе залипает после первого тапа
 if (window.matchMedia('(hover: hover)').matches) {
-    const glowColors = ['34,211,238', '99,102,241', '255,90,0']; // cyan, indigo, orange
+    const glowColors = ['34,211,238', '99,102,241', '255,90,0', '255,90,0', '168,85,247']; // cyan, indigo, orange, orange, violet
 
     document.querySelectorAll('.sandbox-preview').forEach((preview, i) => {
         const c = glowColors[i] || glowColors[0];
@@ -240,50 +235,86 @@ if (mobileBtn) {
     }));
 }
 
-// прожектор (плавно через opacity оверлея) + мягкий lift + брендовый цвет на бейджах
+// прожектор + брендовый цвет на бейджах. работает везде: стек + проекты
 (function () {
     const stackCard = document.querySelector('.stack-card');
-    if (!stackCard || !window.matchMedia('(hover: hover)').matches) return;
+    if (!stackCard) return;
 
-    stackCard.style.position = 'relative';
-    const spotlight = document.createElement('div');
-    // 2× медленнее: 0.55s → 1.1s
-    spotlight.style.cssText = 'position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity 1.1s cubic-bezier(0.16,1,0.3,1)';
-    stackCard.prepend(spotlight);
+    const isHover = window.matchMedia('(hover: hover)').matches;
 
-    stackCard.addEventListener('mousemove', (e) => {
-        const r = stackCard.getBoundingClientRect();
-        spotlight.style.background = `radial-gradient(460px circle at ${e.clientX - r.left}px ${e.clientY - r.top}px, rgba(34,211,238,0.09) 0%, transparent 70%)`;
-        spotlight.style.opacity = '1';
-    });
-    stackCard.addEventListener('mouseleave', () => { spotlight.style.opacity = '0'; });
-
-    document.querySelectorAll('.stack-badge').forEach(badge => {
-        const rgb = badge.dataset.brand || '34,211,238';
-        // background-color 0.7s — плавнее остальных (0.35s), чтобы белый фон
-        // не скачком сменялся на градиент а плавно растворялся
-        badge.style.transition = [
-            'color 0.35s cubic-bezier(0.16,1,0.3,1)',
-            'border-color 0.35s cubic-bezier(0.16,1,0.3,1)',
-            'box-shadow 0.4s cubic-bezier(0.16,1,0.3,1)',
-            'transform 0.35s cubic-bezier(0.16,1,0.3,1)',
-            'background-color 0.7s cubic-bezier(0.16,1,0.3,1)',
-        ].join(', ');
-        badge.addEventListener('mouseenter', () => {
-            badge.style.backgroundColor = 'rgba(255,255,255,0.05)';
-            badge.style.color = `rgb(${rgb})`;
-            badge.style.borderColor = `rgba(${rgb},0.45)`;
-            // тень без offset-y — исключает перцептивный сдвиг при исчезновении
-            badge.style.boxShadow = `0 0 14px rgba(${rgb},0.3), 0 0 8px rgba(${rgb},0.12)`;
-            badge.style.transform = 'translateY(-2px)';
+    if (isHover) {
+        stackCard.style.position = 'relative';
+        const spotlight = document.createElement('div');
+        spotlight.style.cssText = 'position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity 1.1s cubic-bezier(0.16,1,0.3,1)';
+        stackCard.prepend(spotlight);
+        stackCard.addEventListener('mousemove', (e) => {
+            const r = stackCard.getBoundingClientRect();
+            spotlight.style.background = `radial-gradient(460px circle at ${e.clientX - r.left}px ${e.clientY - r.top}px, rgba(34,211,238,0.09) 0%, transparent 70%)`;
+            spotlight.style.opacity = '1';
         });
-        badge.addEventListener('mouseleave', () => {
-            badge.style.backgroundColor = '';
-            badge.style.color = '';
-            badge.style.borderColor = '';
-            badge.style.boxShadow = '';
-            // явный translateY(0px) вместо '' — финальный кадр не рвёт позицию
-            badge.style.transform = 'translateY(0px)';
+        stackCard.addEventListener('mouseleave', () => { spotlight.style.opacity = '0'; });
+    }
+
+    const TRANSITION = [
+        'color 0.35s cubic-bezier(0.16,1,0.3,1)',
+        'border-color 0.35s cubic-bezier(0.16,1,0.3,1)',
+        'box-shadow 0.4s cubic-bezier(0.16,1,0.3,1)',
+        'transform 0.35s cubic-bezier(0.16,1,0.3,1)',
+        'background-color 0.7s cubic-bezier(0.16,1,0.3,1)',
+    ].join(', ');
+
+    const activate = (badge, rgb) => {
+        badge.style.backgroundColor = 'rgba(255,255,255,0.05)';
+        badge.style.color = `rgb(${rgb})`;
+        badge.style.borderColor = `rgba(${rgb},0.45)`;
+        badge.style.boxShadow = `0 0 14px rgba(${rgb},0.3), 0 0 8px rgba(${rgb},0.12)`;
+        badge.style.transform = 'translateY(-2px)';
+        badge._on = true;
+    };
+    const deactivate = (badge) => {
+        badge.style.backgroundColor = '';
+        badge.style.color = '';
+        badge.style.borderColor = '';
+        badge.style.boxShadow = '';
+        badge.style.transform = 'translateY(0px)';
+        badge._on = false;
+    };
+
+    // секция стека + каждая проектная карточка — отдельные группы
+    const groups = [stackCard, ...document.querySelectorAll('#projects .reveal')];
+
+    groups.forEach(container => {
+        const badges = container.querySelectorAll('.stack-badge');
+        if (!badges.length) return;
+
+        badges.forEach(badge => {
+            const rgb = badge.dataset.brand || '34,211,238';
+            badge.style.transition = TRANSITION;
+
+            if (isHover) {
+                badge.addEventListener('mouseenter', () => activate(badge, rgb));
+                badge.addEventListener('mouseleave', () => deactivate(badge));
+            } else {
+                badge.addEventListener('touchend', (e) => {
+                    const t = e.changedTouches[0];
+                    const el = document.elementFromPoint(t.clientX, t.clientY);
+                    if (!el || (el !== badge && !badge.contains(el))) return;
+
+                    if (badge._on) { deactivate(badge); return; }
+                    // в одной группе одновременно активна только одна пилюля
+                    badges.forEach(b => { if (b._on) deactivate(b); });
+                    activate(badge, rgb);
+                }, { passive: true });
+            }
         });
     });
+
+    // тап вне любого бейджа — глобальный сброс
+    if (!isHover) {
+        document.addEventListener('touchend', (e) => {
+            if (!e.target.closest('.stack-badge')) {
+                document.querySelectorAll('.stack-badge').forEach(b => { if (b._on) deactivate(b); });
+            }
+        }, { passive: true });
+    }
 })();
