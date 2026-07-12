@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЖестьМастер — Изготовление жестяных изделий под заказ</title>
+    
+    <meta name="description" content="Мастерская по изготовлению отливов, уголков, колпаков и нестандартных фасонных элементов из жести по вашим индивидуальным размерам.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tailwind.css">
+
+    <style>
+        :root {
+            --selected-ral-color: #F4F4F4;
+        }
+        body {
+            background-color: #121315;
+            color: #8e939a;
+        }
+        * {
+            border-radius: 0 !important;
+        }
+        
+
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 10px;
+            background: #ff5a00;
+            cursor: pointer;
+            margin-top: -8px;
+            border: 1px solid #121315;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #2a2d32;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        
+
+        input[type="radio"].peer {
+            display: none;
+        }
+        
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121315; 
+            border-left: 1px solid #2a2d32;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2d32; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff5a00; 
+        }
+        
+        /* прячем интерфейс, если это iframe-превью */
+        html.preview-active body > header,
+        html.preview-active body > main,
+        html.preview-active body > footer {
+            display: none !important;
+        }
+        html.preview-active body {
+            overflow: hidden !important;
+            height: 100vh !important;
+            width: 100vw !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        html.preview-active #preview-container {
+            display: flex !important;
+        }
+    </style>
+    <script>
+        // скрываем лишнее если в айфрейме
+        if (new URLSearchParams(window.location.search).get('preview') === 'true') {
+            document.documentElement.classList.add('preview-active');
+        }
+    </script>
+</head>
+<body class="font-sans text-steel antialiased flex flex-col min-h-screen selection:bg-accent selection:text-dark">
+    
+
+    <div id="preview-container" class="hidden fixed inset-0 items-center justify-center bg-dark select-none z-[100]">
+        <div class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase text-white font-sans tracking-tight">
+            ЖЕСТЬ<span class="text-accent">МАСТЕР</span>
+        </div>
+    </div>
+    
+    <header class="fixed top-0 left-0 w-full z-50 bg-dark/95 backdrop-blur border-b border-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-baseline gap-3">
+                <div class="text-white text-xl sm:text-2xl font-black uppercase tracking-tight">
+                    ЖЕСТЬ<span class="text-accent">МАСТЕР</span>
+                </div>
+            </div>
+            
+            <div class="hidden sm:flex items-center gap-8">
+                <a href="tel:+79876543210" class="text-white hover:text-accent transition-colors duration-300 font-bold tracking-wider">
+                    +7 (987) 654-32-10
+                </a>
+                <div class="flex gap-5">
+
+                    <a href="https://t.me/telegram" target="_blank" class="text-steel hover:text-white transition-colors duration-300 relative group">
+                        <svg class="w-6 h-6" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.11.03-1.84 1.18-5.18 3.44-.49.34-.93.5-1.33.49-.44-.01-1.28-.25-1.9-.45-.77-.25-1.38-.38-1.32-.8.03-.22.34-.44.93-.68 3.62-1.58 6.04-2.62 7.25-3.13 3.45-1.44 4.16-1.69 4.63-1.69.1 0 .34.02.46.12.11.08.14.19.15.28-.01.07-.01.19-.02.26z"/></svg>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] bg-dark border border-line px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity font-mono whitespace-nowrap text-steel">Telegram</span>
+                    </a>
+
+                    <a href="https://max.ru/" id="max-header-link" target="_blank" class="text-steel hover:text-[#005BFF] transition-colors duration-300 relative group">
+                        <svg class="w-6 h-6" viewBox="0 0 1000 1000" fill="currentColor">
+                            <path fill-rule="evenodd" d="M508.211 878.328c-75.007 0-109.864-10.95-170.453-54.75-38.325 49.275-159.686 87.783-164.979 21.9 0-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508 0-216.626 177.754-379.597 388.357-379.597 210.785 0 375.947 171.001 375.947 381.604.707 207.346-166.595 376.118-373.94 377.224m3.103-571.585c-102.564-5.292-182.499 65.7-200.201 177.024-14.6 92.162 11.315 204.398 33.397 210.238 10.585 2.555 37.23-18.98 53.837-35.587a189.8 189.8 0 0 0 92.71 33.032c106.273 5.112 197.08-75.794 204.215-181.95 4.154-106.382-77.67-196.486-183.958-202.574Z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] bg-dark border border-line px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity font-mono whitespace-nowrap text-steel">Написать в MAX</span>
+                    </a>
+                </div>
+            </div>
+            
+            <button id="burger-btn" class="sm:hidden text-white p-2 border border-line hover:border-accent transition-colors duration-300">
+                <svg class="w-6 h-6" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden border-t border-line bg-dark px-4 py-6 flex flex-col gap-4 sm:hidden">
+            <a href="tel:+79876543210" class="text-white hover:text-accent font-bold tracking-wider text-center text-lg py-2 border border-line/30 hover:border-accent transition-colors">
+                +7 (987) 654-32-10
+            </a>
+            <div class="flex justify-center gap-6 py-2">
+                <a href="https://t.me/telegram" target="_blank" class="text-steel hover:text-white transition-colors duration-300 flex items-center gap-2">
+                    <svg class="w-6 h-6" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.11.03-1.84 1.18-5.18 3.44-.49.34-.93.5-1.33.49-.44-.01-1.28-.25-1.9-.45-.77-.25-1.38-.38-1.32-.8.03-.22.34-.44.93-.68 3.62-1.58 6.04-2.62 7.25-3.13 3.45-1.44 4.16-1.69 4.63-1.69.1 0 .34.02.46.12.11.08.14.19.15.28-.01.07-.01.19-.02.26z"/></svg>
+                    <span class="font-mono text-sm uppercase">Telegram</span>
+                </a>
+
+                <a href="https://max.ru/" id="max-mobile-link" target="_blank" class="text-steel hover:text-[#005BFF] transition-colors duration-300 flex items-center gap-2">
+                    <svg class="w-6 h-6" viewBox="0 0 1000 1000" fill="currentColor">
+                        <path fill-rule="evenodd" d="M508.211 878.328c-75.007 0-109.864-10.95-170.453-54.75-38.325 49.275-159.686 87.783-164.979 21.9 0-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508 0-216.626 177.754-379.597 388.357-379.597 210.785 0 375.947 171.001 375.947 381.604.707 207.346-166.595 376.118-373.94 377.224m3.103-571.585c-102.564-5.292-182.499 65.7-200.201 177.024-14.6 92.162 11.315 204.398 33.397 210.238 10.585 2.555 37.23-18.98 53.837-35.587a189.8 189.8 0 0 0 92.71 33.032c106.273 5.112 197.08-75.794 204.215-181.95 4.154-106.382-77.67-196.486-183.958-202.574Z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="font-mono text-sm uppercase">MAX</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20">
+        <section class="relative px-4 sm:px-6 lg:px-8 py-20 sm:py-32 lg:py-48 border-b border-line overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+            
+            <div class="relative max-w-7xl mx-auto">
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold text-white uppercase tracking-tighter leading-none mb-8">
+                    Металлоизделия <br> <span class="text-accent">по вашим чертежам</span>
+                </h1>
+                <p class="max-w-2xl text-lg sm:text-xl text-steel leading-relaxed mb-12">
+                    Лазерная резка и высокоточная гибка по чертежам. Отливы, доборные элементы
+                    и профили под ключ. Вся палитра RAL, точная геометрия без заусенцев,
+                    сроки под объект.
+                </p>
+                <a href="#calculator" class="inline-flex items-center justify-center bg-accent text-dark font-bold text-sm sm:text-base px-8 py-4 border border-accent hover:bg-dark hover:text-accent transition-all duration-300 uppercase tracking-widest group">
+                    <span>Примеры изделий</span>
+                    <svg class="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+            </div>
+        </section>
+
+        <section class="px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-line">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="p-8 sm:p-10 border border-line bg-dark hover:border-accent transition-colors duration-300 relative group">
+                        <div class="absolute top-0 right-0 w-4 h-4 border-t border-r border-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <h3 class="text-white text-lg sm:text-xl font-bold mb-4 uppercase tracking-wide">Лазерная резка и гибка</h3>
+                        <p class="text-steel leading-relaxed text-sm sm:text-base">
+                            Раскрой на лазере и гибка по чертежу на листогибе. Точная геометрия без заусенцев и кривых изломов, повторяемость от детали к детали.
+                        </p>
+                    </div>
+                    <div class="p-8 sm:p-10 border border-line bg-dark hover:border-accent transition-colors duration-300 relative group">
+                        <div class="absolute top-0 right-0 w-4 h-4 border-t border-r border-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <h3 class="text-white text-lg sm:text-xl font-bold mb-4 uppercase tracking-wide">Широкая география</h3>
+                        <p class="text-steel leading-relaxed text-sm sm:text-base">
+                            Нам доверяют сложные объекты. Изделия доставляются в соседние города, регионы и на объекты любой удаленности.
+                        </p>
+                    </div>
+                    <div class="p-8 sm:p-10 border border-line bg-dark hover:border-accent transition-colors duration-300 relative group">
+                        <div class="absolute top-0 right-0 w-4 h-4 border-t border-r border-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <h3 class="text-white text-lg sm:text-xl font-bold mb-4 uppercase tracking-wide">Любой цвет RAL</h3>
+                        <p class="text-steel leading-relaxed text-sm sm:text-base">
+                            Работаем со всей палитрой существующих цветов под ваш объект. Самые ходовые материалы (белый и шоколадно-коричневый) всегда в наличии в мастерской.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calculator" class="px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-line bg-[#16171a]/50">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-10 sm:mb-16 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <h2 class="text-3xl sm:text-5xl font-bold text-white uppercase tracking-tighter">Витрина изделий</h2>
+                    <span class="text-accent font-mono border border-accent px-3 py-1 text-xs tracking-widest w-fit">3D-ОБЗОР</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
+                    <div class="border border-line bg-dark min-h-[400px] flex flex-col relative group">
+                        <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center border-b border-line z-20 bg-dark">
+                            <span class="text-white font-bold uppercase tracking-widest text-sm">Отлив</span>
+                            <div class="flex gap-2 text-xs font-mono uppercase">
+                                <button id="btn-ebb-normal" onclick="setEbbType('normal')" class="px-2 py-1 border border-accent text-accent">Обычный</button>
+                                <button id="btn-ebb-euro" onclick="setEbbType('euro')" class="px-2 py-1 border border-line text-steel hover:border-steel transition-colors">Евро</button>
+                            </div>
+                        </div>
+                        
+                        <div id="canvas-container-ebb" class="flex-grow relative overflow-hidden p-0 min-h-[300px] cursor-move">
+                            <div class="absolute inset-0 opacity-20 pointer-events-none z-0" style="background-image: linear-gradient(#2a2d32 1px, transparent 1px), linear-gradient(90deg, #2a2d32 1px, transparent 1px); background-size: 20px 20px;"></div>
+                            <div class="absolute bottom-4 left-4 text-line font-mono text-xs pointer-events-none z-10 select-none">ЛКМ вращать, ПКМ двигать</div>
+                        </div>
+                    </div>
+
+                    <div class="border border-line bg-dark min-h-[400px] flex flex-col relative group">
+                        <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center border-b border-line z-20 bg-dark">
+                            <span class="text-white font-bold uppercase tracking-widest text-sm">Уголок</span>
+                            <div class="flex flex-wrap gap-2 text-xs font-mono uppercase justify-end">
+                                <button id="btn-angle-outer" onclick="setAngleType('outer')" class="px-2 py-1 border border-accent text-accent">Наружный</button>
+                                <button id="btn-angle-inner" onclick="setAngleType('inner')" class="px-2 py-1 border border-line text-steel hover:border-steel transition-colors">Внутренний</button>
+                            </div>
+                        </div>
+                        
+                        <div id="canvas-container-angle" class="flex-grow relative overflow-hidden p-0 min-h-[300px] cursor-move">
+                            <div class="absolute inset-0 opacity-20 pointer-events-none z-0" style="background-image: linear-gradient(#2a2d32 1px, transparent 1px), linear-gradient(90deg, #2a2d32 1px, transparent 1px); background-size: 20px 20px;"></div>
+                            <div class="absolute bottom-4 left-4 text-line font-mono text-xs pointer-events-none z-10 select-none">ЛКМ вращать, ПКМ двигать</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-10 border border-line bg-dark flex flex-col gap-6">
+                    <div class="space-y-2">
+                        <h4 class="text-white uppercase font-bold text-sm tracking-widest flex items-center gap-3">
+                            Цвет по шкале RAL
+                        </h4>
+                        <p class="text-steel text-xs font-mono uppercase tracking-widest">
+                            Выберите оттенок из популярных кровельных металлов или введите свой код
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col gap-6">
+                        <div class="flex flex-wrap gap-2 sm:gap-3" id="popular-colors">
+                            <button onclick="selectRal('#F4F4F4', 'RAL 9003', 'Сигнальный белый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#F4F4F4] border-2 border-accent relative transition-all duration-300 hover:scale-110" title="RAL 9003 (Белый)"></button>
+                            <button onclick="selectRal('#3B2313', 'RAL 8017', 'Шоколадно-коричневый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#3B2313] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 8017 (Коричневый)"></button>
+                            <button onclick="selectRal('#474A51', 'RAL 7024', 'Графитовый серый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#474A51] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 7024 (Графит)"></button>
+                            <button onclick="selectRal('#2F543F', 'RAL 6005', 'Зеленый мох')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#2F543F] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 6005 (Зеленый)"></button>
+                            <button onclick="selectRal('#5E2129', 'RAL 3005', 'Винно-красный')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#5E2129] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 3005 (Вишня)"></button>
+                            <button onclick="selectRal('#15488A', 'RAL 5005', 'Сигнальный синий')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#15488A] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 5005 (Синий)"></button>
+                            <button onclick="selectRal('#3F3A37', 'RAL 8019', 'Серо-коричневый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#3F3A37] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 8019 (Темно-коричневый)"></button>
+                            <button onclick="selectRal('#0A0A0A', 'RAL 9005', 'Глубокий черный')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#0A0A0A] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 9005 (Черный)"></button>
+                            <button onclick="selectRal('#E6D6B8', 'RAL 1015', 'Светлая слоновая кость')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#E6D6B8] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 1015 (Бежевый)"></button>
+                            <button onclick="selectRal('#969992', 'RAL 7004', 'Сигнальный серый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#969992] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 7004 (Светло-серый)"></button>
+                            <button onclick="selectRal('#7A2F2D', 'RAL 3011', 'Коричнево-красный')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#7A2F2D] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 3011 (Красный)"></button>
+                            <button onclick="selectRal('#2B2F33', 'RAL 7016', 'Антрацитово-серый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#2B2F33] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 7016 (Антрацит)"></button>
+                            <button onclick="selectRal('#8D493A', 'RAL 8004', 'Терракотовый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#8D493A] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 8004 (Терракота)"></button>
+                        </div>
+
+                        <div class="relative max-w-sm z-30">
+                            <div class="flex items-center bg-[#16171a] border border-line px-4 py-3">
+                                <span id="ral-color-indicator" class="w-8 h-8 rounded-full border border-line mr-4 transition-colors duration-300 shadow-inner" style="background-color: #F4F4F4;"></span>
+                                <div class="flex-grow">
+                                    <input type="text" id="ral-input" placeholder="Введите код (напр. 7024)" class="w-full bg-transparent text-white font-mono text-base focus:outline-none uppercase" value="RAL 9003" autocomplete="off">
+                                    <div id="ral-name" class="text-xs text-steel font-mono uppercase tracking-wider truncate mt-1">Сигнальный белый</div>
+                                </div>
+                            </div>
+                            <div id="ral-dropdown" class="hidden absolute left-0 right-0 mt-1 bg-[#16171a] border border-line max-h-64 overflow-y-auto z-50 shadow-2xl">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-6 border-t border-line/30">
+                        <p class="text-[#8e939a] text-xs sm:text-sm leading-relaxed">
+                            <span class="text-accent font-bold uppercase tracking-wider text-xs block mb-1">Индивидуальный заказ</span>
+                            Все изделия в нашей витрине служат наглядным примером геометрии и доступны для заказа по вашим размерам. 
+                            Если вам требуется деталь нестандартной формы или размера, которой нет в списке — просто свяжитесь с мастером. 
+                            Мы изготовим любые уникальные фасонные элементы по вашим эскизам или чертежам.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-line">
+                    
+                    <div class="p-8 sm:p-12 md:p-16 space-y-12">
+                        <div>
+                            <h2 class="text-3xl sm:text-4xl font-bold text-white uppercase tracking-tighter mb-8">Контакты <br>и логистика</h2>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <span class="text-accent font-mono text-xs uppercase tracking-widest mb-2 block">Адрес производства</span>
+                                    <p class="text-white text-lg">г. Москва, Красная площадь</p>
+                                    <p class="text-steel text-sm mt-1">(Ориентир: Государственный исторический музей)</p>
+                                </div>
+                                
+                                <div>
+                                    <span class="text-accent font-mono text-xs uppercase tracking-widest mb-2 block">Отгрузка</span>
+                                    <p class="text-steel leading-relaxed">Самовывоз. Помогаем с аккуратной погрузкой в ваш легковой автомобиль или наемную Газель.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-8 border-t border-line">
+                            <a href="tel:+79876543210" class="block text-3xl sm:text-4xl text-white hover:text-accent font-bold tracking-tight transition-colors duration-300 mb-6">
+                                +7 (987) 654-32-10
+                            </a>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="tel:+79876543210" class="border border-line bg-dark px-6 py-3 text-white hover:border-white transition-all duration-300 uppercase text-xs font-bold tracking-widest text-center flex-grow sm:flex-grow-0">
+                                    Позвонить
+                                </a>
+                                <a href="https://t.me/telegram" target="_blank" class="border border-line bg-dark px-6 py-3 text-[#229ED9] hover:border-[#229ED9] transition-all duration-300 uppercase text-xs font-bold tracking-widest text-center flex-grow sm:flex-grow-0">
+                                    Telegram
+                                </a>
+
+                                <a href="https://max.ru/" id="max-contact-button" target="_blank" class="border border-[#005BFF] bg-dark px-6 py-3 text-[#005BFF] hover:bg-[#005BFF]/10 transition-all duration-300 uppercase text-xs font-bold tracking-widest text-center flex-grow sm:flex-grow-0 flex items-center justify-center gap-2" title="Найти по номеру в приложении: +7 (987) 654-32-10">
+                                    <svg class="w-4 h-4" viewBox="0 0 1000 1000" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M508.211 878.328c-75.007 0-109.864-10.95-170.453-54.75-38.325 49.275-159.686 87.783-164.979 21.9 0-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508 0-216.626 177.754-379.597 388.357-379.597 210.785 0 375.947 171.001 375.947 381.604.707 207.346-166.595 376.118-373.94 377.224m3.103-571.585c-102.564-5.292-182.499 65.7-200.201 177.024-14.6 92.162 11.315 204.398 33.397 210.238 10.585 2.555 37.23-18.98 53.837-35.587a189.8 189.8 0 0 0 92.71 33.032c106.273 5.112 197.08-75.794 204.215-181.95 4.154-106.382-77.67-196.486-183.958-202.574Z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span>MAX</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-[#16171a] min-h-[400px] border-t lg:border-t-0 lg:border-l border-line relative overflow-hidden">
+                        <iframe src="https://yandex.ru/map-widget/v1/?text=%D0%BC%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%20%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D1%8C&z=16" width="100%" height="100%" class="absolute inset-0 w-full h-full border-0" allowfullscreen="true"></iframe>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-line py-8 mt-auto bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-steel text-xs sm:text-sm font-mono">
+                &copy; 2026 ЖестьМастер
+            </div>
+            <div class="text-line text-[10px] sm:text-xs font-mono uppercase tracking-widest">
+                Спроектировано с точностью до миллиметра
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const ralColors = {
+            'RAL 9003': { hex: '#F4F4F4', name: 'Сигнальный белый' },
+            'RAL 8017': { hex: '#3B2313', name: 'Шоколадно-коричневый' },
+            'RAL 7024': { hex: '#474A51', name: 'Графитовый серый' },
+            'RAL 6005': { hex: '#2F543F', name: 'Зеленый мох' },
+            'RAL 3005': { hex: '#5E2129', name: 'Винно-красный' },
+            'RAL 5005': { hex: '#15488A', name: 'Сигнальный синий' },
+            'RAL 8019': { hex: '#3F3A37', name: 'Серо-коричневый' },
+            'RAL 9005': { hex: '#0A0A0A', name: 'Глубокий черный' },
+            'RAL 1015': { hex: '#E6D6B8', name: 'Светлая слоновая кость' },
+            'RAL 7004': { hex: '#969992', name: 'Сигнальный серый' },
+            'RAL 3011': { hex: '#7A2F2D', name: 'Коричнево-красный' },
+            'RAL 7016': { hex: '#2B2F33', name: 'Антрацитово-серый' },
+            'RAL 8004': { hex: '#8D493A', name: 'Терракотовый' }
+        };
+
+        const ralInput = document.getElementById('ral-input');
+        const ralDropdown = document.getElementById('ral-dropdown');
+        const burgerBtn = document.getElementById('burger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (burgerBtn && mobileMenu) {
+            burgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // чтобы не поломать префикс при редактировании
+        ralInput.addEventListener('keydown', function(e) {
+            if ((e.key === 'Backspace' && ralInput.selectionStart <= 4 && ralInput.selectionEnd === ralInput.selectionStart) ||
+                (e.key === 'Delete' && ralInput.selectionStart < 4)) {
+                e.preventDefault();
+            }
+        });
+
+        ralInput.addEventListener('input', function(e) {
+            let val = ralInput.value;
+            if (!val.startsWith('RAL ')) {
+                const digits = val.replace(/[^0-9]/g, '');
+                ralInput.value = 'RAL ' + digits.slice(0, 4);
+            }
+            
+            const suffix = ralInput.value.substring(4);
+            const cleaned = suffix.replace(/[^0-9]/g, '').slice(0, 4);
+            if (suffix !== cleaned) {
+                ralInput.value = 'RAL ' + cleaned;
+            }
+
+            renderDropdown();
+            updateFromInput();
+        });
+
+        ralInput.addEventListener('focus', () => {
+            renderDropdown();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!ralInput.contains(e.target) && !ralDropdown.contains(e.target)) {
+                ralDropdown.classList.add('hidden');
+            }
+        });
+
+        function renderDropdown() {
+            const query = ralInput.value.substring(4).trim();
+            ralDropdown.innerHTML = '';
+            
+            let filteredKeys = Object.keys(ralColors);
+            if (query.length > 0) {
+                filteredKeys = filteredKeys.filter(key => key.includes(query) || ralColors[key].name.toLowerCase().includes(query.toLowerCase()));
+            }
+
+            if (filteredKeys.length === 0) {
+                ralDropdown.classList.add('hidden');
+                return;
+            }
+
+            filteredKeys.forEach(key => {
+                const color = ralColors[key];
+                const item = document.createElement('div');
+                item.className = 'flex items-center gap-3 px-4 py-2 hover:bg-line cursor-pointer text-white font-mono text-sm border-b border-line/20';
+                item.innerHTML = `
+                    <span class="w-4 h-4" style="background-color: ${color.hex}"></span>
+                    <span>${key} <span class="text-steel text-xs ml-2 font-sans">(${color.name})</span></span>
+                `;
+                item.addEventListener('click', () => {
+                    selectRal(color.hex, key, color.name);
+                    ralDropdown.classList.add('hidden');
+                });
+                ralDropdown.appendChild(item);
+            });
+
+            ralDropdown.classList.remove('hidden');
+        }
+
+        function selectRal(hex, code, name) {
+            ralInput.value = code;
+            updateRalColor(hex, name);
+            
+            const buttons = document.querySelectorAll('#popular-colors button');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('title').includes(code)) {
+                    btn.classList.add('border-accent');
+                    btn.classList.remove('border-transparent');
+                } else {
+                    btn.classList.remove('border-accent');
+                    btn.classList.add('border-transparent');
+                }
+            });
+        }
+
+        function updateRalColor(hex, name) {
+            document.documentElement.style.setProperty('--selected-ral-color', hex);
+            document.getElementById('ral-color-indicator').style.backgroundColor = hex;
+            document.getElementById('ral-name').innerText = name || 'Пользовательский цвет';
+            currentRalHex = hex;
+            if (typeof buildEbb === 'function') {
+                buildEbb();
+                buildAngle();
+            }
+        }
+
+        function updateFromInput() {
+            const val = ralInput.value.trim();
+            if (ralColors[val]) {
+                updateRalColor(ralColors[val].hex, ralColors[val].name);
+                
+                const buttons = document.querySelectorAll('#popular-colors button');
+                buttons.forEach(btn => {
+                    if (btn.getAttribute('title').includes(val)) {
+                        btn.classList.add('border-accent');
+                        btn.classList.remove('border-transparent');
+                    } else {
+                        btn.classList.remove('border-accent');
+                        btn.classList.add('border-transparent');
+                    }
+                });
+            }
+        }
+    </script>
+    
+    <script src="three.min.js"></script>
+    <script src="OrbitControls.js"></script>
+    
+    <script>
+        let sceneEbb, cameraEbb, rendererEbb, controlsEbb, groupEbb;
+        let sceneAngle, cameraAngle, rendererAngle, controlsAngle, groupAngle;
+        let sceneRidge, cameraRidge, rendererRidge, controlsRidge, groupRidge;
+        let sceneBar, cameraBar, rendererBar, controlsBar, groupBar;
+        let sceneCanopy, cameraCanopy, rendererCanopy, controlsCanopy, groupCanopy;
+        
+        let currentEbbType = 'normal';
+        let currentAngleType = 'outer';
+        let currentRidgeType = 'ridge';
+        let currentBarType = 'abutment';
+        let currentCanopyType = 'normal';
+        
+        let currentRalHex = '#F4F4F4';
+        const primerColor = '#606468'; // грунтовка с обратной стороны листа
+        
+        // скругление жестких углов гиба, чтобы металл смотрелся естественно
+        function roundPolyline(points, radius, segments = 6) {
+            if (points.length < 3) return points;
+            const result = [points[0]];
+            for (let i = 1; i < points.length - 1; i++) {
+                const p0 = points[i - 1];
+                const p1 = points[i];
+                const p2 = points[i + 1];
+                let v1 = { x: p0.x - p1.x, y: p0.y - p1.y };
+                let l1 = Math.sqrt(v1.x*v1.x + v1.y*v1.y) || 1;
+                let v2 = { x: p2.x - p1.x, y: p2.y - p1.y };
+                let l2 = Math.sqrt(v2.x*v2.x + v2.y*v2.y) || 1;
+                v1.x /= l1; v1.y /= l1;
+                v2.x /= l2; v2.y /= l2;
+                const r = Math.min(radius, l1 / 2, l2 / 2);
+                const start = { x: p1.x + v1.x * r, y: p1.y + v1.y * r };
+                const end = { x: p1.x + v2.x * r, y: p1.y + v2.y * r };
+                result.push(start);
+                for (let j = 1; j <= segments; j++) {
+                    const t = j / (segments + 1);
+                    const mt = 1 - t;
+                    const x = mt*mt*start.x + 2*mt*t*p1.x + t*t*end.x;
+                    const y = mt*mt*start.y + 2*mt*t*p1.y + t*t*end.y;
+                    result.push({x, y});
+                }
+                result.push(end);
+            }
+            result.push(points[points.length - 1]);
+            return result;
+        }
+
+        const ebbModelsRaw = {
+            normal: [ 
+                {x:-50, y:15}, 
+                {x:-50, y:0}, 
+                {x:50, y:-5}, 
+                {x:57, y:-24}, 
+                {x:42, y:-18} 
+            ],
+            euro: [ 
+                {x:-50, y:15}, 
+                {x:-50, y:0}, 
+                {x:50, y:-5}, 
+                {x:50, y:-20}, 
+                {x:40, y:-20} 
+            ]
+        };
+        const ebbModels = {
+            normal: roundPolyline(ebbModelsRaw.normal, 2),
+            euro: roundPolyline(ebbModelsRaw.euro, 2)
+        };
+        
+        const angleModelsRaw = {
+            outer: [ 
+                {x: -28, y: -2}, {x: -38, y: -12}, {x: -40, y: -10}, 
+                {x: 0, y: 30}, 
+                {x: 40, y: -10}, {x: 38, y: -12}, {x: 28, y: -2} 
+            ],
+            inner: [ 
+                {x: -32, y: 2}, {x: -42, y: -8}, {x: -40, y: -10}, 
+                {x: 0, y: 30}, 
+                {x: 40, y: -10}, {x: 42, y: -8}, {x: 32, y: 2} 
+            ]
+        };
+        const angleModels = {
+            outer: roundPolyline(angleModelsRaw.outer, 2.5),
+            inner: roundPolyline(angleModelsRaw.inner, 2.5)
+        };
+
+        const ridgeModelsRaw = {
+            ridge: [ {x:-40, y:0}, {x:0, y:20}, {x:40, y:0} ],
+            valley: [ {x:-40, y:20}, {x:0, y:0}, {x:40, y:20} ]
+        };
+        const ridgeModels = {
+            ridge: roundPolyline(ridgeModelsRaw.ridge, 2),
+            valley: roundPolyline(ridgeModelsRaw.valley, 2)
+        };
+
+        const barModelsRaw = {
+            abutment: [ {x:-30, y:20}, {x:-30, y:0}, {x:20, y:0} ],
+            cornice: [ {x:-20, y:20}, {x:0, y:0}, {x:20, y:-10} ],
+            shingle: [ {x:-20, y:15}, {x:0, y:15}, {x:10, y:0}, {x:30, y:0} ],
+            shaped: [ {x:-20, y:20}, {x:-10, y:10}, {x:0, y:15}, {x:10, y:0}, {x:20, y:0} ]
+        };
+        const barModels = {
+            abutment: roundPolyline(barModelsRaw.abutment, 2),
+            cornice: roundPolyline(barModelsRaw.cornice, 2),
+            shingle: roundPolyline(barModelsRaw.shingle, 2),
+            shaped: roundPolyline(barModelsRaw.shaped, 2)
+        };
+
+        const canopyModelsRaw = {
+            normal: [ {x:-30, y:15}, {x:20, y:0}, {x:20, y:-10} ],
+            euro: [ {x:-30, y:15}, {x:20, y:0}, {x:20, y:-10}, {x:10, y:-10} ]
+        };
+        const canopyModels = {
+            normal: roundPolyline(canopyModelsRaw.normal, 2),
+            euro: roundPolyline(canopyModelsRaw.euro, 2)
+        };
+        
+        function setEbbType(type) {
+            currentEbbType = type;
+            document.getElementById('btn-ebb-normal').className = type === 'normal' ? 'px-2 py-1 border border-accent text-accent' : 'px-2 py-1 border border-line text-steel hover:border-steel transition-colors';
+            document.getElementById('btn-ebb-euro').className = type === 'euro' ? 'px-2 py-1 border border-accent text-accent' : 'px-2 py-1 border border-line text-steel hover:border-steel transition-colors';
+            buildEbb();
+        }
+
+        function setAngleType(type) {
+            currentAngleType = type;
+            document.getElementById('btn-angle-outer').className = type === 'outer' ? 'px-2 py-1 border border-accent text-accent' : 'px-2 py-1 border border-line text-steel hover:border-steel transition-colors';
+            document.getElementById('btn-angle-inner').className = type === 'inner' ? 'px-2 py-1 border border-accent text-accent' : 'px-2 py-1 border border-line text-steel hover:border-steel transition-colors';
+            buildAngle();
+        }
+
+
+
+        // строит замкнутый контур листа с учетом толщины металла для выдавливания
+        function createLayerShape(pts, thickness, isTop) {
+            const shape = new THREE.Shape();
+            const getNormal = (p1, p2) => {
+                const dx = p2.x - p1.x;
+                const dy = p2.y - p1.y;
+                const len = Math.sqrt(dx*dx + dy*dy) || 1;
+                return { x: -dy/len, y: dx/len }; 
+            };
+            
+            let topPts = [];
+            let botPts = [];
+            
+            for(let i=0; i<pts.length; i++) {
+                let n = {x:0, y:0};
+                if(i===0) {
+                    n = getNormal(pts[0], pts[1]);
+                } else if(i===pts.length-1) {
+                    n = getNormal(pts[i-1], pts[i]);
+                } else {
+                    const n1 = getNormal(pts[i-1], pts[i]);
+                    const n2 = getNormal(pts[i], pts[i+1]);
+                    n.x = n1.x + n2.x;
+                    n.y = n1.y + n2.y;
+                    const len = Math.sqrt(n.x*n.x + n.y*n.y) || 1;
+                    n.x /= len; n.y /= len;
+                    const dot = n1.x * n.x + n1.y * n.y;
+                    if (dot > 0.1) {
+                        n.x /= dot;
+                        n.y /= dot;
+                    }
+                }
+                if (isTop) {
+                    topPts.push(new THREE.Vector2(pts[i].x + n.x * thickness, pts[i].y + n.y * thickness));
+                    botPts.push(new THREE.Vector2(pts[i].x, pts[i].y));
+                } else {
+                    topPts.push(new THREE.Vector2(pts[i].x, pts[i].y));
+                    botPts.push(new THREE.Vector2(pts[i].x - n.x * thickness, pts[i].y - n.y * thickness));
+                }
+            }
+            shape.moveTo(topPts[0].x, topPts[0].y);
+            for(let i=1; i<topPts.length; i++) shape.lineTo(topPts[i].x, topPts[i].y);
+            for(let i=botPts.length-1; i>=0; i--) shape.lineTo(botPts[i].x, botPts[i].y);
+            shape.lineTo(topPts[0].x, topPts[0].y);
+            return shape;
+        }
+
+        function init3D() {
+            const contEbb = document.getElementById('canvas-container-ebb');
+            sceneEbb = new THREE.Scene();
+            cameraEbb = new THREE.PerspectiveCamera(45, contEbb.clientWidth / contEbb.clientHeight, 1, 1000);
+            cameraEbb.position.set(120, 80, 150);
+            rendererEbb = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            rendererEbb.setSize(contEbb.clientWidth, contEbb.clientHeight);
+            rendererEbb.domElement.style.position = 'relative';
+            rendererEbb.domElement.style.zIndex = '10';
+            contEbb.appendChild(rendererEbb.domElement);
+            controlsEbb = new THREE.OrbitControls(cameraEbb, rendererEbb.domElement);
+            controlsEbb.enableDamping = true;
+            controlsEbb.dampingFactor = 0.05;
+            sceneEbb.add(new THREE.AmbientLight(0xffffff, 0.6));
+            const dirLightEbb = new THREE.DirectionalLight(0xffffff, 0.6);
+            dirLightEbb.position.set(50, 200, 100);
+            sceneEbb.add(dirLightEbb);
+            groupEbb = new THREE.Group();
+            sceneEbb.add(groupEbb);
+            
+            const contAngle = document.getElementById('canvas-container-angle');
+            sceneAngle = new THREE.Scene();
+            cameraAngle = new THREE.PerspectiveCamera(45, contAngle.clientWidth / contAngle.clientHeight, 1, 1000);
+            cameraAngle.position.set(100, 80, 150);
+            rendererAngle = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            rendererAngle.setSize(contAngle.clientWidth, contAngle.clientHeight);
+            rendererAngle.domElement.style.position = 'relative';
+            rendererAngle.domElement.style.zIndex = '10';
+            contAngle.appendChild(rendererAngle.domElement);
+            controlsAngle = new THREE.OrbitControls(cameraAngle, rendererAngle.domElement);
+            controlsAngle.enableDamping = true;
+            controlsAngle.dampingFactor = 0.05;
+            sceneAngle.add(new THREE.AmbientLight(0xffffff, 0.6));
+            const dirLightAngle = new THREE.DirectionalLight(0xffffff, 0.6);
+            dirLightAngle.position.set(50, 200, 100);
+            sceneAngle.add(dirLightAngle);
+            groupAngle = new THREE.Group();
+            sceneAngle.add(groupAngle);
+            buildEbb();
+            buildAngle();
+            animate();
+        }
+
+        // собирает лицевую (цветную) и обратную (серый грунт) стороны изделия в одну модель
+        function buildModel(group, points, isFlippedColors) {
+            while(group.children.length > 0) { group.remove(group.children[0]); }
+            const thickness = 0.6; 
+            const extrudeSettings = { depth: 150, bevelEnabled: false };
+            const shapeTop = createLayerShape(points, thickness, true);
+            const shapeBot = createLayerShape(points, thickness, false);
+            const geoTop = new THREE.ExtrudeGeometry(shapeTop, extrudeSettings);
+            const geoBot = new THREE.ExtrudeGeometry(shapeBot, extrudeSettings);
+            geoTop.translate(0, 0, -75);
+            geoBot.translate(0, 0, -75);
+            const matColor = new THREE.MeshPhongMaterial({ color: currentRalHex, shininess: 50, specular: 0x444444 });
+            const matPrimer = new THREE.MeshPhongMaterial({ color: primerColor, shininess: 20, specular: 0x222222 });
+            
+            const meshTop = new THREE.Mesh(geoTop, isFlippedColors ? matPrimer : matColor);
+            const meshBot = new THREE.Mesh(geoBot, isFlippedColors ? matColor : matPrimer);
+            group.add(meshTop);
+            group.add(meshBot);
+        }
+
+        function buildEbb() { buildModel(groupEbb, ebbModels[currentEbbType], false); }
+        function buildAngle() { buildModel(groupAngle, angleModels[currentAngleType], currentAngleType === 'inner'); }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if (controlsEbb) controlsEbb.update();
+            if (controlsAngle) controlsAngle.update();
+            if (rendererEbb && sceneEbb && cameraEbb) rendererEbb.render(sceneEbb, cameraEbb);
+            if (rendererAngle && sceneAngle && cameraAngle) rendererAngle.render(sceneAngle, cameraAngle);
+        }
+
+        window.addEventListener('resize', () => {
+            if(!cameraEbb) return;
+            const cE = document.getElementById('canvas-container-ebb');
+            cameraEbb.aspect = cE.clientWidth / cE.clientHeight;
+            cameraEbb.updateProjectionMatrix();
+            rendererEbb.setSize(cE.clientWidth, cE.clientHeight);
+            
+            const cA = document.getElementById('canvas-container-angle');
+            cameraAngle.aspect = cA.clientWidth / cA.clientHeight;
+            cameraAngle.updateProjectionMatrix();
+            rendererAngle.setSize(cA.clientWidth, cA.clientHeight);
+        });
+        
+        window.addEventListener('DOMContentLoaded', init3D);
+    </script>
+</body>
+</html>

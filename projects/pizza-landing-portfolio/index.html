@@ -1,0 +1,193 @@
+<html lang="ru">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FORNO — лучшая пицца в Москве. Испечём и доставим за час.">
+<title>FORNO — пиццерия в Москве</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>">
+
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a class="logo" href="#top">
+      <span class="logo__mark">🍕</span>
+      <span class="logo__text">FOR<span class="accent">NO</span></span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="#menu">Меню</a>
+      <a href="#promo">Акции</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#footer">Контакты</a>
+    </nav>
+
+    <div class="header__aside">
+      <div class="phone">
+        <svg class="phone__ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.4 21 3 13.6 3 4.5 3 3.95 3.45 3.5 4 3.5H7.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.58.11.35.03.74-.24 1.02l-2.23 2.2Z"/></svg>
+        <div class="phone__col">
+          <a href="tel:+74951234567" class="phone__num">+7 (495) 123 45-67</a>
+          <button class="phone__call" type="button" data-toast>Заказать звонок</button>
+        </div>
+      </div>
+
+      <button class="basket" id="basket" type="button" aria-label="Открыть корзину">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M7 4 5.4 6H3a1 1 0 0 0 0 2h1.3l1.36 9.15A2 2 0 0 0 7.64 19h9.72a2 2 0 0 0 1.98-1.85L20.7 8H8.2l1.1-1.5L7 4Zm2.5 11a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/></svg>
+        <span class="basket__count" id="basket-count" hidden>0</span>
+      </button>
+
+      <button class="burger" id="burger" type="button" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <h1 class="hero__title">Лучшая <span class="accent">пицца</span><br>в Москве</h1>
+        <p class="hero__sub">Испечём и доставим за 1 час.<br>Скидка 30% на вторую пиццу.</p>
+        <a href="#menu" class="btn btn--primary">Перейти в меню</a>
+      </div>
+
+      <div class="hero__visual">
+        <div class="hero__stage">
+          <span class="hero__ring"></span>
+          <img class="hero__pizza" src="./assets/pizzas/pizza_pepperoni.webp" alt="Пицца Пепперони" loading="eager">
+        </div>
+
+        <ul class="hero__points">
+          <li class="hero__point hero__point--1">Только свежие продукты</li>
+          <li class="hero__point hero__point--2">Напитки в подарок</li>
+          <li class="hero__point hero__point--3">Бесплатная доставка</li>
+          <li class="hero__point hero__point--4">Эксклюзивные рецепты</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="tabs" id="tabs"><!-- табы категорий из menu.js --></div>
+      <div class="menu__panels" id="panels"><!-- сетки карточек из menu.js --></div>
+    </div>
+  </section>
+
+  <section class="promo" id="promo">
+    <div class="container">
+      <h2 class="section-title">Акции недели</h2>
+
+      <div class="promo__grid">
+        <article class="promo__card">
+          <img src="./assets/pizzas/pizza_mushroom_and_truffle.webp" alt="Гриб и Трюфель">
+          <div class="promo__text">
+            <span class="promo__off"><b>−25%</b> на</span>
+            <span class="promo__name">Гриб &amp; Трюфель</span>
+          </div>
+        </article>
+
+        <article class="promo__card">
+          <img src="./assets/pizzas/pizza_carbonara.webp" alt="Карбонара">
+          <div class="promo__text">
+            <span class="promo__off"><b>−15%</b> на</span>
+            <span class="promo__name">Карбонару</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <h2 class="section-title">Отзывы</h2>
+
+      <div class="reviews__grid">
+        <article class="review">
+          <div class="review__head">
+            <span class="review__ava" style="--c1:#e0563a;--c2:#b8341c">ЕК</span>
+            <span class="review__name">Елена Карпенко</span>
+          </div>
+          <p class="review__text">Спасибо за сервис и вкус! Внезапно вкусно. Пицца выглядела так, будто только что из печи. Довезли за 20 минут горячей. Рекомендую всем!</p>
+        </article>
+
+        <article class="review review--featured">
+          <div class="review__head">
+            <span class="review__ava" style="--c1:#ffb800;--c2:#ff7a00">АЗ</span>
+            <span class="review__name accent">Александра Залищенко</span>
+          </div>
+          <p class="review__text">Спасибо за вкусную пиццу! Заказываю не первый раз. Очень довольна сервисом, пунктуальностью доставки и самой пиццей. Ещё раз спасибо!<br><br>С уважением, Александра.</p>
+        </article>
+
+        <article class="review">
+          <div class="review__head">
+            <span class="review__ava" style="--c1:#3a7de0;--c2:#1c50b8">АП</span>
+            <span class="review__name">Артур Полоненко</span>
+          </div>
+          <p class="review__text">Заказывали на большую вечеринку. Всё было отлично, горячо и с хорошей скидкой. Быстрая доставка, очень вкусная пицца. Остались довольны!</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="video">
+    <div class="container video__inner">
+      <div class="video__text">
+        <h2 class="section-title section-title--left">Смотрите видео,<br>как мы готовим <span class="accent">пиццу</span></h2>
+        <p class="video__note">Для вас — от всего сердца!</p>
+      </div>
+
+      <button class="video__thumb" type="button" aria-label="Смотреть видео" data-toast>
+        <img src="./assets/pizzas/pizza_bbq_chicken.webp" alt="Приготовление пиццы">
+        <span class="video__play">▶</span>
+      </button>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="footer">
+  <div class="container footer__inner">
+    <a class="logo" href="#top">
+      <span class="logo__mark">🍕</span>
+      <span class="logo__text">FOR<span class="accent">NO</span></span>
+    </a>
+
+    <p class="footer__soc-title">Мы в социальных сетях</p>
+
+    <ul class="socials">
+      <li><a href="#" data-toast aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2Zm0 3.05A6.75 6.75 0 1 0 18.75 12 6.75 6.75 0 0 0 12 5.25Zm0 11.13A4.38 4.38 0 1 1 16.38 12 4.38 4.38 0 0 1 12 16.38Zm6.99-11.4a1.58 1.58 0 1 0 1.58 1.57 1.58 1.58 0 0 0-1.58-1.57Z"/></svg>
+      </a></li>
+      <li><a href="#" data-toast aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/></svg>
+      </a></li>
+      <li><a href="#" data-toast aria-label="Telegram">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M21.94 4.5 18.9 19.2c-.23 1.02-.84 1.27-1.7.79l-4.7-3.47-2.27 2.18c-.25.25-.46.46-.94.46l.34-4.78 8.7-7.86c.38-.34-.08-.53-.59-.19L6.7 13.06l-4.63-1.45c-1-.32-1.02-1 .21-1.48L20.64 3.1c.84-.31 1.57.19 1.3 1.4Z"/></svg>
+      </a></li>
+      <li><a href="#" data-toast aria-label="VK">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M13.16 17.24c-5.44 0-8.87-3.77-9-10.04h2.74c.1 4.6 2.19 6.56 3.8 6.96V7.2h2.6v3.9c1.56-.17 3.2-1.98 3.75-3.9h2.56a7.4 7.4 0 0 1-3.36 4.83 7.66 7.66 0 0 1 3.94 4.9h-2.83c-.55-1.72-2.02-3.05-4.06-3.25v3.25h-.94Z"/></svg>
+      </a></li>
+    </ul>
+
+    <p class="footer__copy">© 2026 FORNO. Все права защищены. Тексты и цены — демонстрационные.</p>
+  </div>
+</footer>
+
+<!-- выезжающая корзина -->
+<div class="cart" id="cart" aria-hidden="true">
+  <div class="cart__overlay" data-cart-close></div>
+  <aside class="cart__panel" role="dialog" aria-modal="true" aria-label="Корзина">
+    <header class="cart__head">
+      <h2 class="cart__title">Корзина</h2>
+      <button class="cart__close" data-cart-close type="button" aria-label="Закрыть">✕</button>
+    </header>
+    <div class="cart__body" id="cart-body"><!-- позиции из cart.js --></div>
+    <footer class="cart__foot" id="cart-foot" hidden>
+      <div class="cart__total"><span>Итого</span><span id="cart-total">0 ₽</span></div>
+      <button class="btn btn--primary cart__checkout" type="button" data-toast>Оформить заказ</button>
+    </footer>
+  </aside>
+</div>
+
+<script type="module" src="script.js"></script>
