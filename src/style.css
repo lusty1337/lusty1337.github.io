@@ -8,14 +8,16 @@
    поэтому без js (или при reduced-motion) контент виден сразу — без него ничего не прячем */
 .anim-on .reveal,
 .anim-on .competencies-reveal .card-title,
-.anim-on .competencies-reveal .comp-card {
+.anim-on .competencies-reveal .comp-card,
+.anim-on .pricing-reveal .pricing-card {
     opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
     .reveal,
     .competencies-reveal .card-title,
-    .competencies-reveal .comp-card { opacity: 1 !important; transform: none !important; }
+    .competencies-reveal .comp-card,
+    .pricing-reveal .pricing-card { opacity: 1 !important; transform: none !important; }
 }
 
 .btn-water {
@@ -100,4 +102,77 @@
         filter: none !important;
         opacity: 0.35;
     }
+}
+
+/* карточки цен: лёгкий подъём + свечение под курсором/пальцем. на тач-устройствах
+   :active держится, пока палец на экране, — ровно как :hover на десктопе */
+.pricing-card {
+    position: relative;
+    isolation: isolate;
+}
+
+.pricing-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(34, 211, 238, 0.16), transparent 70%);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pricing-card:hover::before,
+.pricing-card:active::before {
+    opacity: 1;
+}
+
+.pricing-card:hover,
+.pricing-card:active {
+    transform: translateY(-6px);
+    border-color: rgba(34, 211, 238, 0.35);
+    box-shadow: 0 20px 40px -12px rgba(8, 145, 178, 0.18);
+}
+
+.stack-card {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stack-card:hover,
+.stack-card:active {
+    transform: translateY(-6px);
+    border-color: rgba(34, 211, 238, 0.35);
+}
+
+/* браузер на клик по полю на долю секунды показывает свой чёрный outline/tap-highlight
+   раньше, чем успевает примениться наше focus:ring — глушим оба источника явно */
+#lead-form input,
+#lead-form button,
+#lead-form textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+#lead-form input:focus,
+#lead-form input:focus-visible,
+#lead-form button:focus,
+#lead-form button:focus-visible,
+#lead-form textarea:focus,
+#lead-form textarea:focus-visible {
+    outline: none;
+}
+
+#lf-task-list.is-open {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+#lf-task-btn[aria-expanded="true"] #lf-task-chevron {
+    transform: rotate(180deg);
+}
+
+.task-option[aria-selected="true"] {
+    color: #0891b2;
+    background-color: rgba(6, 182, 212, 0.06);
+    font-weight: 600;
 }

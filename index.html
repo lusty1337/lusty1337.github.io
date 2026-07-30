@@ -7,6 +7,12 @@
     <title>lusty | Портфолио</title>
 
 
+    <link rel="canonical" href="https://lusty1337.github.io/">
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
     <!-- превью для телеграм и соцсетей -->
     <meta name="description" content="Разработка сайтов, дашбордов и Telegram-ботов. Чистый код на Tailwind, адаптив, интеграции с API и автоматизация.">
     <meta property="og:type" content="website">
@@ -23,6 +29,66 @@
 
     <link rel="stylesheet" href="/src/style.css">
 
+    <!-- разметка для поисковиков: кто я и что продаю. без неё сниппет собирается наугад -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://lusty1337.github.io/#person",
+          "name": "Егор",
+          "alternateName": "lusty",
+          "jobTitle": "Fullstack-разработчик",
+          "url": "https://lusty1337.github.io/",
+          "email": "hellolusty@proton.me",
+          "sameAs": [
+            "https://github.com/lusty1337",
+            "https://t.me/lustyinyourmind",
+            "https://kwork.ru/user/lusty"
+          ],
+          "knowsAbout": [
+            "Разработка лендингов",
+            "Telegram-боты",
+            "Telegram Mini Apps",
+            "Интеграции API",
+            "Автоматизация",
+            "Оптимизация скорости сайтов"
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://lusty1337.github.io/#service",
+          "name": "lusty — сайты, боты, автоматизация",
+          "description": "Разработка сайтов, лендингов, Telegram-ботов и Mini Apps на чистом коде. Адаптив, интеграции с API, деплой и поддержка.",
+          "url": "https://lusty1337.github.io/",
+          "image": "https://lusty1337.github.io/og-image.png",
+          "provider": { "@id": "https://lusty1337.github.io/#person" },
+          "areaServed": "RU",
+          "availableLanguage": ["ru"],
+          "priceRange": "от 1500 ₽"
+        }
+      ]
+    }
+    </script>
+
+    <!-- счётчик Яндекс.Метрики -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(111103163, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <!-- /счётчик Яндекс.Метрики -->
+
     <script>
         // прячем блоки ДО первой отрисовки, но только если реально умеем их анимировать.
         // не подтянулся gsap — класс снимется и контент останется видимым
@@ -34,6 +100,8 @@
 
 <body
     class="font-sans antialiased overflow-x-hidden relative min-h-screen selection:bg-cyan-200 selection:text-cyan-900">
+    <!-- noscript-пиксель счётчика: HTML5 запрещает <div> внутри <noscript>, лежащего в <head>, поэтому он здесь -->
+    <noscript><div><img src="https://mc.yandex.ru/watch/111103163" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
     <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
         <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-100/40 blur-[120px]"></div>
@@ -53,6 +121,8 @@
                     class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Обо мне</a>
                 <a href="#projects"
                     class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Проекты</a>
+                <a href="#pricing"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Цены</a>
                 <a href="#contact"
                     class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Связь</a>
             </nav>
@@ -71,6 +141,7 @@
                 <a href="#" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Главная</a>
                 <a href="#about" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Обо мне</a>
                 <a href="#projects" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Проекты</a>
+                <a href="#pricing" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Цены</a>
                 <a href="#contact" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Связь</a>
             </nav>
             <a href="#contact" class="mobile-link btn-water inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-semibold text-base shadow-[0_0_30px_rgba(34,211,238,0.3)] mt-4">
@@ -227,84 +298,6 @@
             <div
                 class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
                 <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
-                    <div class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(34,211,238,0.25)]">
-                        <img src="./preview-creator.webp" alt="Превью Creator Portfolio"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
-                    </div>
-                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
-                        <h3
-                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
-                            Creator Portfolio</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML5</span>
-                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="6,182,212">Tailwind CSS</span>
-                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
-                        </div>
-                        <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Задача</p>
-                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Одностраничный лендинг-портфолио с тёмной и светлой темой и плавными переходами между секциями.</p>
-                        </div>
-                        <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Что сделано</p>
-                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Вёрстка с нуля, переключатель тёмной/светлой темы с сохранением в localStorage, модальные окна проектов, кастомные scroll-анимации и форма с валидацией. Ноль сторонних библиотек.</p>
-                        </div>
-                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Creator Portfolio на весь экран"
-                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
-                                Открыть на весь экран →
-                            </a>
-                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/gh-pages/projects/creator-landing-portfolio" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                                Исходный код
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div
-                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
-                <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-12 items-center">
-                    <div class="sandbox-preview dark-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(99,102,241,0.3)]">
-                        <img src="./preview-novafi.webp" alt="Превью NovaFi Dashboard"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
-                    </div>
-                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
-                        <h3
-                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
-                            NovaFi Dashboard</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS · SPA</span>
-                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="255,99,132">Chart.js</span>
-                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="34,211,238">REST API</span>
-                        </div>
-                        <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Задача</p>
-                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Крипто-дашборд с живыми данными, графиками и интерактивными состояниями — без фреймворка.</p>
-                        </div>
-                        <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Что сделано</p>
-                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">SPA-навигация между вкладками, запросы к API биржи, отрисовка графиков, рабочий своп с пересчётом баланса, модалки транзакций и тосты-уведомления.</p>
-                        </div>
-                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть NovaFi Dashboard на весь экран"
-                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
-                                Открыть на весь экран →
-                            </a>
-                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/gh-pages/projects/crypto-dashboard-portfolio" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                                Исходный код
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div
-                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
-                <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
                     <div class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(255,90,0,0.25)]">
                         <img src="./preview-tin.webp" alt="Превью Tin Master 3D"
                             class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
@@ -319,11 +312,11 @@
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
                         </div>
                         <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Задача</p>
+                            <p class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
                             <p class="text-sm md:text-base text-slate-500 leading-relaxed">Сайт для цеха металлообработки: лазерная резка, гибка по чертежам, отливы, доборные элементы и профили под ключ. Клиенту нужно наглядно подбирать цвет изделия по палитре RAL.</p>
                         </div>
                         <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Что сделано</p>
+                            <p class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
                             <p class="text-sm md:text-base text-slate-500 leading-relaxed">3D-конфигуратор на Three.js: управление камерой, смена цвета металла по палитре RAL в реальном времени, генерация геометрии отливов и доборных элементов, адаптив под телефон.</p>
                         </div>
                         <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
@@ -357,11 +350,11 @@
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
                         </div>
                         <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Задача</p>
+                            <p class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
                             <p class="text-sm md:text-base text-slate-500 leading-relaxed">Промо-лендинг пиццерии с атмосферным тёмным дизайном, интерактивным меню и UX, который хочется трогать.</p>
                         </div>
                         <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Что сделано</p>
+                            <p class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
                             <p class="text-sm md:text-base text-slate-500 leading-relaxed">Верстка с нуля: фильтрация меню по категориям, анимированные карточки, выезжающая корзина, тач-свайпы. Адаптив от 320px. Без сторонних JS-библиотек.</p>
                         </div>
                         <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
@@ -382,6 +375,45 @@
             <div
                 class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
                 <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
+                    <div class="sandbox-preview dark-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(99,102,241,0.3)]">
+                        <img src="./preview-novafi.webp" alt="Превью NovaFi Dashboard"
+                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                    </div>
+                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
+                        <h3
+                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
+                            NovaFi Dashboard</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS · SPA</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="255,99,132">Chart.js</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="34,211,238">REST API</span>
+                        </div>
+                        <div>
+                            <p class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Дашборд с живыми данными: графики, таблицы, операции и модальные окна. Каркас, который одинаково подходит под админку, CRM и личный кабинет.</p>
+                        </div>
+                        <div>
+                            <p class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">SPA-навигация между разделами без перезагрузки, подтягивание данных из внешнего API, отрисовка графиков, формы с пересчётом значений на лету, модальные окна операций и тосты-уведомления. Всё на чистом JS, без React и сборщика состояний.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
+                            <a href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть NovaFi Dashboard на весь экран"
+                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                Открыть на весь экран →
+                            </a>
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/gh-pages/projects/crypto-dashboard-portfolio" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Исходный код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
+                <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-12 items-center">
                     <div class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(168,85,247,0.3)]">
                         <img src="./preview-smartysorter.webp" alt="Превью SmartySorter"
                             class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
@@ -396,11 +428,11 @@
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="100,116,139">Windows .exe</span>
                         </div>
                         <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Задача</p>
+                            <p class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
                             <p class="text-sm md:text-base text-slate-500 leading-relaxed">Десктопный сортировщик файлов для Windows — с приятным интерфейсом, гибкой настройкой категорий и без единого стороннего фреймворка на фронте.</p>
                         </div>
                         <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Что сделано</p>
+                            <p class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
                             <p class="text-sm md:text-base text-slate-500 leading-relaxed">Бэкенд на Python в связке с pywebview — нативное окно вместо Electron. Сортировка по категориям в один клик, полноценный undo с восстановлением структуры папок, защита от перезаписи при конфликте имён, редактируемые категории расширений, локализация на 3 языка и тёмная/светлая тема с синхронизацией с ОС.</p>
                         </div>
                         <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
@@ -418,31 +450,192 @@
                 </div>
             </div>
 
+            <div
+                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
+                <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
+                    <div class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(34,211,238,0.25)]">
+                        <img src="./preview-creator.webp" alt="Превью Creator Portfolio"
+                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                    </div>
+                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
+                        <h3
+                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
+                            Creator Portfolio</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML5</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="6,182,212">Tailwind CSS</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
+                        </div>
+                        <div>
+                            <p class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Одностраничный лендинг-портфолио с тёмной и светлой темой и плавными переходами между секциями.</p>
+                        </div>
+                        <div>
+                            <p class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
+                            <p class="text-sm md:text-base text-slate-500 leading-relaxed">Вёрстка с нуля, переключатель тёмной/светлой темы с сохранением в localStorage, модальные окна проектов, кастомные scroll-анимации и форма с валидацией. Ноль сторонних библиотек.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
+                            <a href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Creator Portfolio на весь экран"
+                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                Открыть на весь экран →
+                            </a>
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/gh-pages/projects/creator-landing-portfolio" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Исходный код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="pricing" class="px-4 md:px-6 max-w-7xl mx-auto pt-12 md:pt-32 scroll-mt-32">
+            <div class="text-center reveal mb-8 md:mb-16">
+                <h2 class="text-2xl md:text-6xl font-black text-slate-900 tracking-tight mb-2 md:mb-6">Сколько стоит?</h2>
+                <p class="text-sm md:text-lg text-slate-500 max-w-2xl mx-auto">Честные вилки, а не «цена по запросу». Нижняя граница — это реально маленькая задача, а не приманка.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 pricing-reveal">
+                <div class="pricing-card bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2rem] p-6 md:p-8 shadow-xl shadow-cyan-900/5 transition-all duration-700 hover:duration-500 active:duration-500">
+                    <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2">Доработка сайта</h3>
+                    <p class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-4">от 500 ₽</p>
+                    <p class="text-sm md:text-base text-slate-500 leading-relaxed">Правка вёрстки, новый блок, форма, починка бага. От 500 ₽ за мелкую задачу и до 6 000 ₽, если объём побольше.</p>
+                </div>
+
+                <div class="pricing-card bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2rem] p-6 md:p-8 shadow-xl shadow-cyan-900/5 transition-all duration-700 hover:duration-500 active:duration-500">
+                    <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2">Ускорение сайта</h3>
+                    <p class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-4">от 1 000 ₽</p>
+                    <p class="text-sm md:text-base text-slate-500 leading-relaxed">Разгон до 90+ в PageSpeed с отчётом «было/стало». Дизайн не трогаю. От 1 000 ₽ за одну страницу и до 9 000 ₽ за весь сайт.</p>
+                </div>
+
+                <div class="pricing-card bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2rem] p-6 md:p-8 shadow-xl shadow-cyan-900/5 transition-all duration-700 hover:duration-500 active:duration-500">
+                    <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2">Telegram-бот</h3>
+                    <p class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-4">от 1 000 ₽</p>
+                    <p class="text-sm md:text-base text-slate-500 leading-relaxed">Бот из нескольких кнопок обойдётся в 1 000 ₽. С базой данных, записью клиентов, оплатой, напоминаниями и админкой цену считаем по задаче.</p>
+                </div>
+
+                <div class="pricing-card bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2rem] p-6 md:p-8 shadow-xl shadow-cyan-900/5 transition-all duration-700 hover:duration-500 active:duration-500">
+                    <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2">Лендинг</h3>
+                    <p class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-4">от 1 500 ₽</p>
+                    <p class="text-sm md:text-base text-slate-500 leading-relaxed">Одноэкранный промо обойдётся в 1 500 ₽. Полноценный многосекционный сайт с анимациями, формой заявок и адаптивом стоит от 9 000 до 19 000 ₽.</p>
+                </div>
+
+                <div class="pricing-card bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2rem] p-6 md:p-8 shadow-xl shadow-cyan-900/5 transition-all duration-700 hover:duration-500 active:duration-500">
+                    <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2">Telegram Mini App</h3>
+                    <p class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-4">от 1 500 ₽</p>
+                    <p class="text-sm md:text-base text-slate-500 leading-relaxed">Приложение внутри Telegram: каталог, запись, корзина, оплата. Базовая версия стоит 1 500 ₽, магазин с админкой считаем по задаче.</p>
+                </div>
+
+                <div class="pricing-card bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2rem] p-6 md:p-8 shadow-xl shadow-cyan-900/5 transition-all duration-700 hover:duration-500 active:duration-500">
+                    <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2">Программа для Windows</h3>
+                    <p class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-4">от 1 500 ₽</p>
+                    <p class="text-sm md:text-base text-slate-500 leading-relaxed">Готовый .exe под вашу задачу: обработка файлов, отчёты, автоматизация рутины. Лёгкая, без Electron.</p>
+                </div>
+            </div>
+
+            <p class="text-center text-sm md:text-base text-slate-500 mt-6 md:mt-10 max-w-3xl mx-auto reveal">
+                Точную цену назову после того, как вы опишете задачу. Работаю как самозанятый: чек и закрывающие документы не проблема. Можно через безопасную сделку на Kwork, тогда деньги уходят мне только после вашей приёмки.
+            </p>
         </section>
 
         <section id="contact"
-            class="px-4 md:px-6 max-w-4xl mx-auto text-center pt-12 md:pt-24 flex flex-col items-center scroll-mt-32">
+            class="px-4 md:px-6 max-w-3xl mx-auto pt-12 md:pt-24 flex flex-col items-center scroll-mt-32">
             <div class="reveal flex flex-col items-center w-full">
-                <h2 class="text-3xl md:text-7xl font-black text-slate-900 tracking-tight mb-3 md:mb-8">Расскажите о проекте</h2>
-                <p class="text-base md:text-xl text-slate-500 mb-6 md:mb-12 font-light max-w-sm md:max-w-none">Опишите задачу — отвечу в течение дня, обсудим сроки и стоимость.</p>
+                <h2 class="text-3xl md:text-7xl font-black text-slate-900 tracking-tight mb-3 md:mb-8 text-center">Расскажите о проекте</h2>
+                <p class="text-base md:text-xl text-slate-500 mb-6 md:mb-12 font-light max-w-sm md:max-w-none text-center">Опишите задачу, отвечу в течение дня: обсудим сроки и стоимость.</p>
 
-                <a href="mailto:hellolusty@proton.me"
-                    class="text-lg xs:text-xl sm:text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 hover:opacity-80 transition-opacity duration-700 py-1 md:py-2 whitespace-nowrap px-2 md:px-4">
-                    hellolusty@proton.me
-                </a>
+                <form id="lead-form" novalidate
+                    class="w-full text-left bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2rem] p-5 md:p-10 shadow-xl shadow-cyan-900/5 space-y-4 md:space-y-5">
+                    <!-- ключ Web3Forms: подставить свой, иначе форма не отправится -->
+                    <input type="hidden" name="access_key" value="f3c30969-d7e9-4227-a460-f7827fc84c7d">
+                    <input type="hidden" name="subject" value="Заявка с лендинга lusty1337.github.io">
+                    <input type="hidden" name="from_name" value="Лендинг lusty">
+                    <!-- honeypot: люди это поле не видят, боты заполняют и отсеиваются -->
+                    <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
 
-                <span class="block my-4 md:my-10 text-lg md:text-xl text-slate-400 font-light">или</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                        <div>
+                            <label for="lf-name" class="block text-sm font-medium text-slate-600 mb-2">Как вас зовут</label>
+                            <input id="lf-name" name="name" type="text" required autocomplete="name" placeholder="Иван"
+                                class="w-full px-4 md:px-5 py-3 md:py-3.5 rounded-xl md:rounded-2xl bg-white/70 border border-white/80 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="lf-email" class="block text-sm font-medium text-slate-600 mb-2">Почта для ответа</label>
+                            <input id="lf-email" name="email" type="email" required autocomplete="email" placeholder="ivan@mail.ru"
+                                class="w-full px-4 md:px-5 py-3 md:py-3.5 rounded-xl md:rounded-2xl bg-white/70 border border-white/80 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300">
+                        </div>
+                    </div>
 
-                <a href="https://t.me/lustyinyourmind" target="_blank" rel="noopener noreferrer"
-                    class="btn-water w-full xs:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 md:py-4 rounded-full bg-[#2AABEE] text-white text-base md:text-lg font-semibold shadow-[0_0_30px_rgba(42,171,238,0.3)] hover:shadow-[0_0_50px_rgba(42,171,238,0.5)] hover:scale-105 transition-all duration-700 ease-out group will-change-transform">
-                    <svg class="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-12 transition-transform duration-700" fill="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z">
-                        </path>
-                    </svg>
-                    Написать в Telegram
-                </a>
+                    <div class="relative">
+                        <label for="lf-task-btn" class="block text-sm font-medium text-slate-600 mb-2">Что нужно сделать</label>
+                        <input type="hidden" id="lf-task" name="task_type" value="Лендинг или сайт">
+                        <button type="button" id="lf-task-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="lf-task-list"
+                            class="w-full flex items-center justify-between px-4 md:px-5 py-3 md:py-3.5 rounded-xl md:rounded-2xl bg-white/70 border border-white/80 text-slate-800 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 cursor-pointer">
+                            <span id="lf-task-label">Лендинг или сайт</span>
+                            <svg id="lf-task-chevron" class="w-4 h-4 text-slate-400 shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </button>
+                        <ul id="lf-task-list" role="listbox" tabindex="-1" aria-labelledby="lf-task-btn"
+                            class="absolute z-20 left-0 right-0 mt-2 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-white/80 shadow-2xl shadow-slate-900/10 origin-top scale-95 opacity-0 pointer-events-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] max-h-72 overflow-auto">
+                            <li role="option" aria-selected="true" class="task-option px-4 py-2.5 text-slate-700 cursor-pointer hover:bg-cyan-50 hover:text-cyan-600 transition-colors duration-150">Лендинг или сайт</li>
+                            <li role="option" aria-selected="false" class="task-option px-4 py-2.5 text-slate-700 cursor-pointer hover:bg-cyan-50 hover:text-cyan-600 transition-colors duration-150">Telegram-бот</li>
+                            <li role="option" aria-selected="false" class="task-option px-4 py-2.5 text-slate-700 cursor-pointer hover:bg-cyan-50 hover:text-cyan-600 transition-colors duration-150">Telegram Mini App</li>
+                            <li role="option" aria-selected="false" class="task-option px-4 py-2.5 text-slate-700 cursor-pointer hover:bg-cyan-50 hover:text-cyan-600 transition-colors duration-150">Доработка существующего сайта</li>
+                            <li role="option" aria-selected="false" class="task-option px-4 py-2.5 text-slate-700 cursor-pointer hover:bg-cyan-50 hover:text-cyan-600 transition-colors duration-150">Ускорение сайта</li>
+                            <li role="option" aria-selected="false" class="task-option px-4 py-2.5 text-slate-700 cursor-pointer hover:bg-cyan-50 hover:text-cyan-600 transition-colors duration-150">Программа для Windows</li>
+                            <li role="option" aria-selected="false" class="task-option px-4 py-2.5 text-slate-700 cursor-pointer hover:bg-cyan-50 hover:text-cyan-600 transition-colors duration-150">Пока не знаю — нужен совет</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <label for="lf-message" class="block text-sm font-medium text-slate-600 mb-2">Опишите задачу</label>
+                        <textarea id="lf-message" name="message" required rows="5" placeholder="Что за проект, есть ли дизайн или примеры, к какому сроку нужно."
+                            class="w-full px-4 md:px-5 py-3 md:py-3.5 rounded-xl md:rounded-2xl bg-white/70 border border-white/80 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-[height,border-color,box-shadow] duration-300 resize-none overflow-hidden"></textarea>
+                    </div>
+
+                    <button type="submit" id="lf-submit"
+                        class="btn-water w-full inline-flex items-center justify-center px-8 py-3.5 md:py-4 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white text-base md:text-lg font-semibold shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:shadow-[0_0_50px_rgba(34,211,238,0.5)] transition-all duration-700 ease-out disabled:opacity-60 disabled:cursor-not-allowed">
+                        Отправить заявку
+                    </button>
+
+                    <p id="lf-status" role="status" aria-live="polite" class="text-sm text-center min-h-[1.25rem]"></p>
+                </form>
+
+                <span class="block my-6 md:my-10 text-base md:text-lg text-slate-400 font-light">или напишите напрямую</span>
+
+                <div class="grid grid-cols-1 xs:grid-cols-3 gap-3 md:gap-4 w-full">
+                    <a href="mailto:hellolusty@proton.me"
+                        class="btn-water inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-white/70 border border-white/60 text-slate-700 text-sm md:text-base font-semibold shadow-xl shadow-cyan-900/5 hover:text-cyan-500 hover:border-cyan-300 hover:shadow-cyan-900/10 transition-all duration-700 ease-out">
+                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Почта
+                    </a>
+
+                    <a href="https://t.me/lustyinyourmind" target="_blank" rel="noopener noreferrer"
+                        class="btn-water inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-[#2AABEE] text-white text-sm md:text-base font-semibold shadow-[0_0_30px_rgba(42,171,238,0.3)] hover:shadow-[0_0_50px_rgba(42,171,238,0.5)] transition-all duration-700 ease-out group">
+                        <svg class="w-5 h-5 shrink-0 group-hover:rotate-12 transition-transform duration-700" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path>
+                        </svg>
+                        Telegram
+                    </a>
+
+                    <!-- буква K нарисована фигурами, а не взята из шрифта: у оригинала верх стойки
+                         залит оранжевым флажком с вырезом-ступенькой и отделён зазором от белого -->
+                    <a href="https://kwork.ru/user/lusty" target="_blank" rel="noopener noreferrer"
+                        class="btn-water inline-flex items-center justify-center gap-[1px] px-5 py-3.5 rounded-full bg-[#0a0a0a] shadow-[0_0_30px_rgba(255,169,0,0.25)] hover:shadow-[0_0_50px_rgba(255,169,0,0.4)] transition-all duration-700 ease-out">
+                        <svg class="h-[12px] md:h-[13px] w-auto shrink-0" viewBox="-5 6 104 108" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="6,65 32,38 64,6 98,6 52,62 98,114 64,114 32,80 32,114 6,114" fill="#ffffff"></polygon>
+                            <polygon points="-4,6 32,6 32,30 6,57 6,20 -4,20" fill="#ffa900"></polygon>
+                        </svg>
+                        <span class="text-base md:text-lg font-black tracking-tight text-white">WORK</span>
+                    </a>
+                </div>
+
+                <p class="text-xs md:text-sm text-slate-400 mt-4 text-center max-w-md">Через Kwork сделка гарантированно безопасная: деньги замораживаются биржей и уходят мне только после того, как вы примете работу.</p>
             </div>
         </section>
 

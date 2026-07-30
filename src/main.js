@@ -12,7 +12,9 @@ gsap.utils.toArray('.reveal').forEach((el) => {
     gsap.fromTo(el,
         { opacity: 0, y: MOVE_Y },
         {
-            opacity: 1, y: 0, duration: isMobile ? 0.6 : 1, ease: 'power3.out',
+            // clearProps — иначе после анимации остаётся инлайновый transform,
+            // который весомее css-класса и блокирует hover/active-подъём у карточек
+            opacity: 1, y: 0, duration: isMobile ? 0.6 : 1, ease: 'power3.out', clearProps: 'transform',
             scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: REPLAY }
         }
     );
@@ -44,28 +46,57 @@ if (compReveal) {
     }
 }
 
+// карточки цен низкие (250px) и лежат плотной сеткой — при обычном скролле такая
+// карточка целиком в кадре уже через ~150px прокрутки. секундный твин, который
+// нормально смотрится на высоких блоках проектов (там пролистывать ~500px), тут
+// не успевает отыграть, и глаз ловит полупрозрачную карточку. поэтому здесь
+// длительность короче, а триггер срабатывает в момент появления кромки снизу.
+// ряды разнесены: у компетенций ряд всего один, а тут их два, и от общего
+// триггера второй отыгрывал задолго до того, как доезжал до экрана
+const pricingReveal = document.querySelector('.pricing-reveal');
+if (pricingReveal) {
+    const cards = Array.from(pricingReveal.querySelectorAll('.pricing-card'));
+
+    // 130% — начинаем ещё под сгибом: от 'top bottom' до полного попадания ряда
+    // в кадр всего 250px прокрутки, за них твин не укладывался
+    const appear = (targets, trigger) => gsap.fromTo(targets,
+        { opacity: 0, y: MOVE_Y },
+        {
+            opacity: 1, y: 0, duration: 0.35, ease: 'power3.out',
+            stagger: 0.06, clearProps: 'transform',
+            scrollTrigger: { trigger, start: 'top 130%', toggleActions: REPLAY }
+        }
+    );
+
+    if (isMobile) {
+        cards.forEach((el) => appear(el, el));
+    } else {
+        const rows = new Map();
+        cards.forEach((el) => {
+            const top = Math.round(el.offsetTop);
+            if (!rows.has(top)) rows.set(top, []);
+            rows.get(top).push(el);
+        });
+        rows.forEach((rowCards) => appear(rowCards, rowCards[0]));
+    }
+}
+
 // шрифты догружаются и сдвигают вёрстку — пересчитываем точки триггеров
 window.addEventListener('load', () => ScrollTrigger.refresh());
 
-// наклон + свечение только на превью, всё в одном обработчике
-// на тач-устройствах не вешаем — иначе залипает после первого тапа
-if (window.matchMedia('(hover: hover)').matches) {
+// наклон + свечение на превью проектов, на тач-устройствах — то же по touchmove
+{
+    const isHover = window.matchMedia('(hover: hover)').matches;
     const glowColors = ['34,211,238', '99,102,241', '255,90,0', '255,90,0', '168,85,247']; // cyan, indigo, orange, orange, violet
 
     document.querySelectorAll('.sandbox-preview').forEach((preview, i) => {
         const c = glowColors[i] || glowColors[0];
-        preview.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1.4s cubic-bezier(0.16, 1, 0.3, 1)';
         preview.style.transformStyle = 'preserve-3d';
 
-        preview.addEventListener('mouseenter', () => {
-            preview.style.transition = 'transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 1.4s cubic-bezier(0.16,1,0.3,1)';
-            preview.style.boxShadow  = `0 0 28px 4px rgba(${c},0.15)`;
-        });
-
-        preview.addEventListener('mousemove', (e) => {
+        const tilt = (clientX, clientY) => {
             const r  = preview.getBoundingClientRect();
-            const x  = e.clientX - r.left;
-            const y  = e.clientY - r.top;
+            const x  = clientX - r.left;
+            const y  = clientY - r.top;
             const cx = (x / r.width  - 0.5) * 2;
             const cy = (y / r.height - 0.5) * 2;
             const d  = Math.sqrt(cx * cx + cy * cy) / Math.SQRT2;
@@ -73,17 +104,48 @@ if (window.matchMedia('(hover: hover)').matches) {
             const rotateY = cx *  8;
             const ox = cx * 30;
             const oy = cy * 30;
-            // чуть удлинённый transition — карточка мягче догоняет курсор, но не плывёт за ним
+            // чуть удлинённый transition — карточка мягче догоняет курсор/палец, но не плывёт за ним
             preview.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s linear';
             preview.style.transform  = `perspective(1000px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             preview.style.boxShadow  = `${ox}px ${oy}px 48px 5px rgba(${c},${(0.26 + d * 0.07).toFixed(2)}), 0 0 20px rgba(${c},${(0.08 * (1 - d * 0.5)).toFixed(2)})`;
-        });
+        };
 
-        preview.addEventListener('mouseleave', () => {
+        const reset = () => {
             preview.style.transition = 'transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 1.4s cubic-bezier(0.16,1,0.3,1)';
             preview.style.transform  = 'perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg)';
             preview.style.boxShadow  = '';
-        });
+        };
+        reset();
+
+        if (isHover) {
+            preview.addEventListener('mouseenter', () => {
+                preview.style.transition = 'transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 1.4s cubic-bezier(0.16,1,0.3,1)';
+                preview.style.boxShadow  = `0 0 28px 4px rgba(${c},0.15)`;
+            });
+            preview.addEventListener('mousemove', (e) => tilt(e.clientX, e.clientY));
+            preview.addEventListener('mouseleave', reset);
+        } else {
+            // passive: не блокируем вертикальный скролл страницы пальцем
+            preview.addEventListener('touchstart', (e) => tilt(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+            preview.addEventListener('touchmove', (e) => tilt(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+            preview.addEventListener('touchend', reset, { passive: true });
+            preview.addEventListener('touchcancel', reset, { passive: true });
+        }
+    });
+
+    // подъём и рамка карточек цен уже в css, отсюда только точка для градиента
+    document.querySelectorAll('.pricing-card').forEach((card) => {
+        const setPos = (clientX, clientY) => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', `${clientX - r.left}px`);
+            card.style.setProperty('--my', `${clientY - r.top}px`);
+        };
+        if (isHover) {
+            card.addEventListener('mousemove', (e) => setPos(e.clientX, e.clientY));
+        } else {
+            card.addEventListener('touchstart', (e) => setPos(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+            card.addEventListener('touchmove', (e) => setPos(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+        }
     });
 }
 
@@ -242,17 +304,27 @@ if (mobileBtn) {
 
     const isHover = window.matchMedia('(hover: hover)').matches;
 
+    stackCard.style.position = 'relative';
+    const spotlight = document.createElement('div');
+    spotlight.className = 'card-spotlight';
+    spotlight.style.cssText = 'position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity 1.1s cubic-bezier(0.16,1,0.3,1)';
+    stackCard.prepend(spotlight);
+
+    const showSpotlight = (clientX, clientY) => {
+        const r = stackCard.getBoundingClientRect();
+        spotlight.style.background = `radial-gradient(460px circle at ${clientX - r.left}px ${clientY - r.top}px, rgba(34,211,238,0.09) 0%, transparent 70%)`;
+        spotlight.style.opacity = '1';
+    };
+    const hideSpotlight = () => { spotlight.style.opacity = '0'; };
+
     if (isHover) {
-        stackCard.style.position = 'relative';
-        const spotlight = document.createElement('div');
-        spotlight.style.cssText = 'position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity 1.1s cubic-bezier(0.16,1,0.3,1)';
-        stackCard.prepend(spotlight);
-        stackCard.addEventListener('mousemove', (e) => {
-            const r = stackCard.getBoundingClientRect();
-            spotlight.style.background = `radial-gradient(460px circle at ${e.clientX - r.left}px ${e.clientY - r.top}px, rgba(34,211,238,0.09) 0%, transparent 70%)`;
-            spotlight.style.opacity = '1';
-        });
-        stackCard.addEventListener('mouseleave', () => { spotlight.style.opacity = '0'; });
+        stackCard.addEventListener('mousemove', (e) => showSpotlight(e.clientX, e.clientY));
+        stackCard.addEventListener('mouseleave', hideSpotlight);
+    } else {
+        stackCard.addEventListener('touchstart', (e) => showSpotlight(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+        stackCard.addEventListener('touchmove', (e) => showSpotlight(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+        stackCard.addEventListener('touchend', hideSpotlight, { passive: true });
+        stackCard.addEventListener('touchcancel', hideSpotlight, { passive: true });
     }
 
     const TRANSITION = [
@@ -317,4 +389,146 @@ if (mobileBtn) {
             }
         }, { passive: true });
     }
+})();
+
+(() => {
+    const form = document.getElementById('lead-form');
+    if (!form) return;
+
+    const submit = document.getElementById('lf-submit');
+    const status = document.getElementById('lf-status');
+    const message = document.getElementById('lf-message');
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    const say = (text, ok) => {
+        status.textContent = text;
+        status.className = 'text-sm text-center min-h-[1.25rem] ' + (ok ? 'text-teal-600' : 'text-rose-500');
+    };
+
+    // растёт по мере ввода вместо ручного хвата за угол — высота анимируется css-transition'ом
+    const MAX_MESSAGE_HEIGHT = 320;
+    const autoGrowMessage = () => {
+        message.style.height = 'auto';
+        const next = Math.min(message.scrollHeight, MAX_MESSAGE_HEIGHT);
+        message.style.height = next + 'px';
+        message.style.overflowY = message.scrollHeight > MAX_MESSAGE_HEIGHT ? 'auto' : 'hidden';
+    };
+    message.addEventListener('input', autoGrowMessage);
+    autoGrowMessage();
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const data = Object.fromEntries(new FormData(form));
+
+        if (data.access_key.startsWith('ВСТАВЬТЕ')) {
+            say('Форма ещё не подключена — напишите в Telegram или на почту.', false);
+            return;
+        }
+        if (!data.name.trim()) return say('Напишите, как к вам обращаться.', false);
+        if (!EMAIL_RE.test(data.email.trim())) return say('Проверьте почту — на неё придёт ответ.', false);
+        if (data.message.trim().length < 10) return say('Опишите задачу хотя бы парой предложений.', false);
+
+        submit.disabled = true;
+        submit.textContent = 'Отправляю...';
+        say('', true);
+
+        try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                body: JSON.stringify(data),
+            });
+            const json = await res.json();
+
+            if (json.success) {
+                form.reset();
+                autoGrowMessage();
+                say('Заявка ушла. Отвечу в течение дня.', true);
+            } else {
+                say(json.message || 'Не удалось отправить. Напишите в Telegram.', false);
+            }
+        } catch {
+            // сеть отвалилась или сервис недоступен — не оставляем клиента без запасного пути
+            say('Сеть недоступна. Напишите в Telegram или на почту.', false);
+        } finally {
+            submit.disabled = false;
+            submit.textContent = 'Отправить заявку';
+        }
+    });
+})();
+
+// нативный select нельзя стилизовать и анимировать — сам попап рисует ОС,
+// поэтому список опций для "Что нужно сделать" собран вручную, с ролями listbox/option
+(() => {
+    const btn = document.getElementById('lf-task-btn');
+    const list = document.getElementById('lf-task-list');
+    const label = document.getElementById('lf-task-label');
+    const hidden = document.getElementById('lf-task');
+    if (!btn || !list || !label || !hidden) return;
+
+    const options = Array.from(list.querySelectorAll('.task-option'));
+    options.forEach((o) => { o.tabIndex = -1; });
+    let activeIndex = Math.max(0, options.findIndex((o) => o.getAttribute('aria-selected') === 'true'));
+
+    const isOpen = () => btn.getAttribute('aria-expanded') === 'true';
+
+    const open = () => {
+        list.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        options[activeIndex].focus();
+    };
+    const close = () => {
+        list.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+    };
+    const select = (option) => {
+        options.forEach((o) => o.setAttribute('aria-selected', String(o === option)));
+        label.textContent = option.textContent;
+        hidden.value = option.textContent;
+        activeIndex = options.indexOf(option);
+    };
+
+    btn.addEventListener('click', () => { isOpen() ? close() : open(); });
+
+    options.forEach((option) => {
+        option.addEventListener('click', () => { select(option); close(); btn.focus(); });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (isOpen() && !btn.contains(e.target) && !list.contains(e.target)) close();
+    });
+
+    btn.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            if (!isOpen()) open();
+        } else if (e.key === 'Escape' && isOpen()) {
+            close();
+        }
+    });
+
+    // делегирование: фокус реально стоит на li (tabIndex=-1 + focus()), а keydown
+    // всплывает до контейнера — не нужно вешать обработчик на каждую опцию отдельно
+    list.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeIndex = Math.min(activeIndex + 1, options.length - 1);
+            options[activeIndex].focus();
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeIndex = Math.max(activeIndex - 1, 0);
+            options[activeIndex].focus();
+        } else if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            select(options[activeIndex]);
+            close();
+            btn.focus();
+        } else if (e.key === 'Escape') {
+            close();
+            btn.focus();
+        } else if (e.key === 'Tab') {
+            close();
+        }
+    });
 })();

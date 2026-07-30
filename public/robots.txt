@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lusty1337.github.io/sitemap.xml
