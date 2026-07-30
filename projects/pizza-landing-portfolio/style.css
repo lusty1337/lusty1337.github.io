@@ -351,6 +351,58 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .cart-row__del { flex: none; color: #6a6a6a; font-size: 12px; width: 22px; height: 22px; transition: color .2s var(--ease); }
 .cart-row__del:hover { color: #e0563a; }
 
+/* ── экран оплаты (демо) ──────────────────────────── */
+.payment-overlay {
+  position: fixed; inset: 0; z-index: 150;
+  background: rgba(0, 0, 0, 0); display: flex; align-items: center; justify-content: center; padding: 20px;
+  transition: background .3s var(--ease);
+}
+.payment-overlay.is-in { background: rgba(0, 0, 0, .68); }
+.payment-card {
+  position: relative; width: min(420px, 100%); background: var(--bg-soft);
+  border: 1px solid var(--line); border-radius: 20px; padding: 28px 26px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+  transform: translateY(18px) scale(.97); opacity: 0; transition: transform .3s var(--ease), opacity .3s var(--ease);
+}
+.payment-overlay.is-in .payment-card { transform: none; opacity: 1; }
+.payment-close {
+  position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%;
+  color: var(--muted); font-size: 14px; transition: .2s var(--ease);
+}
+.payment-close:hover { color: var(--text); background: var(--card); }
+.payment-title { font-size: 22px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 18px; }
+.payment-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; max-height: 240px; overflow-y: auto; }
+.payment-row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+.payment-row__name { color: var(--muted); }
+.payment-total {
+  display: flex; justify-content: space-between; align-items: baseline; padding-top: 14px;
+  border-top: 1px solid var(--line); margin-bottom: 18px;
+  font-size: 15px; text-transform: uppercase; letter-spacing: 1px;
+}
+.payment-total span:last-child { font-size: 24px; font-weight: 700; color: var(--accent); }
+.payment-demo {
+  display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; margin-bottom: 20px;
+  border: 1px dashed var(--muted); border-radius: 12px; font-size: 13px; line-height: 1.45; color: var(--muted);
+}
+.payment-demo__label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.4px; color: var(--accent); }
+.payment-pay { width: 100%; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 52px; }
+.payment-pay.is-loading { cursor: default; opacity: .85; }
+.payment-spinner {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid rgba(26, 18, 0, .35); border-top-color: #1a1200;
+  animation: payment-spin .7s linear infinite; display: block;
+}
+@keyframes payment-spin { to { transform: rotate(360deg); } }
+
+.payment-done { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 10px 0 4px; }
+.payment-done__ico {
+  width: 52px; height: 52px; border-radius: 50%; background: rgba(255, 184, 0, .14);
+  color: var(--accent); font-size: 24px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
+.payment-done__num { font-size: 15px; color: var(--muted); font-weight: 500; letter-spacing: .5px; }
+.payment-done__hint { font-size: 13px; color: var(--muted); line-height: 1.5; max-width: 300px; }
+.payment-done .btn { width: 100%; margin-top: 8px; }
+
 /* ── всплывашки ───────────────────────────────────── */
 .toasts { position: fixed; right: 20px; bottom: 20px; z-index: 200; display: flex; flex-direction: column; gap: 12px; max-width: min(360px, calc(100vw - 40px)); }
 .toast {

@@ -77,6 +77,13 @@
 
 ---
 
+### [Цветы · Бутик](https://lusty1337.github.io/projects/flowers-miniapp-portfolio/index.html) · [в Telegram](https://t.me/lusty_flowers_bot/flowers)
+Telegram Mini App — магазин цветов с доставкой: каталог, корзина с промокодом, оформление доставки, честный демо-режим оплаты. Работает и в самом Telegram, и в обычном браузере; за кнопку действия и кнопку «Назад» отвечает сам Telegram, корзина хранится в его облаке.
+
+`Telegram WebApp API` `Vanilla JS` `CSS3`
+
+---
+
 ### [SmartySorter](https://github.com/lusty1337/SmartySorter)
 Десктопное приложение для Windows: сортировка файлов по папкам одним кликом, отмена операции с полным восстановлением структуры, редактируемые категории, локализация на 3 языка, светлая/тёмная тема.
 

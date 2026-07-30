@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Цветы · бутик — Telegram Mini App</title>
+    <meta name="description" content="Магазин цветов с доставкой внутри Telegram: каталог, корзина, оформление доставки и демо-оплата.">
+
+    <!-- единственная внешняя зависимость во всём портфолио: обязательный мост
+         платформы, без него нет доступа к MainButton/BackButton/теме/CloudStorage -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app" id="app"></div>
+
+    <script type="module">
+        import { register, start } from './router.js';
+        import { renderCatalog } from './catalog.js';
+        import { renderProduct } from './product.js';
+        import { renderCart, loadCart } from './cart.js';
+        import { renderCheckout } from './checkout.js';
+        import { renderPayment, renderDone } from './payment.js';
+
+        register('catalog', renderCatalog);
+        register('product', renderProduct);
+        register('cart', renderCart);
+        register('checkout', renderCheckout);
+        register('payment', renderPayment);
+        register('done', renderDone);
+
+        loadCart().then(() => start(document.getElementById('app')));
+    </script>
+</body>
+</html>

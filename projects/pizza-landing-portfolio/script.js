@@ -1,5 +1,6 @@
 import { initMenu } from "./menu.js";
 import { initCart } from "./cart.js";
+import { initPayment } from "./payment.js";
 import { wirePortfolioButtons } from "./toast.js";
 import { initHeroPoints } from "./hero.js";
 import { initScrollReveal, observeReveal } from "./reveal.js";
@@ -8,6 +9,7 @@ import { initTouchCards } from "./touch-cards.js";
 initScrollReveal(); // io создаётся первым — иначе observeReveal ниже получит null
 initMenu();
 initCart();
+initPayment();
 wirePortfolioButtons();
 initHeroPoints();
 initTouchCards();

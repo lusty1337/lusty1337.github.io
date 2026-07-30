@@ -146,3 +146,16 @@ function close() {
   el.root.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 }
+
+// снимок для экрана оплаты — считаем те же числа, что уже показаны в футере корзины
+export function getCartSnapshot() {
+  const items = [...state].map(([id, qty]) => ({ ...ITEM_BY_ID.get(id), id, qty }));
+  return { items, total: total() };
+}
+
+export function clearCart() {
+  state = new Map();
+  commit();
+}
+
+export const closeCart = () => close();
