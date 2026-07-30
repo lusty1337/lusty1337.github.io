@@ -98,16 +98,24 @@ export const haptic = {
 
 export const storage = {
     get(key) {
-        if (isTelegram) {
+        // CloudStorage — с Bot API 6.9, у части клиентов её может не быть.
+        // без try/catch тут промис завис бы и приложение не стартовало бы вообще
+        if (isTelegram && WebApp.CloudStorage) {
             return new Promise((resolve) => {
-                WebApp.CloudStorage.getItem(key, (err, value) => resolve(err ? null : value || null));
+                try {
+                    WebApp.CloudStorage.getItem(key, (err, value) => resolve(err ? null : value || null));
+                } catch { resolve(null); }
             });
         }
         return Promise.resolve(localStorage.getItem(key));
     },
     set(key, value) {
-        if (isTelegram) {
-            return new Promise((resolve) => WebApp.CloudStorage.setItem(key, value, () => resolve()));
+        if (isTelegram && WebApp.CloudStorage) {
+            return new Promise((resolve) => {
+                try {
+                    WebApp.CloudStorage.setItem(key, value, () => resolve());
+                } catch { resolve(); }
+            });
         }
         localStorage.setItem(key, value);
         return Promise.resolve();

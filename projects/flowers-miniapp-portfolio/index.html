@@ -30,7 +30,11 @@
         register('payment', renderPayment);
         register('done', renderDone);
 
-        loadCart().then(() => start(document.getElementById('app')));
+        // если у клиента сломан CloudStorage (старая версия Telegram, редкий клиент)
+        // приложение не должно оставаться пустым экраном — просто откроется без корзины
+        loadCart().catch((e) => console.error('loadCart упал:', e)).finally(() => {
+            start(document.getElementById('app'));
+        });
     </script>
 </body>
 </html>
