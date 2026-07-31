@@ -9,21 +9,29 @@ const WebApp = window.Telegram?.WebApp;
 // а не Telegram-клиента без прогретого запуска
 export const isTelegram = !!WebApp?.initData && WebApp.platform !== 'unknown';
 
-if (isTelegram) {
-    WebApp.ready();
-    WebApp.expand();
+// это выполняется при самом первом импорте модуля, до регистрации экранов —
+// исключение здесь роняет весь граф модулей и приложение остаётся пустым
+// экраном. клиенты Telegram отличаются версиями SDK, поэтому не доверяем
+// ни одному вызову моста безоговорочно
+function safeCall(fn) {
+    try { fn(); } catch (e) { console.error('tg.js: вызов Telegram API упал', e); }
 }
 
-export const colorScheme = isTelegram
+if (isTelegram) {
+    safeCall(() => WebApp.ready());
+    safeCall(() => WebApp.expand());
+}
+
+export const colorScheme = isTelegram && WebApp.colorScheme
     ? WebApp.colorScheme
     : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
 document.documentElement.dataset.scheme = colorScheme;
 
 if (isTelegram) {
-    WebApp.onEvent('themeChanged', () => {
+    safeCall(() => WebApp.onEvent('themeChanged', () => {
         document.documentElement.dataset.scheme = WebApp.colorScheme;
-    });
+    }));
 } else {
     matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         document.documentElement.dataset.scheme = e.matches ? 'dark' : 'light';
@@ -40,11 +48,13 @@ function mbEmit() {
 
 function mbSyncNative() {
     if (!isTelegram) return;
-    const b = WebApp.MainButton;
-    b.setText(mbState.text || ' ');
-    if (mbState.visible) b.show(); else b.hide();
-    if (mbState.enabled) b.enable(); else b.disable();
-    if (mbState.progress) b.showProgress(false); else b.hideProgress();
+    safeCall(() => {
+        const b = WebApp.MainButton;
+        b.setText(mbState.text || ' ');
+        if (mbState.visible) b.show(); else b.hide();
+        if (mbState.enabled) b.enable(); else b.disable();
+        if (mbState.progress) b.showProgress(false); else b.hideProgress();
+    });
 }
 
 export const mainButton = {
@@ -58,10 +68,10 @@ export const mainButton = {
     onClick(fn) {
         this.offClick();
         mbClick = fn;
-        if (isTelegram) WebApp.MainButton.onClick(mbClick);
+        if (isTelegram) safeCall(() => WebApp.MainButton.onClick(mbClick));
     },
     offClick() {
-        if (isTelegram && mbClick) WebApp.MainButton.offClick(mbClick);
+        if (isTelegram && mbClick) safeCall(() => WebApp.MainButton.offClick(mbClick));
         mbClick = null;
     },
     // клик из нашей собственной браузерной кнопки идёт через тот же обработчик
@@ -78,22 +88,24 @@ export const mainButton = {
 let bbClick = null;
 
 export const backButton = {
-    show() { if (isTelegram) WebApp.BackButton.show(); },
-    hide() { if (isTelegram) WebApp.BackButton.hide(); },
+    show() { if (isTelegram) safeCall(() => WebApp.BackButton.show()); },
+    hide() { if (isTelegram) safeCall(() => WebApp.BackButton.hide()); },
     // один обработчик на всё приложение — просто идёт назад по истории,
     // а какой экран открывать, решает popstate в router.js
     onClick(fn) {
         if (!isTelegram) return;
-        if (bbClick) WebApp.BackButton.offClick(bbClick);
-        bbClick = fn;
-        WebApp.BackButton.onClick(bbClick);
+        safeCall(() => {
+            if (bbClick) WebApp.BackButton.offClick(bbClick);
+            bbClick = fn;
+            WebApp.BackButton.onClick(bbClick);
+        });
     },
 };
 
 export const haptic = {
-    impact(style = 'light') { if (isTelegram) WebApp.HapticFeedback.impactOccurred(style); },
-    notification(type) { if (isTelegram) WebApp.HapticFeedback.notificationOccurred(type); },
-    selection() { if (isTelegram) WebApp.HapticFeedback.selectionChanged(); },
+    impact(style = 'light') { if (isTelegram) safeCall(() => WebApp.HapticFeedback.impactOccurred(style)); },
+    notification(type) { if (isTelegram) safeCall(() => WebApp.HapticFeedback.notificationOccurred(type)); },
+    selection() { if (isTelegram) safeCall(() => WebApp.HapticFeedback.selectionChanged()); },
 };
 
 export const storage = {
@@ -129,10 +141,10 @@ export const user = {
 };
 
 export function close() {
-    if (isTelegram) WebApp.close();
+    if (isTelegram) safeCall(() => WebApp.close());
 }
 
 export function openTelegramLink(url) {
-    if (isTelegram) WebApp.openTelegramLink(url);
+    if (isTelegram) safeCall(() => WebApp.openTelegramLink(url));
     else window.open(url, '_blank');
 }
