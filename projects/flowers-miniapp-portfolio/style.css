@@ -40,9 +40,6 @@
 
 html, body {
     margin: 0;
-    /* внешний фон страницы — не часть приложения, виден только на широком
-       десктопном экране вокруг центрированной "телефонной" колонки */
-    background: #dcdcdc;
 }
 
 body {
@@ -51,11 +48,12 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* корневой контейнер приложения. в Telegram высота — из --tg-viewport-stable-height,
-   она уже учитывает MainButton и клавиатуру сама, руками ничего не подгоняем */
+/* корневой контейнер занимает весь экран целиком, а не только "телефонную"
+   полосу — иначе на планшете (и в Telegram, и в браузере) по бокам остаётся
+   пустое поле. в Telegram высота — из --tg-viewport-stable-height, она уже
+   учитывает MainButton и клавиатуру сама, руками ничего не подгоняем */
 .app {
-    max-width: 480px;
-    margin: 0 auto;
+    width: 100%;
     height: 100dvh;
     height: var(--tg-viewport-stable-height, 100dvh);
     background: var(--bg);
@@ -66,10 +64,6 @@ body {
     position: relative;
 }
 
-@media (min-width: 481px) {
-    .app { box-shadow: 0 0 40px rgba(0, 0, 0, .18); }
-}
-
 .screen {
     flex: 1;
     min-height: 0;
@@ -78,17 +72,25 @@ body {
     overflow: hidden;
 }
 
+/* контент центрируем в комфортной колонке на широких экранах — форму
+   в 1400px растягивать незачем, а фон .app и так уже залит на всю ширину */
 .screen-scroll {
     flex: 1;
     min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
 }
 
 /* браузерный режим: своя шапка и своя нижняя кнопка вместо нативных Telegram */
 .browser-header {
     height: 56px;
     flex: none;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
     background: var(--bg);
     border-bottom: 1px solid var(--stroke);
     display: flex;
@@ -126,6 +128,9 @@ body {
 
 .browser-footer {
     flex: none;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
     background: var(--bg);
     border-top: 1px solid var(--stroke);
     padding: 8px 16px 12px;
@@ -222,9 +227,11 @@ body {
 
 :root[data-scheme="dark"] .chip.is-active { color: #10222a; }
 
+/* 2 колонки на телефоне сами собой превращаются в 3-4 на планшете и десктопе —
+   без отдельных брейкпоинтов, просто по доступной ширине внутри .screen-scroll */
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 14px;
     padding: 0 16px 16px;
     align-content: start;

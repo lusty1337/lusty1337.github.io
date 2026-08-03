@@ -34,11 +34,7 @@ export function renderProduct(container, { id }) {
         </div>
         <div class="section">
             <div class="section-title">Состав</div>
-            <div class="composition">
-                ${product.composition.map(([name, qty]) => `
-                    <div class="comp-row"><span>${name}</span><span>${qty}</span></div>
-                `).join('')}
-            </div>
+            <div class="composition" id="pp-composition"></div>
         </div>
         <div class="delivery-note">
             <span>Доставим сегодня к 18:00</span>
@@ -48,6 +44,7 @@ export function renderProduct(container, { id }) {
 
     const priceEl = scroll.querySelector('#pp-price');
     const sizesEl = scroll.querySelector('#pp-sizes');
+    const compositionEl = scroll.querySelector('#pp-composition');
 
     function draw() {
         const size = product.sizes[sizeIndex];
@@ -66,6 +63,13 @@ export function renderProduct(container, { id }) {
                 draw();
             });
         });
+
+        // первая строка состава — это сам цветок, его количество должно
+        // совпадать с выбранным размером, а не оставаться захардкоженным
+        compositionEl.innerHTML = product.composition.map(([name, qty], i) => `
+            <div class="comp-row"><span>${name}</span><span>${i === 0 && size.qty ? size.qty : qty}</span></div>
+        `).join('');
+
         mainButton.setText(`В корзину · ${money(size.price)}`);
     }
 
