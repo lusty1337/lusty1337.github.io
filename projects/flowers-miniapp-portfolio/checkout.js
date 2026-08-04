@@ -13,6 +13,26 @@ const SLOTS = [
 
 function digitsOnly(s) { return s.replace(/\D/g, ''); }
 
+// код страны вводить не нужно — 7 или 8 в начале съедаются и подставляются сами,
+// дальше маска раскладывает цифры по группам "+7 (999) 123 45-67"
+function formatPhone(raw) {
+    const typed = digitsOnly(raw);
+    if (!typed.length) return '';
+    // первую 7 или 8 съедаем как код страны — она не часть локального номера,
+    // но "+7" в выводе должно появиться сразу после первого же нажатия,
+    // а не только когда наберут вторую цифру
+    let d = typed;
+    if (d[0] === '7' || d[0] === '8') d = d.slice(1);
+    d = d.slice(0, 10);
+    let out = '+7';
+    if (d.length) out += ` (${d.slice(0, 3)}`;
+    if (d.length >= 3) out += ')';
+    if (d.length > 3) out += ` ${d.slice(3, 6)}`;
+    if (d.length > 6) out += ` ${d.slice(6, 8)}`;
+    if (d.length > 8) out += `-${d.slice(8, 10)}`;
+    return out;
+}
+
 export function renderCheckout(container) {
     renderBrowserHeader(container, { title: 'Доставка', onBack: back });
 
@@ -31,7 +51,7 @@ export function renderCheckout(container) {
             <div class="section-title">Получатель</div>
             <div style="display:flex;flex-direction:column;gap:8px">
                 <input class="field" id="f-name" placeholder="Имя получателя">
-                <input class="field" id="f-phone" placeholder="+7" inputmode="tel">
+                <input class="field" id="f-phone" placeholder="+7 (999) 123 45-67" inputmode="tel">
                 <div class="field-error" id="f-phone-error" hidden>Введите номер полностью — 10 цифр после +7</div>
                 <div class="field-hint" id="f-phone-hint">Нужен на случай, если курьер не найдёт адрес</div>
             </div>
@@ -104,7 +124,11 @@ export function renderCheckout(container) {
     }
 
     nameEl.addEventListener('input', () => { form.name = nameEl.value; syncMainButton(); });
-    phoneEl.addEventListener('input', () => { form.phone = phoneEl.value; syncMainButton(); });
+    phoneEl.addEventListener('input', () => {
+        phoneEl.value = formatPhone(phoneEl.value);
+        form.phone = phoneEl.value;
+        syncMainButton();
+    });
     addressEl.addEventListener('input', () => { form.address = addressEl.value; syncMainButton(); });
     cardEl.addEventListener('input', () => {
         form.card = cardEl.value;
