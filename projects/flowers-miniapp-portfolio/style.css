@@ -558,7 +558,7 @@ body {
     border-radius: 12px;
     background: var(--sbg);
     color: var(--txt);
-    font-size: 15px;
+    font-size: 16px;
     padding: 0 14px;
     font-family: inherit;
 }
@@ -710,7 +710,9 @@ body {
     display: flex;
     align-items: center;
     padding: 0 14px;
-    font-size: 15px;
+    /* iOS зумит страницу при фокусе на поле с font-size < 16px — а зум
+       потом остаётся висеть и на следующих SPA-экранах, где полей уже нет */
+    font-size: 16px;
     border: 0;
     width: 100%;
     color: var(--txt);
@@ -746,7 +748,7 @@ body {
     border: 0;
     outline: 0;
     background: none;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.45;
     color: var(--txt);
     font-family: inherit;

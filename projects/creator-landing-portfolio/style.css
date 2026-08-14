@@ -29,6 +29,16 @@
     animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* плавающий лейбл формы контактов: Tailwind знает только peer-focus и
+   peer-placeholder-shown, а состояние "заполнено, но не в фокусе" не описано
+   ни одним из них — лейбл падал обратно на текст после blur. :not(:placeholder-shown)
+   это состояние ловит */
+#contact-form input:not(:placeholder-shown) + label,
+#contact-form textarea:not(:placeholder-shown) + label {
+    top: -0.875rem;
+    font-size: 0.875rem;
+}
+
 /* Hide inputs autocomplete background */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
