@@ -24,8 +24,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      # vite не знает про projects/ — без этого шага демки проектов уедут в никуда,
-      # ровно как это делает deploy.js локально
+      # vite не знает про projects/, без этого шага демки проектов уедут в никуда
       - run: cp -r projects dist/projects
       - run: touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
