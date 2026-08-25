@@ -5,7 +5,7 @@
 **Делаю сайты, лендинги и Telegram-боты с нуля — чистый код, без конструкторов**
 
 [![Portfolio](https://img.shields.io/badge/Портфолио-egordev.com-0ea5e9?style=flat-square)](https://egordev.com)
-[![Telegram](https://img.shields.io/badge/Telegram-@lustyinyourmind-26A5E4?style=flat-square&logo=telegram&logoColor=white)](https://t.me/lustyinyourmind)
+[![Telegram](https://img.shields.io/badge/Telegram-@lusty1337-26A5E4?style=flat-square&logo=telegram&logoColor=white)](https://t.me/lusty1337)
 [![Email](https://img.shields.io/badge/Email-hellolusty@proton.me-6D4AFF?style=flat-square&logo=protonmail&logoColor=white)](mailto:hellolusty@proton.me)
 
 </div>
@@ -122,6 +122,6 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 
 Пишите — отвечу в течение дня, обсудим задачу, сроки и стоимость.
 
-**Telegram:** [@lustyinyourmind](https://t.me/lustyinyourmind)  
+**Telegram:** [@lusty1337](https://t.me/lusty1337)  
 **Email:** [hellolusty@proton.me](mailto:hellolusty@proton.me)  
 **Портфолио:** [egordev.com](https://egordev.com)
