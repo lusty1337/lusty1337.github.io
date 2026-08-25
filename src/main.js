@@ -1,5 +1,11 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { t, apply as applyI18n, initLangSwitch } from './i18n.js'
+
+// язык подставляем до всего остального: секции ещё скрыты классом anim-on,
+// поэтому подмена текста не мелькает перед глазами
+applyI18n();
+initLangSwitch();
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,6 +89,14 @@ if (pricingReveal) {
 
 // шрифты догружаются и сдвигают вёрстку — пересчитываем точки триггеров
 window.addEventListener('load', () => ScrollTrigger.refresh());
+
+// то же самое после смены языка: текст другой длины меняет высоту секций,
+// и старые точки срабатывания оказываются мимо
+window.addEventListener('langchange', () => ScrollTrigger.refresh());
+
+// смена языка меняет длину строк, а с ней и высоту секций: старые точки
+// срабатывания уезжают, и часть блоков ниже остаётся невидимой
+window.addEventListener('langchange', () => ScrollTrigger.refresh());
 
 // наклон + свечение на превью проектов, на тач-устройствах — то же по touchmove
 {
@@ -421,16 +435,21 @@ if (mobileBtn) {
 
         const data = Object.fromEntries(new FormData(form));
 
+        // тип задачи читаем прямо с подписи: она уже на языке посетителя,
+        // а скрытое поле могло отстать после переключения языка
+        const taskLabel = document.getElementById('lf-task-label');
+        if (taskLabel) data.task_type = taskLabel.textContent;
+
         if (data.access_key.startsWith('ВСТАВЬТЕ')) {
-            say('Форма ещё не подключена — напишите в Telegram или на почту.', false);
+            say(t('form.notWired'), false);
             return;
         }
-        if (!data.name.trim()) return say('Напишите, как к вам обращаться.', false);
-        if (!EMAIL_RE.test(data.email.trim())) return say('Проверьте почту — на неё придёт ответ.', false);
-        if (data.message.trim().length < 10) return say('Опишите задачу хотя бы парой предложений.', false);
+        if (!data.name.trim()) return say(t('form.errName'), false);
+        if (!EMAIL_RE.test(data.email.trim())) return say(t('form.errEmail'), false);
+        if (data.message.trim().length < 10) return say(t('form.errMessage'), false);
 
         submit.disabled = true;
-        submit.textContent = 'Отправляю...';
+        submit.textContent = t('form.sending');
         say('', true);
 
         try {
@@ -444,16 +463,16 @@ if (mobileBtn) {
             if (json.success) {
                 form.reset();
                 autoGrowMessage();
-                say('Заявка ушла. Отвечу в течение дня.', true);
+                say(t('form.ok'), true);
             } else {
-                say(json.message || 'Не удалось отправить. Напишите в Telegram.', false);
+                say(json.message || t('form.errSend'), false);
             }
         } catch {
             // сеть отвалилась или сервис недоступен — не оставляем клиента без запасного пути
-            say('Сеть недоступна. Напишите в Telegram или на почту.', false);
+            say(t('form.errNet'), false);
         } finally {
             submit.disabled = false;
-            submit.textContent = 'Отправить заявку';
+            submit.textContent = t('form.submit');
         }
     });
 })();
@@ -485,6 +504,9 @@ if (mobileBtn) {
     const select = (option) => {
         options.forEach((o) => o.setAttribute('aria-selected', String(o === option)));
         label.textContent = option.textContent;
+        // ключ переезжает на подпись — иначе после смены языка она откатится
+        // на первый пункт списка вместо выбранного
+        if (option.dataset.i18n) label.dataset.i18n = option.dataset.i18n;
         hidden.value = option.textContent;
         activeIndex = options.indexOf(option);
     };

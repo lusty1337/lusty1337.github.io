@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <!-- контур строчной "l" взят из glyf-таблицы Inter Black (wght=900) — вордмарк "lusty." в шапке тоже строчный -->
+  <!-- буква "E" собрана прямоугольниками под вес Inter Black: одинаково читается
+       и как кириллическая "Е" в вордмарке "Егор.", и как латинская в "Egor." -->
   <rect x="1.5" y="1.5" width="61" height="61" rx="15" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"/>
-  <path transform="matrix(0.020805 0 0 -0.020805 21.878 46)" d="M504 1490V0H102V1490Z" fill="#0f172a"/>
-  <circle cx="44" cy="41.5" r="4.5" fill="#0f172a"/>
+  <g fill="#0f172a">
+    <rect x="19" y="17" width="8" height="30"/>
+    <rect x="19" y="17" width="19" height="8"/>
+    <rect x="19" y="28.5" width="16" height="7"/>
+    <rect x="19" y="39" width="19" height="8"/>
+  </g>
+  <circle cx="45" cy="42.5" r="4.5" fill="#0f172a"/>
 </svg>

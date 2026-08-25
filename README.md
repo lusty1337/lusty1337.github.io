@@ -1,10 +1,10 @@
 <div align="center">
 
-# lusty — Егор
+# Егор — fullstack-разработчик
 
 **Делаю сайты, лендинги и Telegram-боты с нуля — чистый код, без конструкторов**
 
-[![Portfolio](https://img.shields.io/badge/Портфолио-lusty1337.github.io-0ea5e9?style=flat-square)](https://lusty1337.github.io)
+[![Portfolio](https://img.shields.io/badge/Портфолио-egordev.com-0ea5e9?style=flat-square)](https://egordev.com)
 [![Telegram](https://img.shields.io/badge/Telegram-@lustyinyourmind-26A5E4?style=flat-square&logo=telegram&logoColor=white)](https://t.me/lustyinyourmind)
 [![Email](https://img.shields.io/badge/Email-hellolusty@proton.me-6D4AFF?style=flat-square&logo=protonmail&logoColor=white)](mailto:hellolusty@proton.me)
 
@@ -49,38 +49,48 @@
 
 ## Проекты
 
-### [Creator Portfolio](https://lusty1337.github.io/projects/creator-landing-portfolio/index.html)
-Одностраничный лендинг-портфолио с тёмной и светлой темой, модальными окнами, scroll-анимациями и формой с валидацией. Ноль сторонних библиотек.
+### [Keyboard Showcase — VOID65](https://egordev.com/projects/keyboard-showcase-portfolio/index.html)
+Промо-страница премиальной механической клавиатуры: вся страница — одна непрерывная 3D-сцена. Клавиатура построена кодом, без сторонних моделей: семь слоёв, 68 клавиш, процедурные текстуры платы, надписи впечатаны в материал колпачка собственным шейдером. Хореография камеры — чистая функция от прокрутки, поэтому сцена идёт одинаково плавно вперёд и назад.
 
-`HTML5` `Tailwind CSS` `Vanilla JS`
+`Three.js · R3F` `React` `GSAP` `TypeScript`
 
----
-
-### [NovaFi Dashboard](https://lusty1337.github.io/projects/crypto-dashboard-portfolio/index.html)
-Крипто-дашборд: SPA-навигация, живые данные с API биржи, графики Chart.js, рабочий своп с пересчётом баланса, модалки транзакций.
-
-`Vanilla JS · SPA` `Chart.js` `REST API`
+Примерная стоимость такой работы: **150 000 – 450 000 ₽** · для западных клиентов $3 500 – 17 000
 
 ---
 
-### [Tin Master 3D](https://lusty1337.github.io/projects/tin-workshop-portfolio/index.html)
+### [Tin Master 3D](https://egordev.com/projects/tin-workshop-portfolio/index.html)
 3D-конфигуратор для цеха металлообработки: управление камерой, смена цвета металла по палитре RAL в реальном времени, адаптив под телефон.
 
 `Three.js · WebGL` `Tailwind CSS` `Vanilla JS`
 
+Примерная стоимость такой работы: **80 000 – 150 000 ₽** · для западных клиентов $3 000 – 6 500
+
 ---
 
-### [FORNO — пиццерия](https://lusty1337.github.io/projects/pizza-landing-portfolio/index.html)
+### [Flowers Room](https://egordev.com/projects/flowers-miniapp-portfolio/index.html) · [в Telegram](https://t.me/lusty_flowers_bot/flowers)
+Telegram Mini App — магазин цветов с доставкой: каталог, корзина с промокодом, оформление доставки, честный демо-режим оплаты. Работает и в самом Telegram, и в обычном браузере; за кнопку действия и кнопку «Назад» отвечает сам Telegram, корзина хранится в его облаке.
+
+`Telegram WebApp API` `Vanilla JS` `CSS3`
+
+Примерная стоимость такой работы: **30 000 – 60 000 ₽** · для западных клиентов $1 200 – 3 000
+
+---
+
+### [FORNO — пиццерия](https://egordev.com/projects/pizza-landing-portfolio/index.html)
 Промо-лендинг пиццерии с атмосферным тёмным дизайном: фильтрация меню по категориям, анимированные карточки, выезжающая корзина, тач-свайпы. Адаптив от 320px. Без сторонних JS-библиотек.
 
 `HTML5` `CSS3` `Vanilla JS`
 
+Примерная стоимость такой работы: **35 000 – 60 000 ₽** · для западных клиентов $1 000 – 2 800
+
 ---
 
-### [Цветы · Бутик](https://lusty1337.github.io/projects/flowers-miniapp-portfolio/index.html) · [в Telegram](https://t.me/lusty_flowers_bot/flowers)
-Telegram Mini App — магазин цветов с доставкой: каталог, корзина с промокодом, оформление доставки, честный демо-режим оплаты. Работает и в самом Telegram, и в обычном браузере; за кнопку действия и кнопку «Назад» отвечает сам Telegram, корзина хранится в его облаке.
+### [NovaFi Dashboard](https://egordev.com/projects/crypto-dashboard-portfolio/index.html)
+Крипто-дашборд: SPA-навигация, живые данные с API биржи, графики Chart.js, рабочий своп с пересчётом баланса, модалки транзакций.
 
-`Telegram WebApp API` `Vanilla JS` `CSS3`
+`Vanilla JS · SPA` `Chart.js` `REST API`
+
+Примерная стоимость такой работы: **30 000 – 90 000 ₽** · для западных клиентов $1 800 – 4 500
 
 ---
 
@@ -88,6 +98,17 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 Десктопное приложение для Windows: сортировка файлов по папкам одним кликом, отмена операции с полным восстановлением структуры, редактируемые категории, локализация на 3 языка, светлая/тёмная тема.
 
 `Python` `pywebview` `Desktop App`
+
+Примерная стоимость такой работы: **5 000 – 25 000 ₽** · для западных клиентов $1 500 – 3 800
+
+---
+
+### [Creator Portfolio](https://egordev.com/projects/creator-landing-portfolio/index.html)
+Одностраничный лендинг-портфолио с тёмной и светлой темой, модальными окнами, scroll-анимациями и формой с валидацией. Ноль сторонних библиотек.
+
+`HTML5` `Tailwind CSS` `Vanilla JS`
+
+Примерная стоимость такой работы: **10 000 – 35 000 ₽** · для западных клиентов $800 – 2 200
 
 ---
 
@@ -103,4 +124,4 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 
 **Telegram:** [@lustyinyourmind](https://t.me/lustyinyourmind)  
 **Email:** [hellolusty@proton.me](mailto:hellolusty@proton.me)  
-**Портфолио:** [lusty1337.github.io](https://lusty1337.github.io)
+**Портфолио:** [egordev.com](https://egordev.com)

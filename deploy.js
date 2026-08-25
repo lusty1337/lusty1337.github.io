@@ -13,7 +13,7 @@ execSync(`powershell -Command "Copy-Item -Recurse -Force 'projects' 'dist/projec
 writeFileSync('dist/.nojekyll', '')
 
 // временная папка для git — вне проекта, чтобы не мусорить в dist
-const tmp = join(tmpdir(), 'lusty-deploy-' + Date.now())
+const tmp = join(tmpdir(), 'landing-deploy-' + Date.now())
 mkdirSync(tmp)
 
 try {
@@ -26,7 +26,7 @@ try {
     run('git remote add origin https://github.com/lusty1337/lusty1337.github.io.git', tmp)
     run('git -c http.proxy="" push -f origin HEAD:gh-pages', tmp)
 
-    console.log('\nготово — сайт обновится на lusty1337.github.io через ~1 мин')
+    console.log('\nготово — сайт обновится на egordev.com через ~1 мин')
 } finally {
     try {
         execSync(`powershell -Command "Remove-Item -Recurse -Force '${tmp}'"`, { stdio: 'ignore' })
