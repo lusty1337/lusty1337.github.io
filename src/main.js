@@ -101,7 +101,9 @@ window.addEventListener('langchange', () => ScrollTrigger.refresh());
 // наклон + свечение на превью проектов, на тач-устройствах — то же по touchmove
 {
     const isHover = window.matchMedia('(hover: hover)').matches;
-    const glowColors = ['34,211,238', '99,102,241', '255,90,0', '255,90,0', '168,85,247']; // cyan, indigo, orange, orange, violet
+    // цвет берётся по порядку карточек на странице: новая карточка сверху - её цвет
+    // в начало массива, иначе свечение у всех остальных съезжает на одну позицию
+    const glowColors = ['197,35,39', '34,211,238', '99,102,241', '255,90,0', '255,90,0', '168,85,247'];
 
     document.querySelectorAll('.sandbox-preview').forEach((preview, i) => {
         const c = glowColors[i] || glowColors[0];

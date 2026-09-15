@@ -48,6 +48,11 @@ const DICT = {
         'projects.download': 'Скачать ↓',
         'projects.priceLabel': 'Сколько это примерно стоит?',
 
+        'meridian.task': 'Сайт уровня Awwwards для вымышленного парфюмерного дома, и ни одного файла изображений. В центре работающие солнечные часы, а гномон в них — 3D-флакон, построенный кодом. Сайт должен плавно идти на телефоне и одинаково хорошо смотреться на десктопе и на iPhone.',
+        'meridian.done': 'Солнечные часы с настоящим астрономическим расчётом для пяти площадок в обоих полушариях. Флакон написан кодом: гранёное стекло, настой с колыханием, помпа, этикетка и тень от стекла. Шесть сцен срежиссированы прокруткой, пять формул переключаются с перетеканием дня, а флакон крутится пальцем, не блокируя прокрутку.',
+        'meridian.price': '230 000 – 450 000 ₽',
+        'meridian.priceWhy': 'Своя графика в реальном времени — верхний сегмент промо-сайтов: флакон и солнечные часы пишутся кодом вместо съёмки, плюс адаптив от телефона до 4K, доступность и запасные версии.',
+
         'keyboard.task': 'Сайт-презентация премиальной механической клавиатуры с настоящим 3D в браузере, на уровне продуктовых страниц Apple. Продукта физически не существует, поэтому модель, материалы и фирменный стиль нужно было придумать и собрать с нуля.',
         'keyboard.done': 'Клавиатура целиком построена кодом на React Three Fiber: семь слоёв, 68 клавиш, процедурные текстуры платы, ни одной сторонней модели. Вся сцена — чистая функция от прокрутки, поэтому идёт одинаково плавно вперёд и назад. Мобильная версия разворачивает композицию под портрет и снимает нагрузку по тому, чего на экране в ладонь всё равно не видно.',
         'keyboard.price': '150 000 – 450 000 ₽',
@@ -172,6 +177,11 @@ const DICT = {
         'projects.openBrowser': 'Open in browser',
         'projects.download': 'Download ↓',
         'projects.priceLabel': 'What would this cost?',
+
+        'meridian.task': 'An Awwwards-level site for a fictional perfume house, without a single image file. At its centre is a working sundial whose gnomon is a 3D bottle built in code. It had to run smoothly on a phone and look just as good on a desktop as on an iPhone.',
+        'meridian.done': 'A sundial driven by real astronomical calculation for five locations across both hemispheres. The bottle is written in code: faceted glass, a gently moving liquid, pump, label and a shadow cast by the glass. Six scroll-directed scenes, five formulas that switch as the daylight flows between them, and a bottle you can spin with a finger without blocking the scroll.',
+        'meridian.price': '$5,000 – 11,000',
+        'meridian.priceWhy': 'Real-time custom graphics sit at the top of promo-site work: the bottle and the sundial are written in code instead of being shot on camera, with layouts from phone to 4K, accessibility and fallback versions.',
 
         'keyboard.task': 'A one-page showcase for a premium mechanical keyboard with real 3D in the browser, on a par with Apple product pages. The product does not physically exist, so the model, the materials and the brand style all had to be invented and built from scratch.',
         'keyboard.done': 'The keyboard is built entirely in code on React Three Fiber: seven layers, 68 keys, procedural PCB textures, not a single third-party model. The whole scene is a pure function of scroll, so it runs just as smoothly backwards as forwards. The mobile build reflows the composition for portrait and drops the load on whatever a palm-sized screen would not show anyway.',
