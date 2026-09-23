@@ -23,6 +23,26 @@
         * {
             border-radius: 0 !important;
         }
+
+        /* подсказка про мышь на телефоне бессмысленна - там нет ни ЛКМ, ни ПКМ */
+        .hint-touch { display: none; }
+        @media (pointer: coarse) {
+            .hint-mouse { display: none; }
+            .hint-touch { display: inline; }
+        }
+
+        /* переключатели типа изделия: пальцем в 26 пикселей по высоте не попасть */
+        .type-switch {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* образцы RAL: 32 пикселя под палец мало, промахиваешься по соседнему цвету */
+        .ral-swatch {
+            width: 44px;
+            height: 44px;
+        }
         
 
         input[type=range] {
@@ -215,14 +235,14 @@
                         <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center border-b border-line z-20 bg-dark">
                             <span class="text-white font-bold uppercase tracking-widest text-sm">Отлив</span>
                             <div class="flex gap-2 text-xs font-mono uppercase">
-                                <button id="btn-ebb-normal" onclick="setEbbType('normal')" class="px-2 py-1 border border-accent text-accent">Обычный</button>
-                                <button id="btn-ebb-euro" onclick="setEbbType('euro')" class="px-2 py-1 border border-line text-steel hover:border-steel transition-colors">Евро</button>
+                                <button id="btn-ebb-normal" onclick="setEbbType('normal')" class="type-switch px-3 border border-accent text-accent">Обычный</button>
+                                <button id="btn-ebb-euro" onclick="setEbbType('euro')" class="type-switch px-3 border border-line text-steel hover:border-steel transition-colors">Евро</button>
                             </div>
                         </div>
                         
                         <div id="canvas-container-ebb" class="flex-grow relative overflow-hidden p-0 min-h-[300px] cursor-move">
                             <div class="absolute inset-0 opacity-20 pointer-events-none z-0" style="background-image: linear-gradient(#2a2d32 1px, transparent 1px), linear-gradient(90deg, #2a2d32 1px, transparent 1px); background-size: 20px 20px;"></div>
-                            <div class="absolute bottom-4 left-4 text-line font-mono text-xs pointer-events-none z-10 select-none">ЛКМ вращать, ПКМ двигать</div>
+                            <div class="absolute bottom-4 left-4 text-steel font-mono text-xs pointer-events-none z-10 select-none"><span class="hint-mouse">ЛКМ вращать, ПКМ двигать</span><span class="hint-touch">Одним пальцем вращать, двумя двигать</span></div>
                         </div>
                     </div>
 
@@ -230,14 +250,14 @@
                         <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center border-b border-line z-20 bg-dark">
                             <span class="text-white font-bold uppercase tracking-widest text-sm">Уголок</span>
                             <div class="flex flex-wrap gap-2 text-xs font-mono uppercase justify-end">
-                                <button id="btn-angle-outer" onclick="setAngleType('outer')" class="px-2 py-1 border border-accent text-accent">Наружный</button>
-                                <button id="btn-angle-inner" onclick="setAngleType('inner')" class="px-2 py-1 border border-line text-steel hover:border-steel transition-colors">Внутренний</button>
+                                <button id="btn-angle-outer" onclick="setAngleType('outer')" class="type-switch px-3 border border-accent text-accent">Наружный</button>
+                                <button id="btn-angle-inner" onclick="setAngleType('inner')" class="type-switch px-3 border border-line text-steel hover:border-steel transition-colors">Внутренний</button>
                             </div>
                         </div>
                         
                         <div id="canvas-container-angle" class="flex-grow relative overflow-hidden p-0 min-h-[300px] cursor-move">
                             <div class="absolute inset-0 opacity-20 pointer-events-none z-0" style="background-image: linear-gradient(#2a2d32 1px, transparent 1px), linear-gradient(90deg, #2a2d32 1px, transparent 1px); background-size: 20px 20px;"></div>
-                            <div class="absolute bottom-4 left-4 text-line font-mono text-xs pointer-events-none z-10 select-none">ЛКМ вращать, ПКМ двигать</div>
+                            <div class="absolute bottom-4 left-4 text-steel font-mono text-xs pointer-events-none z-10 select-none"><span class="hint-mouse">ЛКМ вращать, ПКМ двигать</span><span class="hint-touch">Одним пальцем вращать, двумя двигать</span></div>
                         </div>
                     </div>
                 </div>
@@ -254,19 +274,19 @@
                     
                     <div class="flex flex-col gap-6">
                         <div class="flex flex-wrap gap-2 sm:gap-3" id="popular-colors">
-                            <button onclick="selectRal('#F4F4F4', 'RAL 9003', 'Сигнальный белый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#F4F4F4] border-2 border-accent relative transition-all duration-300 hover:scale-110" title="RAL 9003 (Белый)"></button>
-                            <button onclick="selectRal('#3B2313', 'RAL 8017', 'Шоколадно-коричневый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#3B2313] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 8017 (Коричневый)"></button>
-                            <button onclick="selectRal('#474A51', 'RAL 7024', 'Графитовый серый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#474A51] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 7024 (Графит)"></button>
-                            <button onclick="selectRal('#2F543F', 'RAL 6005', 'Зеленый мох')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#2F543F] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 6005 (Зеленый)"></button>
-                            <button onclick="selectRal('#5E2129', 'RAL 3005', 'Винно-красный')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#5E2129] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 3005 (Вишня)"></button>
-                            <button onclick="selectRal('#15488A', 'RAL 5005', 'Сигнальный синий')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#15488A] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 5005 (Синий)"></button>
-                            <button onclick="selectRal('#3F3A37', 'RAL 8019', 'Серо-коричневый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#3F3A37] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 8019 (Темно-коричневый)"></button>
-                            <button onclick="selectRal('#0A0A0A', 'RAL 9005', 'Глубокий черный')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#0A0A0A] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 9005 (Черный)"></button>
-                            <button onclick="selectRal('#E6D6B8', 'RAL 1015', 'Светлая слоновая кость')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#E6D6B8] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 1015 (Бежевый)"></button>
-                            <button onclick="selectRal('#969992', 'RAL 7004', 'Сигнальный серый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#969992] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 7004 (Светло-серый)"></button>
-                            <button onclick="selectRal('#7A2F2D', 'RAL 3011', 'Коричнево-красный')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#7A2F2D] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 3011 (Красный)"></button>
-                            <button onclick="selectRal('#2B2F33', 'RAL 7016', 'Антрацитово-серый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#2B2F33] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 7016 (Антрацит)"></button>
-                            <button onclick="selectRal('#8D493A', 'RAL 8004', 'Терракотовый')" class="w-8 h-8 sm:w-10 sm:h-10 bg-[#8D493A] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 8004 (Терракота)"></button>
+                            <button onclick="selectRal('#F4F4F4', 'RAL 9003', 'Сигнальный белый')" class="ral-swatch bg-[#F4F4F4] border-2 border-accent relative transition-all duration-300 hover:scale-110" title="RAL 9003 (Белый)"></button>
+                            <button onclick="selectRal('#3B2313', 'RAL 8017', 'Шоколадно-коричневый')" class="ral-swatch bg-[#3B2313] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 8017 (Коричневый)"></button>
+                            <button onclick="selectRal('#474A51', 'RAL 7024', 'Графитовый серый')" class="ral-swatch bg-[#474A51] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 7024 (Графит)"></button>
+                            <button onclick="selectRal('#2F543F', 'RAL 6005', 'Зеленый мох')" class="ral-swatch bg-[#2F543F] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 6005 (Зеленый)"></button>
+                            <button onclick="selectRal('#5E2129', 'RAL 3005', 'Винно-красный')" class="ral-swatch bg-[#5E2129] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 3005 (Вишня)"></button>
+                            <button onclick="selectRal('#15488A', 'RAL 5005', 'Сигнальный синий')" class="ral-swatch bg-[#15488A] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 5005 (Синий)"></button>
+                            <button onclick="selectRal('#3F3A37', 'RAL 8019', 'Серо-коричневый')" class="ral-swatch bg-[#3F3A37] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 8019 (Темно-коричневый)"></button>
+                            <button onclick="selectRal('#0A0A0A', 'RAL 9005', 'Глубокий черный')" class="ral-swatch bg-[#0A0A0A] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 9005 (Черный)"></button>
+                            <button onclick="selectRal('#E6D6B8', 'RAL 1015', 'Светлая слоновая кость')" class="ral-swatch bg-[#E6D6B8] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 1015 (Бежевый)"></button>
+                            <button onclick="selectRal('#969992', 'RAL 7004', 'Сигнальный серый')" class="ral-swatch bg-[#969992] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 7004 (Светло-серый)"></button>
+                            <button onclick="selectRal('#7A2F2D', 'RAL 3011', 'Коричнево-красный')" class="ral-swatch bg-[#7A2F2D] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 3011 (Красный)"></button>
+                            <button onclick="selectRal('#2B2F33', 'RAL 7016', 'Антрацитово-серый')" class="ral-swatch bg-[#2B2F33] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 7016 (Антрацит)"></button>
+                            <button onclick="selectRal('#8D493A', 'RAL 8004', 'Терракотовый')" class="ral-swatch bg-[#8D493A] border-2 border-transparent hover:border-accent relative transition-all duration-300 hover:scale-110" title="RAL 8004 (Терракота)"></button>
                         </div>
 
                         <div class="relative max-w-sm z-30">
@@ -352,7 +372,7 @@
             <div class="text-steel text-xs sm:text-sm font-mono">
                 &copy; 2026 ЖестьМастер
             </div>
-            <div class="text-line text-[10px] sm:text-xs font-mono uppercase tracking-widest">
+            <div class="text-steel text-[10px] sm:text-xs font-mono uppercase tracking-widest">
                 Спроектировано с точностью до миллиметра
             </div>
         </div>
@@ -620,15 +640,15 @@
         
         function setEbbType(type) {
             currentEbbType = type;
-            document.getElementById('btn-ebb-normal').className = type === 'normal' ? 'px-2 py-1 border border-accent text-accent' : 'px-2 py-1 border border-line text-steel hover:border-steel transition-colors';
-            document.getElementById('btn-ebb-euro').className = type === 'euro' ? 'px-2 py-1 border border-accent text-accent' : 'px-2 py-1 border border-line text-steel hover:border-steel transition-colors';
+            document.getElementById('btn-ebb-normal').className = type === 'normal' ? 'type-switch px-3 border border-accent text-accent' : 'type-switch px-3 border border-line text-steel hover:border-steel transition-colors';
+            document.getElementById('btn-ebb-euro').className = type === 'euro' ? 'type-switch px-3 border border-accent text-accent' : 'type-switch px-3 border border-line text-steel hover:border-steel transition-colors';
             buildEbb();
         }
 
         function setAngleType(type) {
             currentAngleType = type;
-            document.getElementById('btn-angle-outer').className = type === 'outer' ? 'px-2 py-1 border border-accent text-accent' : 'px-2 py-1 border border-line text-steel hover:border-steel transition-colors';
-            document.getElementById('btn-angle-inner').className = type === 'inner' ? 'px-2 py-1 border border-accent text-accent' : 'px-2 py-1 border border-line text-steel hover:border-steel transition-colors';
+            document.getElementById('btn-angle-outer').className = type === 'outer' ? 'type-switch px-3 border border-accent text-accent' : 'type-switch px-3 border border-line text-steel hover:border-steel transition-colors';
+            document.getElementById('btn-angle-inner').className = type === 'inner' ? 'type-switch px-3 border border-accent text-accent' : 'type-switch px-3 border border-line text-steel hover:border-steel transition-colors';
             buildAngle();
         }
 

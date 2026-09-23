@@ -110,7 +110,9 @@
     transform: rotate(45deg) translateY(100%);
 }
 
+/* блок стал ссылкой, а у строчного элемента ширина и высота не работают */
 .sandbox-preview {
+    display: block;
     width: 100%;
     height: 240px;
     border-radius: 1rem;

@@ -56,7 +56,7 @@ const DICT = {
         'keyboard.task': 'Сайт-презентация премиальной механической клавиатуры с настоящим 3D в браузере, на уровне продуктовых страниц Apple. Продукта физически не существует, поэтому модель, материалы и фирменный стиль нужно было придумать и собрать с нуля.',
         'keyboard.done': 'Клавиатура целиком построена кодом на React Three Fiber: семь слоёв, 68 клавиш, процедурные текстуры платы, ни одной сторонней модели. Вся сцена — чистая функция от прокрутки, поэтому идёт одинаково плавно вперёд и назад. Мобильная версия разворачивает композицию под портрет и снимает нагрузку по тому, чего на экране в ладонь всё равно не видно.',
         'keyboard.price': '150 000 – 450 000 ₽',
-        'keyboard.priceWhy': 'Процедурная 3D-сцена со скролл-анимацией — верхняя планка веб-разработки: геометрия, материалы и пост-обработка пишутся руками, плюс оптимизация до плавных 60 кадров на слабых устройствах.',
+        'keyboard.priceWhy': 'Процедурная 3D-сцена со скролл-анимацией — верхняя планка веб-разработки: геометрия, материалы и пост-обработка пишутся руками.',
 
         'tin.task': 'Сайт для цеха металлообработки: лазерная резка, гибка по чертежам, отливы, доборные элементы и профили под ключ. Клиенту нужно наглядно подбирать цвет изделия по палитре RAL.',
         'tin.done': '3D-конфигуратор на Three.js: управление камерой, смена цвета металла по палитре RAL в реальном времени, генерация геометрии отливов и доборных элементов, адаптив под телефон.',
@@ -186,7 +186,7 @@ const DICT = {
         'keyboard.task': 'A one-page showcase for a premium mechanical keyboard with real 3D in the browser, on a par with Apple product pages. The product does not physically exist, so the model, the materials and the brand style all had to be invented and built from scratch.',
         'keyboard.done': 'The keyboard is built entirely in code on React Three Fiber: seven layers, 68 keys, procedural PCB textures, not a single third-party model. The whole scene is a pure function of scroll, so it runs just as smoothly backwards as forwards. The mobile build reflows the composition for portrait and drops the load on whatever a palm-sized screen would not show anyway.',
         'keyboard.price': '$3,500 – 17,000',
-        'keyboard.priceWhy': 'A procedural 3D scene driven by scroll sits at the top end of web work: geometry, materials and post-processing are all hand-written, then tuned to hold a steady 60fps on weak devices.',
+        'keyboard.priceWhy': 'A procedural 3D scene driven by scroll sits at the top end of web work: geometry, materials and post-processing are all hand-written.',
 
         'tin.task': 'A site for a sheet-metal workshop: laser cutting, bending to drawings, drip edges, trim pieces and custom profiles. The client needed a way to preview the finish colour from the RAL palette.',
         'tin.done': 'A 3D configurator in Three.js: camera controls, real-time RAL colour changes on the metal, generated geometry for drip edges and trim pieces, and a layout that works on a phone.',
