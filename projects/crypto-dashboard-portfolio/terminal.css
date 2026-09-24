@@ -1,0 +1,593 @@
+/* ──────────────────────────────────────────────────────────────
+   NovaFi — торговый терминал
+
+   Цвет здесь работает только на числах: рост зелёный, падение
+   красное, всё остальное держится на оттенках серого и тонких
+   линиях. Латунный --mark стоит на выбранном элементе и больше
+   нигде, иначе он перестанет что-либо значить.
+   ────────────────────────────────────────────────────────────── */
+
+:root {
+    --ink:      #0e1012;
+    --panel:    #131619;
+    --row:      #181c20;
+    --row-hi:   #1e2329;
+    --rule:     #23282d;
+    --rule-hi:  #333a41;
+
+    --bone:     #dcd8d0;
+    --bone-2:   #99a1a9;
+    --bone-3:   #7d858d;
+
+    --up:       #57b87f;
+    --down:     #d96a6a;
+    --mark:     #c8a25c;
+
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    --sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+    --rail: 44px;
+    --side: 232px;
+    --tick: 312px;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--bone);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+}
+
+button, input { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; padding: 0; }
+table { border-collapse: collapse; width: 100%; }
+
+::selection { background: var(--mark); color: var(--ink); }
+
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--rule-hi); }
+::-webkit-scrollbar-thumb:hover { background: #454d56; }
+
+/* числа набираются моноширинным с табличными цифрами: в столбце
+   разряды встают друг под друга и колонку можно читать сверху вниз */
+.num {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+}
+
+.up   { color: var(--up); }
+.down { color: var(--down); }
+
+/* надпись над блоком: мелкая, разрядкой, без жирного — она называет
+   колонку, а не спорит с числом под собой */
+.cap {
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bone-3);
+}
+
+/* ── верхняя рейка ─────────────────────────────────────────── */
+
+.rail {
+    height: var(--rail);
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--rule);
+    background: var(--panel);
+    flex: 0 0 auto;
+}
+
+/* сетка, а не flex: у flex с baseline вся связка прижимается к верху
+   рейки, и название упирается в край экрана. align-content ставит
+   строку по центру, не ломая общую базовую линию */
+.rail__brand {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: baseline;
+    align-content: center;
+    gap: 8px;
+    padding: 0 16px;
+    border-right: 1px solid var(--rule);
+}
+
+.rail__name {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.14em;
+}
+
+.rail__sub {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bone-3);
+}
+
+.rail__tabs { display: flex; }
+
+/* вкладка помечается чертой снизу, а не заливкой: заливка
+   превратила бы её в кнопку, а это не кнопка */
+.tab {
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--bone-3);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color .12s;
+}
+
+.tab:hover { color: var(--bone); }
+
+.tab[aria-selected="true"] {
+    color: var(--bone);
+    border-bottom-color: var(--mark);
+}
+
+.rail__spacer { flex: 1; }
+
+.rail__meta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 0 16px;
+    border-left: 1px solid var(--rule);
+    font-size: 11px;
+    color: var(--bone-3);
+}
+
+.rail__meta b { color: var(--bone-2); font-weight: 500; }
+
+.dot {
+    width: 5px;
+    height: 5px;
+    background: var(--up);
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.dot--stale { background: var(--bone-3); }
+
+/* ── общая раскладка ───────────────────────────────────────── */
+
+.shell {
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.screen { flex: 1; min-height: 0; display: none; }
+.screen.is-on { display: grid; }
+
+#screen-terminal {
+    grid-template-columns: var(--side) minmax(0, 1fr) var(--tick);
+    grid-template-rows: minmax(0, 1fr);
+}
+
+.pane { min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+.pane + .pane { border-left: 1px solid var(--rule); }
+
+.pane__head {
+    height: 30px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--panel);
+}
+
+.pane__body { flex: 1; min-height: 0; overflow: auto; }
+
+/* ── список инструментов ───────────────────────────────────── */
+
+.wl tr { cursor: pointer; border-bottom: 1px solid var(--rule); }
+.wl tr:hover { background: var(--row); }
+.wl tr[aria-selected="true"] { background: var(--row-hi); }
+
+/* выбранная строка помечена полосой слева: в плотном списке
+   её видно боковым зрением, а фон между строками почти не различим */
+.wl tr[aria-selected="true"] td:first-child { box-shadow: inset 2px 0 0 var(--mark); }
+
+.wl td { padding: 7px 12px; vertical-align: baseline; }
+
+.wl__sym { font-family: var(--mono); font-size: 12px; font-weight: 500; }
+.wl__name { font-size: 10px; color: var(--bone-3); display: block; margin-top: 1px; }
+.wl__px { text-align: right; font-size: 12px; }
+.wl__chg { text-align: right; font-size: 11px; width: 58px; }
+
+/* ── график ────────────────────────────────────────────────── */
+
+.inst {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 14px 16px 10px;
+    flex: 0 0 auto;
+}
+
+.inst__sym { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--bone-2); }
+.inst__px  { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 30px; line-height: 1; letter-spacing: -0.02em; }
+.inst__chg { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13px; }
+
+.tf { display: flex; margin-left: auto; align-self: center; }
+
+.tf button {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    color: var(--bone-3);
+    border: 1px solid transparent;
+}
+
+.tf button:hover { color: var(--bone); }
+
+.tf button[aria-selected="true"] {
+    color: var(--bone);
+    border-color: var(--rule-hi);
+    background: var(--row);
+}
+
+.chart { flex: 1; min-height: 160px; padding: 0 8px 8px 16px; position: relative; }
+
+/* ── журнал сделок ─────────────────────────────────────────── */
+
+.blot { flex: 0 0 auto; border-top: 1px solid var(--rule); display: flex; flex-direction: column; height: 236px; }
+.log__wrap { flex: 1; min-height: 0; overflow: auto; }
+
+.log thead th {
+    position: sticky;
+    top: 0;
+    background: var(--panel);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bone-3);
+    text-align: left;
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--rule);
+}
+
+.log td {
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.log tbody tr:hover { background: var(--row); }
+.log .r { text-align: right; }
+.log__side { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; }
+.log__hash { font-family: var(--mono); font-size: 11px; color: var(--bone-3); }
+
+/* статус набран словом, а не плашкой: цветные пилюли в плотной
+   таблице спорят с цифрами, ради которых таблицу и читают */
+.st { font-size: 11px; letter-spacing: 0.04em; }
+.st--ok   { color: var(--up); }
+.st--wait { color: var(--mark); }
+.st--no   { color: var(--down); }
+
+.lnk {
+    font-size: 11px;
+    color: var(--bone-3);
+    border-bottom: 1px solid var(--rule-hi);
+    padding-bottom: 1px;
+}
+
+.lnk:hover { color: var(--bone); border-bottom-color: var(--bone-3); }
+
+/* ── заявка ────────────────────────────────────────────────── */
+
+.tick { padding: 14px 16px; display: flex; flex-direction: column; gap: 14px; }
+
+.leg { border: 1px solid var(--rule); background: var(--panel); }
+
+.leg__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px 0;
+}
+
+.leg__row { display: flex; align-items: center; gap: 8px; padding: 2px 10px 9px; }
+
+.leg input {
+    flex: 1;
+    min-width: 0;
+    background: none;
+    border: 0;
+    outline: none;
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 21px;
+    letter-spacing: -0.01em;
+    padding: 0;
+}
+
+.leg input::placeholder { color: var(--bone-3); }
+.leg input:read-only { color: var(--bone-2); }
+.leg input::-webkit-outer-spin-button,
+.leg input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.leg input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+.pick {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 5px 8px;
+    border: 1px solid var(--rule-hi);
+    white-space: nowrap;
+}
+
+.pick:hover { border-color: var(--bone-3); }
+.pick::after { content: '\25BE'; color: var(--bone-3); font-size: 10px; }
+
+.leg__bal { font-family: var(--mono); font-size: 11px; color: var(--bone-3); }
+
+.flip { display: flex; justify-content: center; margin: -21px 0; position: relative; z-index: 1; }
+
+.flip button {
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--rule-hi);
+    background: var(--ink);
+    color: var(--bone-2);
+    font-size: 12px;
+    line-height: 1;
+}
+
+.flip button:hover { color: var(--bone); border-color: var(--bone-3); }
+
+.terms { display: flex; flex-direction: column; gap: 5px; }
+.terms div { display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; color: var(--bone-3); }
+.terms span { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--bone-2); }
+
+/* единственная сплошная заливка на всём экране — на действии,
+   после которого меняется баланс */
+.go {
+    height: 38px;
+    background: var(--bone);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.go:hover { background: #fff; }
+.go.is-busy { background: var(--rule-hi); color: var(--bone-3); pointer-events: none; }
+
+.ghost {
+    height: 30px;
+    padding: 0 12px;
+    border: 1px solid var(--rule-hi);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--bone-2);
+}
+
+.ghost:hover { color: var(--bone); border-color: var(--bone-3); }
+
+/* остаток по счетам стоит прямо под заявкой: сумму к обмену
+   сверяют с ним, а не уходят за ней на другой экран */
+.free { border-top: 1px solid var(--rule); padding: 13px 16px 16px; }
+.free .cap { display: block; margin-bottom: 9px; }
+.free td { padding: 4px 0; font-size: 12px; }
+.free td:first-child { font-family: var(--mono); color: var(--bone-2); }
+.free td:last-child { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* ── портфель ──────────────────────────────────────────────── */
+
+#screen-portfolio { grid-template-columns: minmax(0, 1fr) var(--tick); grid-template-rows: minmax(0, 1fr); }
+
+.tot { padding: 20px 20px 16px; border-bottom: 1px solid var(--rule); }
+.tot__v { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 38px; line-height: 1.05; letter-spacing: -0.02em; margin-top: 6px; }
+.tot__d { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13px; margin-top: 4px; }
+
+.hold thead th {
+    font-size: 10px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--bone-3); text-align: left; padding: 8px 20px; border-bottom: 1px solid var(--rule);
+}
+
+.hold td { padding: 11px 20px; border-bottom: 1px solid var(--rule); font-size: 13px; }
+.hold tfoot td { border-bottom: 0; border-top: 1px solid var(--rule-hi); color: var(--bone-2); }
+.hold .r { text-align: right; }
+.hold tbody tr:hover { background: var(--row); }
+.hold__sym { font-family: var(--mono); font-size: 13px; }
+.hold__name { font-size: 10px; color: var(--bone-3); display: block; }
+
+/* доля в портфеле показана самой полосой, без круговой диаграммы:
+   четыре сектора кольца всё равно приходится сверять с легендой */
+.bar { height: 5px; background: var(--rule); position: relative; }
+.bar i { position: absolute; top: 0; bottom: 0; left: 0; background: var(--bone-2); display: block; }
+
+.alloc { padding: 16px; display: flex; flex-direction: column; gap: 13px; }
+.alloc__row { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; align-items: baseline; }
+.alloc__row .bar { grid-column: 1 / -1; margin-top: 3px; }
+.alloc__sym { font-family: var(--mono); font-size: 12px; }
+.alloc__pct { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 12px; color: var(--bone-2); }
+
+/* ── выпадающий список токенов ─────────────────────────────── */
+
+.drop {
+    position: fixed;
+    z-index: 60;
+    min-width: 196px;
+    background: var(--panel);
+    border: 1px solid var(--rule-hi);
+    padding: 3px;
+}
+
+.drop[hidden] { display: none; }
+
+.drop button {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    width: 100%;
+    padding: 6px 9px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--bone-2);
+}
+
+.drop button:hover { background: var(--row); color: var(--bone); }
+.drop button[aria-selected="true"] { color: var(--bone); box-shadow: inset 2px 0 0 var(--mark); }
+.drop button em { margin-left: auto; font-style: normal; font-variant-numeric: tabular-nums; color: var(--bone-3); }
+
+/* ── карточка сделки ───────────────────────────────────────── */
+
+.veil {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 80;
+    background: rgba(8, 9, 10, .72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .16s;
+}
+
+.veil.is-on { opacity: 1; pointer-events: auto; }
+
+.sheet {
+    width: 100%;
+    max-width: 392px;
+    background: var(--panel);
+    border: 1px solid var(--rule-hi);
+}
+
+.sheet__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--rule);
+}
+
+.sheet__title { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bone-2); }
+.sheet__x { font-size: 17px; line-height: 1; color: var(--bone-3); padding: 2px 6px; }
+.sheet__x:hover { color: var(--bone); }
+
+.sheet dl { margin: 0; padding: 4px 16px 14px; }
+
+.sheet dl > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+}
+
+.sheet dl > div:last-child { border-bottom: 0; }
+.sheet dt { font-size: 11px; color: var(--bone-3); }
+.sheet dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 12px; text-align: right; overflow-wrap: anywhere; }
+
+/* ── уведомления ───────────────────────────────────────────── */
+
+.toasts {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+.toast {
+    max-width: 340px;
+    background: var(--panel);
+    border: 1px solid var(--rule-hi);
+    border-left: 2px solid var(--bone-3);
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--bone-2);
+    transform: translateY(8px);
+    opacity: 0;
+    transition: opacity .18s, transform .18s;
+}
+
+.toast.is-on { transform: none; opacity: 1; }
+.toast--ok { border-left-color: var(--up); color: var(--bone); }
+
+/* ── узкие экраны ──────────────────────────────────────────── */
+
+@media (max-width: 1180px) {
+    :root { --side: 196px; --tick: 268px; }
+}
+
+@media (max-width: 1000px) {
+    body { overflow: auto; }
+    .shell { height: auto; min-height: 100dvh; }
+    .screen.is-on { display: block; }
+    .pane + .pane { border-left: 0; border-top: 1px solid var(--rule); }
+    .chart { height: 300px; }
+    .blot { height: auto; }
+
+    /* список инструментов ложится лентой: вертикальная колонка на
+       телефоне съедала бы первый экран целиком */
+    .pane--wl .pane__body { overflow-x: auto; }
+    .wl { display: flex; min-width: min-content; }
+    .wl thead { display: none; }
+    .wl tbody { display: flex; }
+    .wl tr { display: block; border-bottom: 0; border-right: 1px solid var(--rule); min-width: 132px; }
+    .wl tr[aria-selected="true"] td:first-child { box-shadow: inset 0 2px 0 var(--mark); }
+    .wl td { display: block; padding: 6px 12px 0; text-align: left; }
+    .wl td:last-child { padding-bottom: 8px; }
+    .wl__px, .wl__chg { text-align: left; width: auto; }
+
+    .rail { flex-wrap: wrap; height: auto; }
+    .rail__brand { flex: 1 0 auto; padding: 9px 14px; border-bottom: 1px solid var(--rule); border-right: 0; }
+    .rail__meta { border-left: 0; border-bottom: 1px solid var(--rule); padding: 9px 14px; }
+    .rail__spacer { display: none; }
+    .rail__tabs { flex: 1 0 100%; }
+    .tab { height: 40px; flex: 1; justify-content: center; margin-bottom: 0; }
+
+    .log { min-width: 560px; }
+    .toasts { left: 16px; align-items: stretch; }
+    .toast { max-width: none; }
+}
+
+@media (max-width: 560px) {
+    .inst { flex-wrap: wrap; }
+    .tf { margin-left: 0; width: 100%; }
+    .tf button { flex: 1; padding: 7px 0; }
+    .inst__px { font-size: 25px; }
+    .tot__v { font-size: 31px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+}

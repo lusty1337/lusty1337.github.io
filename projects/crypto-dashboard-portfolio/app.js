@@ -1,557 +1,521 @@
-
 // портфель живёт в памяти — сброс только при перезагрузке
 const state = {
-    balances: { BTC: 1.45, ETH: 12.5, USDT: 5420.00, SOL: 0 },
-    prices:   { BTC: 64500, ETH: 3500.50, USDT: 1, SOL: 135 },
+    balances: { BTC: 1.45, ETH: 12.5, SOL: 62, USDT: 5420 },
+    prices:   { BTC: 64500, ETH: 3500.5, SOL: 135, USDT: 1, BNB: 585, XRP: 0.62, TON: 5.4, ADA: 0.45 },
+    // движение за сутки; по выбранному инструменту его перетирает биржа
+    chg:      { BTC: 2.41, ETH: -1.18, SOL: 5.07, USDT: 0, BNB: 0.74, XRP: -2.35, TON: 3.12, ADA: -0.81 },
 };
 
-const tokens = {
-    BTC:  { iconClass: 'ph-fill ph-currency-btc',   color: '#FBBF24' },
-    ETH:  { iconClass: 'ph-fill ph-currency-eth',    color: '#627EEA' },
-    USDT: { iconClass: 'ph-fill ph-currency-dollar', color: '#26A17B' },
-    SOL:  { iconClass: 'ph-fill ph-coins',           color: '#14F195' },
+// что лежит в портфеле
+const assets = {
+    BTC:  { name: 'Bitcoin'  },
+    ETH:  { name: 'Ethereum' },
+    SOL:  { name: 'Solana'   },
+    USDT: { name: 'Tether'   },
 };
+
+// что показывает список слева — шире портфеля, как на любой бирже
+const market = [
+    ['BTC', 'Bitcoin'],
+    ['ETH', 'Ethereum'],
+    ['SOL', 'Solana'],
+    ['BNB', 'BNB'],
+    ['XRP', 'XRP'],
+    ['TON', 'Toncoin'],
+    ['ADA', 'Cardano'],
+];
 
 const swap = { from: 'ETH', to: 'USDT' };
+let symbol = 'BTC';
+let frame  = '1M';
 
-const formatCurrency    = (v) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(v);
-const formatAmount      = (n, d = 4) => parseFloat(n.toFixed(d)).toString();
-// для тоста и новых строк таблицы — с разделителем тысяч, без лишних нулей
-const formatTokenAmount = (n, sym) => {
-    const d = sym === 'USDT' ? 2 : 4;
-    return new Intl.NumberFormat('en-US', { maximumFractionDigits: d, minimumFractionDigits: 0 }).format(n);
+const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+const money = (v, d = 2) => new Intl.NumberFormat('ru-RU', { minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
+const qty   = (v, sym) => new Intl.NumberFormat('ru-RU', { maximumFractionDigits: sym === 'USDT' ? 2 : 4 }).format(v);
+const signed = (v, d = 2) => (v >= 0 ? '+' : '−') + money(Math.abs(v), d);
+const tone   = (v) => (v >= 0 ? 'up' : 'down');
+
+const px = (sym) => { const v = state.prices[sym] || 0; return v >= 1000 ? 0 : v >= 1 ? 2 : 4; };
+
+const valueOf = (sym) => (state.balances[sym] || 0) * (state.prices[sym] || 0);
+const totalOf = () => Object.keys(assets).reduce((s, sym) => s + valueOf(sym), 0);
+
+/* ── часы ──────────────────────────────────────────────────── */
+
+const startClock = () => {
+    const el = document.getElementById('clock');
+    const tick = () => { el.textContent = new Date().toISOString().slice(11, 19); };
+    tick();
+    setInterval(tick, 1000);
 };
 
-const renderSwapUI = () => {
-    const f    = tokens[swap.from];
-    const t    = tokens[swap.to];
-    const rate = state.prices[swap.from] / state.prices[swap.to];
+/* ── экраны ────────────────────────────────────────────────── */
 
-    const btnFrom = document.querySelector('#swap-block-give .btn-select-token');
-    const btnTo   = document.querySelector('#swap-block-receive .btn-select-token');
-    if (btnFrom) btnFrom.innerHTML = `<i class="${f.iconClass}" style="color:${f.color}"></i> ${swap.from} <i class="ph ph-caret-down text-slate-400"></i>`;
-    if (btnTo)   btnTo.innerHTML   = `<i class="${t.iconClass}" style="color:${t.color}"></i> ${swap.to} <i class="ph ph-caret-down text-slate-400"></i>`;
-
-    const giveEl = document.getElementById('swap-balance-give');
-    const recEl  = document.getElementById('swap-balance-receive');
-    if (giveEl) giveEl.textContent = `Баланс: ${formatAmount(state.balances[swap.from] || 0)} ${swap.from}`;
-    if (recEl)  recEl.textContent  = `Баланс: ${formatAmount(state.balances[swap.to]   || 0)} ${swap.to}`;
-
-    const inputGive    = document.getElementById('swap-input-give');
-    const inputReceive = document.getElementById('swap-input-receive');
-    if (inputGive && inputReceive) {
-        inputReceive.value = (parseFloat(inputGive.value || 0) * rate).toFixed(2);
-    }
-
-    const rateEl = document.getElementById('swap-rate-info');
-    if (rateEl) rateEl.textContent = `1 ${swap.from} = ${rate.toFixed(2)} ${swap.to}`;
-};
-
-const updateWalletDisplay = () => {
-    const set = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
-
-    set('wallet-eth-amount', `${formatAmount(state.balances.ETH)} ETH`);
-    set('wallet-eth-fiat',   `≈ ${formatCurrency(state.balances.ETH * state.prices.ETH)}`);
-    set('wallet-btc-amount', `${formatAmount(state.balances.BTC)} BTC`);
-    set('wallet-btc-fiat',   `≈ ${formatCurrency(state.balances.BTC * state.prices.BTC)}`);
-
-    const total = Object.entries(state.balances).reduce((sum, [sym, amt]) => sum + (state.prices[sym] || 0) * amt, 0);
-    set('total-balance', formatCurrency(total));
-};
-
-const setupNavigation = () => {
-    const navBtns   = document.querySelectorAll('.nav-btn, .nav-btn-mobile');
-    const views     = document.querySelectorAll('.view-section');
-    const scrollEl  = document.getElementById('main-scroll');
-
-    const viewMeta = {
-        'view-dashboard': { title: 'Обзор активов',  subtitle: 'Добро пожаловать обратно, вот ваша статистика на сегодня.' },
-        'view-analytics': { title: 'Аналитика',       subtitle: 'Глубокий анализ вашего портфеля и рыночных трендов.' },
-        'view-wallets':   { title: 'Кошельки',        subtitle: 'Управление балансами и перевод средств.' },
-        'view-exchange':  { title: 'Своп',            subtitle: 'Мгновенный обмен токенов по лучшему курсу.' }
-    };
-
-    navBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetId = btn.getAttribute('data-target');
-
-            navBtns.forEach(b => {
-                const isMobile = b.classList.contains('nav-btn-mobile');
-                if (isMobile) {
-                    b.className = 'nav-btn-mobile flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors';
-                } else {
-                    b.className = 'nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group';
-                    const icon = b.querySelector('.nav-icon');
-                    if (icon) icon.className = icon.className.replace('text-accent-cyan', 'group-hover:text-accent-purple');
-                }
+const setupScreens = () => {
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => {
+                const on = t === tab;
+                t.setAttribute('aria-selected', String(on));
+                document.getElementById(t.dataset.screen).classList.toggle('is-on', on);
             });
-
-            document.querySelectorAll(`[data-target="${targetId}"]`).forEach(activeBtn => {
-                const isMobile = activeBtn.classList.contains('nav-btn-mobile');
-                if (isMobile) {
-                    activeBtn.className = 'nav-btn-mobile flex flex-col items-center gap-1 text-accent-cyan transition-colors';
-                } else {
-                    activeBtn.className = 'nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10 text-white border border-white/5 shadow-inner transition-all';
-                    const icon = activeBtn.querySelector('.nav-icon');
-                    if (icon) {
-                        icon.className = icon.className.replace(/group-hover:text-[^\s]+/, '');
-                        icon.classList.add('text-accent-cyan');
-                    }
-                }
-            });
-
-            document.getElementById('header-title').textContent    = viewMeta[targetId].title;
-            document.getElementById('header-subtitle').textContent = viewMeta[targetId].subtitle;
-
-            const currentView = Array.from(views).find(v => v.classList.contains('active'));
-            const targetView  = document.getElementById(targetId);
-
-            if (currentView && currentView !== targetView) {
-                currentView.classList.remove('active');
-                setTimeout(() => {
-                    currentView.style.display = 'none';
-                    targetView.style.display  = 'block';
-                    targetView.offsetHeight; // пинок браузеру для старта анимации
-                    targetView.classList.add('active');
-
-                    // сбрасываем скролл — пользователь всегда видит начало вкладки
-                    if (scrollEl) scrollEl.scrollTop = 0;
-
-                    if (targetId === 'view-analytics') initPortfolioChart();
-                }, 200);
-            } else if (!currentView) {
-                targetView.style.display = 'block';
-                targetView.offsetHeight;
-                targetView.classList.add('active');
-            }
+            // график живёт в скрытой ветке дерева и там не знает своих размеров
+            if (chart) chart.resize();
         });
     });
 };
 
-const setupHeaderInteractivity = () => {
-    const btnNotif      = document.getElementById('btn-notifications');
-    const notifDropdown = document.getElementById('notifications-dropdown');
-    const notifBadge    = document.getElementById('notif-badge');
+/* ── список инструментов ───────────────────────────────────── */
 
-    const closeNotif = () => {
-        notifDropdown.classList.remove('scale-100', 'opacity-100');
-        notifDropdown.classList.add('scale-95', 'opacity-0');
-        setTimeout(() => notifDropdown.classList.add('hidden'), 200);
-    };
+const renderWatchlist = () => {
+    const body = document.getElementById('wl-body');
+    body.innerHTML = '';
 
-    btnNotif.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (notifDropdown.classList.contains('hidden')) {
-            notifDropdown.classList.remove('hidden');
-            if (notifBadge) notifBadge.style.display = 'none';
-            requestAnimationFrame(() => {
-                notifDropdown.classList.remove('scale-95', 'opacity-0');
-                notifDropdown.classList.add('scale-100', 'opacity-100');
-            });
-        } else {
-            closeNotif();
-        }
-    });
-
-    // закрываем по клику мимо
-    document.addEventListener('click', (e) => {
-        if (!notifDropdown.contains(e.target) && !btnNotif.contains(e.target)) closeNotif();
-    });
-
-    document.getElementById('global-search').addEventListener('input', (e) => {
-        const val = e.target.value.toLowerCase();
-        document.querySelectorAll('.wallet-item').forEach(item => {
-            item.style.display = item.getAttribute('data-token').toLowerCase().includes(val) ? 'flex' : 'none';
-        });
-        // прыгаем на вкладку кошельков при поиске
-        if (val.length === 1) document.querySelector('[data-target=view-wallets]').click();
+    market.forEach(([sym, name]) => {
+        const chg = state.chg[sym] || 0;
+        const row = document.createElement('tr');
+        row.setAttribute('aria-selected', String(sym === symbol));
+        row.innerHTML = `
+            <td><span class="wl__sym">${sym}/USDT</span><span class="wl__name">${name}</span></td>
+            <td class="wl__px num">${money(state.prices[sym], px(sym))}</td>
+            <td class="wl__chg num ${tone(chg)}">${signed(chg)}%</td>`;
+        row.addEventListener('click', () => selectSymbol(sym));
+        body.appendChild(row);
     });
 };
 
-const setupModal = () => {
-    const modalOverlay  = document.getElementById('modal-overlay');
-    const txModal       = document.getElementById('tx-modal');
-    const closeBtn      = document.getElementById('btn-close-modal');
-    const modalIconCont = document.getElementById('modal-icon-container');
-    const modalIcon     = document.getElementById('modal-icon');
-
-    const openModal = (btn) => {
-        document.getElementById('modal-amount').innerText  = btn.dataset.amount;
-        document.getElementById('modal-fiat').innerText    = btn.dataset.fiat;
-        document.getElementById('modal-date').innerText    = btn.dataset.date;
-        document.getElementById('modal-network').innerText = btn.dataset.network;
-        document.getElementById('modal-hash').innerText    = btn.dataset.hash;
-        const statusEl = document.getElementById('modal-status');
-        statusEl.innerText   = btn.dataset.status;
-        statusEl.className   = `text-sm font-medium ${btn.dataset.statusColor}`;
-
-        let bgClass, iconClass, textClass;
-        if      (btn.dataset.type === 'deposit')  { bgClass = 'bg-accent-green/10';  textClass = 'text-accent-green';  iconClass = 'ph-check-circle'; }
-        else if (btn.dataset.type === 'withdraw') { bgClass = 'bg-accent-yellow/10'; textClass = 'text-accent-yellow'; iconClass = 'ph-clock'; }
-        else if (btn.dataset.type === 'swap')     { bgClass = 'bg-[#627EEA]/10';     textClass = 'text-[#627EEA]';    iconClass = 'ph-arrows-left-right'; }
-        else                                       { bgClass = 'bg-accent-red/10';    textClass = 'text-accent-red';   iconClass = 'ph-x-circle'; }
-
-        modalIconCont.className = `w-16 h-16 rounded-full flex items-center justify-center mb-3 ${bgClass} ${textClass}`;
-        modalIcon.className     = `ph ${iconClass} text-4xl`;
-        modalOverlay.classList.remove('pointer-events-none');
-        modalOverlay.classList.add('opacity-100');
-        txModal.classList.remove('scale-95');
-        txModal.classList.add('scale-100');
-    };
-
-    const closeModal = () => {
-        modalOverlay.classList.remove('opacity-100');
-        txModal.classList.remove('scale-100');
-        txModal.classList.add('scale-95');
-        setTimeout(() => modalOverlay.classList.add('pointer-events-none'), 300);
-    };
-
-    // делегирование — работает и для статичных, и для динамически добавленных строк
-    document.addEventListener('click', (e) => {
-        const btn = e.target.closest('.btn-tx-details');
-        if (btn) openModal(btn);
-    });
-    closeBtn.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+const selectSymbol = (sym) => {
+    if (sym === symbol) return;
+    symbol = sym;
+    renderWatchlist();
+    document.getElementById('inst-sym').textContent = `${sym} / USDT`;
+    loadChart();
 };
 
-const colors = {
-    cyan: '#00F0FF', cyanFade: 'rgba(0, 240, 255, 0.15)', cyanFadeDeep: 'rgba(0, 240, 255, 0.01)',
-    grid: '#2A3143', text: '#94A3B8'
+/* ── котировки ─────────────────────────────────────────────── */
+
+const FRAMES = {
+    '1H': { interval: '1m', limit: 60, step: 60000,   vol: 0.0008 },
+    '1D': { interval: '1h', limit: 24, step: 3600000, vol: 0.004  },
+    '1W': { interval: '4h', limit: 42, step: 14400000, vol: 0.008 },
+    '1M': { interval: '1d', limit: 30, step: 86400000, vol: 0.022 },
 };
 
-let mainChart;
-const fetchBinanceData = async (timeframe) => {
-    let interval, limit;
-    if      (timeframe === '1H') { interval = '1m'; limit = 60; }
-    else if (timeframe === '1D') { interval = '1h'; limit = 24; }
-    else if (timeframe === '1W') { interval = '4h'; limit = 42; }
-    else                          { interval = '1d'; limit = 30; }
+const stamp = (d, f) =>
+    f === '1H' ? `${d.getHours()}:${String(d.getMinutes()).padStart(2, '0')}` :
+    f === '1D' ? `${d.getHours()}:00` :
+    d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' });
+
+const fetchSeries = async (sym, f) => {
+    const cfg = FRAMES[f];
+    const feed = document.getElementById('feed');
 
     try {
-        // без таймаута зависший запрос (бинанс блокирует часть регионов) держит график пустым десятки секунд —
-        // режем коротко и сразу уходим на моки
-        const res     = await fetch(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=${interval}&limit=${limit}`, { signal: AbortSignal.timeout(3000) });
-        const rawData = await res.json();
-        if (!Array.isArray(rawData)) throw new Error('bad format');
+        // без таймаута зависший запрос (бинанс блокирует часть регионов) держит
+        // график пустым десятки секунд — режем коротко и уходим на свои данные
+        const res = await fetch(
+            `https://api.binance.com/api/v3/klines?symbol=${sym}USDT&interval=${cfg.interval}&limit=${cfg.limit}`,
+            { signal: AbortSignal.timeout(3000) },
+        );
+        const raw = await res.json();
+        if (!Array.isArray(raw)) throw new Error('bad format');
 
-        const labels = [], data = [];
-        rawData.forEach(kline => {
-            const d = new Date(kline[0]);
-            let label =
-                timeframe === '1H' ? `${d.getHours()}:${d.getMinutes().toString().padStart(2, '0')}` :
-                timeframe === '1D' ? `${d.getHours()}:00` :
-                timeframe === '1W' ? d.toLocaleDateString('ru-RU', { weekday: 'short', hour: '2-digit', minute: '2-digit' }) :
-                                     d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' });
-            labels.push(label);
-            data.push(parseFloat(kline[4]));
-        });
-        return { labels, data };
+        feed.innerHTML = '<i class="dot"></i>котировки&nbsp;<b>binance</b>';
+        return {
+            labels: raw.map(k => stamp(new Date(k[0]), f)),
+            data:   raw.map(k => parseFloat(k[4])),
+        };
     } catch (err) {
-        console.warn('Binance недоступен, берём локальные данные:', err);
+        console.warn('биржа недоступна, рисуем по своим данным:', err);
+        feed.innerHTML = '<i class="dot dot--stale"></i>котировки&nbsp;<b>локально</b>';
 
-        // моки на случай если бинанс лежит
         const labels = [], data = [];
-        let price = 64500;
         const now = new Date();
-        let len, vol, step;
-        if      (timeframe === '1H') { len = 60; vol = 50;   step = 60000; }
-        else if (timeframe === '1D') { len = 24; vol = 300;  step = 3600000; }
-        else if (timeframe === '1W') { len =  7; vol = 1000; step = 86400000; }
-        else                          { len = 30; vol = 1500; step = 86400000; }
-
-        for (let i = len; i >= 0; i--) {
-            const d = new Date(now.getTime() - i * step);
-            labels.push(
-                timeframe === '1H' ? `${d.getHours()}:${d.getMinutes().toString().padStart(2, '0')}` :
-                timeframe === '1D' ? `${d.getHours()}:00` :
-                timeframe === '1W' ? d.toLocaleDateString('ru-RU', { weekday: 'short', hour: '2-digit', minute: '2-digit' }) :
-                                     d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })
-            );
-            price += (Math.random() - 0.48) * vol;
+        let price = state.prices[sym];
+        for (let i = cfg.limit; i >= 0; i -= 1) {
+            labels.push(stamp(new Date(now.getTime() - i * cfg.step), f));
+            price *= 1 + (Math.random() - 0.485) * cfg.vol;
             data.push(price);
         }
         return { labels, data };
     }
 };
 
-const updateLiveBalances = (currentBtcPrice) => {
-    state.prices.BTC = currentBtcPrice;
-    updateWalletDisplay();
+// цены и суточное движение всего списка приходят одним запросом:
+// семь отдельных обращений к бирже ради одной колонки не нужны
+const refreshQuotes = async () => {
+    const pairs = market.map(([sym]) => `"${sym}USDT"`).join(',');
+    try {
+        const res = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbols=[${pairs}]`,
+            { signal: AbortSignal.timeout(3000) });
+        const raw = await res.json();
+        if (!Array.isArray(raw)) throw new Error('bad format');
+
+        raw.forEach(t => {
+            const sym = t.symbol.replace(/USDT$/, '');
+            state.prices[sym] = parseFloat(t.lastPrice);
+            state.chg[sym]    = parseFloat(t.priceChangePercent);
+        });
+    } catch (err) {
+        console.warn('котировки списка не пришли, остаются справочные:', err);
+    }
+    renderWatchlist();
+    renderPortfolio();
+    renderTicket();
 };
 
-const renderMainChart = (labels, data) => {
+/* ── график ────────────────────────────────────────────────── */
+
+let chart;
+
+const drawChart = (labels, data) => {
     const canvas = document.getElementById('mainChart');
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
 
-    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, colors.cyanFade);
-    gradient.addColorStop(1, colors.cyanFadeDeep);
+    const rising = data[data.length - 1] >= data[0];
+    const line   = rising ? css('--up') : css('--down');
+    const ctx    = canvas.getContext('2d');
 
-    if (mainChart) mainChart.destroy();
-    Chart.defaults.color = colors.text;
-    Chart.defaults.font.family = "'Inter', sans-serif";
+    const fill = ctx.createLinearGradient(0, 0, 0, canvas.clientHeight || 320);
+    fill.addColorStop(0, rising ? 'rgba(87, 184, 127, .14)' : 'rgba(217, 106, 106, .14)');
+    fill.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
-    mainChart = new Chart(ctx, {
+    if (chart) chart.destroy();
+
+    Chart.defaults.color = css('--bone-3');
+    Chart.defaults.font.family = "'JetBrains Mono', monospace";
+    Chart.defaults.font.size = 10;
+
+    chart = new Chart(ctx, {
         type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                data, borderColor: colors.cyan, backgroundColor: gradient,
-                borderWidth: 2, pointBackgroundColor: '#0B0E14', pointBorderColor: colors.cyan,
-                pointBorderWidth: 2, pointRadius: 0, pointHoverRadius: 6, fill: true, tension: 0.4
-            }]
-        },
+        data: { labels, datasets: [{
+            data,
+            borderColor: line,
+            backgroundColor: fill,
+            borderWidth: 1.25,
+            pointRadius: 0,
+            pointHoverRadius: 3,
+            pointHoverBackgroundColor: line,
+            pointHoverBorderWidth: 0,
+            fill: true,
+            tension: 0,
+        }] },
         options: {
-            responsive: true, maintainAspectRatio: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 220 },
             interaction: { mode: 'index', intersect: false },
             plugins: {
                 legend: { display: false },
-                tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.9)', titleColor: '#fff', bodyColor: '#fff', borderColor: '#2A3143', borderWidth: 1, padding: 12, displayColors: false, callbacks: { label: (c) => formatCurrency(c.parsed.y) } }
+                tooltip: {
+                    backgroundColor: css('--panel'),
+                    borderColor: css('--rule-hi'),
+                    borderWidth: 1,
+                    cornerRadius: 0,
+                    padding: 8,
+                    displayColors: false,
+                    titleColor: css('--bone-3'),
+                    titleFont: { size: 10, weight: '400' },
+                    bodyColor: css('--bone'),
+                    bodyFont: { size: 12 },
+                    callbacks: { label: (c) => money(c.parsed.y) },
+                },
             },
             scales: {
-                x: { grid: { display: false, drawBorder: false }, ticks: { maxTicksLimit: 7, font: { size: 11 } } },
-                y: { grid: { color: colors.grid, drawBorder: false, borderDash: [5, 5] }, ticks: { callback: (v) => '$' + (v / 1000).toFixed(0) + 'k', font: { size: 11 } } }
-            }
-        }
-    });
-
-    const latestPrice = data[data.length - 1];
-    const diff        = latestPrice - data[0];
-    document.getElementById('current-btc-price').innerText = formatCurrency(latestPrice);
-    const changeEl = document.getElementById('btc-price-change');
-    // фикс знака для мобилок
-    changeEl.innerHTML = `<i class="ph ${diff >= 0 ? 'ph-trend-up' : 'ph-trend-down'}"></i> ${diff >= 0 ? '+' : '-'}${formatCurrency(Math.abs(diff))}`;
-    changeEl.className = `text-sm font-medium flex items-center gap-1 ${diff >= 0 ? 'text-accent-green' : 'text-accent-red'}`;
-};
-
-const initPortfolioChart = () => {
-    const canvas = document.getElementById('portfolioChart');
-    if (!canvas) return;
-    if (window.portfolioChartInstance) window.portfolioChartInstance.destroy();
-
-    window.portfolioChartInstance = new Chart(canvas.getContext('2d'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Bitcoin', 'Ethereum', 'Tether', 'Solana'],
-            datasets: [{ data: [45, 30, 15, 10], backgroundColor: ['#FFC107', '#627EEA', '#26A17B', '#14F195'], borderWidth: 0, hoverOffset: 4 }]
+                x: {
+                    border: { color: css('--rule') },
+                    grid: { display: false },
+                    ticks: { maxTicksLimit: 8, maxRotation: 0, padding: 6 },
+                },
+                // шкала цен справа — там её и ищут глазами, у правого края графика
+                y: {
+                    position: 'right',
+                    border: { display: false },
+                    grid: { color: css('--rule'), drawTicks: false },
+                    ticks: { padding: 8, callback: (v) => money(v, 0) },
+                },
+            },
         },
-        options: {
-            responsive: true, maintainAspectRatio: false, cutout: '75%',
-            plugins: {
-                legend: { display: false },
-                tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.9)', titleColor: '#fff', bodyColor: '#fff', borderColor: '#2A3143', borderWidth: 1, padding: 12, callbacks: { label: (c) => ` ${c.label}: ${c.parsed}%` } }
-            }
-        }
     });
+
+    const last = data[data.length - 1];
+    const pct  = ((last - data[0]) / data[0]) * 100;
+
+    state.prices[symbol] = last;
+    state.chg[symbol]    = pct;
+
+    const head = document.getElementById('inst-px');
+    head.textContent = money(last, px(symbol));
+
+    const chg = document.getElementById('inst-chg');
+    chg.textContent = `${signed(pct)} %  ·  ${signed(last - data[0], px(symbol))}`;
+    chg.className = `inst__chg ${tone(pct)}`;
+
+    renderWatchlist();
+    renderPortfolio();
+    renderTicket();
 };
 
-const addTransactionRow = (fromSym, toSym, giveAmt, recAmt) => {
-    const tbody = document.querySelector('#view-dashboard table tbody');
-    if (!tbody) return;
-
-    const now     = new Date();
-    const dateStr = 'Только что';
-    const fullDate = now.toLocaleString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-    const hash    = `${Math.random().toString(36).substr(2, 4)}...${Math.random().toString(36).substr(2, 4)}`;
-
-    const row = document.createElement('tr');
-    row.className = 'border-b border-dark-border/50 hover:bg-white/5 transition-colors';
-    row.innerHTML = `
-        <td class="py-4 px-4 flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-[#627EEA]/10 flex items-center justify-center text-[#627EEA] shrink-0"><i class="ph ph-arrows-left-right"></i></div>
-            <div><p class="font-medium text-white">Обмен</p><p class="text-xs text-slate-500">${fromSym} → ${toSym}</p></div>
-        </td>
-        <td class="py-4 px-4 text-white font-medium">${formatTokenAmount(recAmt, toSym)} ${toSym}</td>
-        <td class="py-4 px-4 text-slate-400">${dateStr}</td>
-        <td class="py-4 px-4 text-slate-500 font-mono text-xs">Smart Contract</td>
-        <td class="py-4 px-4 text-right"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-accent-green/10 text-accent-green border border-accent-green/20">Успешно</span></td>
-        <td class="py-4 px-4 text-right">
-            <button class="btn-tx-details text-slate-400 hover:text-white px-2 py-1 bg-dark-surface rounded-md border border-dark-border"
-                data-type="swap"
-                data-amount="${formatTokenAmount(recAmt, toSym)} ${toSym}"
-                data-fiat="≈ ${formatCurrency(recAmt * (state.prices[toSym] || 1))}"
-                data-date="${fullDate}"
-                data-network="Smart Contract"
-                data-hash="${hash}"
-                data-status="Успешно"
-                data-status-color="text-accent-green">Детали</button>
-        </td>`;
-
-    tbody.prepend(row);
-    // держим не больше 5 строк — старые уходят
-    while (tbody.children.length > 5) tbody.lastElementChild.remove();
+const loadChart = async () => {
+    const series = await fetchSeries(symbol, frame);
+    drawChart(series.labels, series.data);
 };
 
-const setupExchange = () => {
-    const inputGive    = document.getElementById('swap-input-give');
-    const inputReceive = document.getElementById('swap-input-receive');
-
-    if (inputGive) {
-        inputGive.addEventListener('input', () => {
-            const rate = state.prices[swap.from] / state.prices[swap.to];
-            const val  = parseFloat(inputGive.value);
-            if (inputReceive) inputReceive.value = isNaN(val) ? '0.00' : (val * rate).toFixed(2);
+const setupFrames = () => {
+    const btns = document.querySelectorAll('.tf button');
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.setAttribute('aria-selected', String(b === btn)));
+            frame = btn.dataset.tf;
+            loadChart();
         });
-    }
+    });
+};
 
-    // стрелки направления свопа — меняем from/to местами
-    document.querySelector('.btn-swap-direction')?.addEventListener('click', () => {
-        [swap.from, swap.to] = [swap.to, swap.from];
-        renderSwapUI();
+/* ── портфель ──────────────────────────────────────────────── */
+
+const renderPortfolio = () => {
+    const total = totalOf();
+    document.getElementById('pf-total').textContent = `$ ${money(total)}`;
+
+    // дневное изменение портфеля — сумма движений по каждой позиции
+    const delta = Object.keys(assets).reduce((s, sym) => s + valueOf(sym) * (state.chg[sym] || 0) / 100, 0);
+    const d = document.getElementById('pf-delta');
+    d.textContent = `${signed(delta)} за сутки`;
+    d.className = `tot__d ${tone(delta)}`;
+
+    const free  = document.getElementById('free-body');
+    free.innerHTML = '';
+    Object.keys(assets).forEach(sym => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${sym}</td><td>${qty(state.balances[sym] || 0, sym)}</td>`;
+        free.appendChild(tr);
     });
 
-    // пикер токенов
-    const pickerDropdown = document.getElementById('token-picker-dropdown');
-    let pickerTarget = null;
+    const rows  = document.getElementById('hold-body');
+    const alloc = document.getElementById('alloc');
+    rows.innerHTML = '';
+    alloc.innerHTML = '';
 
-    const openPicker = (btn, target) => {
-        pickerTarget = target;
-        const list = document.getElementById('token-picker-list');
-        list.innerHTML = '';
+    Object.entries(assets)
+        .map(([sym, a]) => ({ sym, a, v: valueOf(sym) }))
+        .sort((x, y) => y.v - x.v)
+        .forEach(({ sym, a, v }) => {
+            const share = total ? (v / total) * 100 : 0;
 
-        Object.entries(tokens).forEach(([sym, tok]) => {
-            const isActive = swap[target] === sym;
-            const item = document.createElement('button');
-            item.className = `flex items-center gap-3 px-3 py-2.5 rounded-xl w-full transition-colors ${isActive ? 'bg-white/10 text-white' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><span class="hold__sym">${sym}</span><span class="hold__name">${a.name}</span></td>
+                <td class="r num">${qty(state.balances[sym] || 0, sym)}</td>
+                <td class="r num">${money(state.prices[sym], px(sym))}</td>
+                <td class="r num ${tone(state.chg[sym] || 0)}">${signed(state.chg[sym] || 0)} %</td>
+                <td class="r num">${money(v)}</td>
+                <td class="r num">${share.toFixed(1)} %</td>`;
+            rows.appendChild(tr);
+
+            const item = document.createElement('div');
+            item.className = 'alloc__row';
             item.innerHTML = `
-                <i class="${tok.iconClass} text-lg shrink-0" style="color:${tok.color}"></i>
-                <span class="font-medium">${sym}</span>
-                <span class="text-xs text-slate-500 ml-auto">${formatAmount(state.balances[sym] || 0)}</span>
-            `;
-            item.addEventListener('click', () => {
-                const other = target === 'from' ? 'to' : 'from';
-                // если выбрали то же что с другой стороны — меняем их местами
-                if (sym === swap[other]) {
-                    [swap.from, swap.to] = [swap.to, swap.from];
-                } else {
-                    swap[target] = sym;
-                }
-                renderSwapUI();
-                pickerDropdown.classList.add('hidden');
-            });
-            list.appendChild(item);
+                <span class="alloc__sym">${sym}</span>
+                <span class="alloc__pct">${share.toFixed(1)} %</span>
+                <span class="bar"><i style="width:${share}%"></i></span>`;
+            alloc.appendChild(item);
         });
 
-        const rect = btn.getBoundingClientRect();
-        let left = rect.left;
-        if (left + 216 > window.innerWidth - 8) left = window.innerWidth - 216 - 8;
-        pickerDropdown.style.top  = `${rect.bottom + 6}px`;
-        pickerDropdown.style.left = `${Math.max(8, left)}px`;
-        pickerDropdown.classList.remove('hidden');
+    document.getElementById('hold-foot').innerHTML =
+        `<tr><td class="cap">Итого</td><td colspan="3"></td>` +
+        `<td class="r num">${money(total)}</td><td class="r num">100,0 %</td></tr>`;
+};
+
+/* ── обмен ─────────────────────────────────────────────────── */
+
+const renderTicket = () => {
+    const rate = state.prices[swap.from] / state.prices[swap.to];
+
+    document.querySelector('[data-side="from"]').textContent = swap.from;
+    document.querySelector('[data-side="to"]').textContent   = swap.to;
+
+    document.getElementById('bal-give').textContent    = `${qty(state.balances[swap.from] || 0, swap.from)} ${swap.from}`;
+    document.getElementById('bal-receive').textContent = `${qty(state.balances[swap.to]   || 0, swap.to)} ${swap.to}`;
+
+    const give = parseFloat(document.getElementById('in-give').value) || 0;
+    document.getElementById('in-receive').value = qty(give * rate, swap.to);
+
+    document.getElementById('t-rate').textContent = `1 ${swap.from} = ${money(rate, rate >= 1000 ? 0 : rate >= 1 ? 2 : 4)} ${swap.to}`;
+};
+
+const setupTicket = () => {
+    const give = document.getElementById('in-give');
+    give.addEventListener('input', renderTicket);
+
+    document.getElementById('btn-flip').addEventListener('click', () => {
+        [swap.from, swap.to] = [swap.to, swap.from];
+        renderTicket();
+    });
+
+    const drop = document.getElementById('drop');
+
+    const openDrop = (btn, side) => {
+        drop.innerHTML = '';
+        Object.entries(assets).forEach(([sym]) => {
+            const item = document.createElement('button');
+            item.setAttribute('aria-selected', String(swap[side] === sym));
+            item.innerHTML = `${sym}<em>${qty(state.balances[sym] || 0, sym)}</em>`;
+            item.addEventListener('click', () => {
+                const other = side === 'from' ? 'to' : 'from';
+                // выбрали то же, что с другой стороны — просто меняем их местами
+                if (sym === swap[other]) [swap.from, swap.to] = [swap.to, swap.from];
+                else swap[side] = sym;
+                renderTicket();
+                drop.hidden = true;
+            });
+            drop.appendChild(item);
+        });
+
+        const box = btn.getBoundingClientRect();
+        drop.hidden = false;
+        const w = drop.offsetWidth;
+        drop.style.top  = `${Math.min(box.bottom + 4, window.innerHeight - drop.offsetHeight - 8)}px`;
+        drop.style.left = `${Math.max(8, Math.min(box.left, window.innerWidth - w - 8))}px`;
     };
 
+    document.querySelectorAll('.js-pick').forEach(btn =>
+        btn.addEventListener('click', (e) => { e.stopPropagation(); openDrop(btn, btn.dataset.side); }));
+
     document.addEventListener('click', (e) => {
-        if (!pickerDropdown?.contains(e.target) && !e.target.closest('.btn-select-token')) {
-            pickerDropdown?.classList.add('hidden');
-        }
+        if (!drop.contains(e.target) && !e.target.closest('.js-pick')) drop.hidden = true;
     });
 
-    document.querySelectorAll('#swap-block-give .btn-select-token').forEach(btn =>
-        btn.addEventListener('click', (e) => { e.stopPropagation(); openPicker(btn, 'from'); })
-    );
-    document.querySelectorAll('#swap-block-receive .btn-select-token').forEach(btn =>
-        btn.addEventListener('click', (e) => { e.stopPropagation(); openPicker(btn, 'to'); })
-    );
+    document.getElementById('btn-go').addEventListener('click', () => {
+        const btn = document.getElementById('btn-go');
+        const amount = parseFloat(give.value) || 0;
 
-    renderSwapUI();
+        if (amount <= 0)                              { toast('Введите сумму больше нуля'); return; }
+        if (amount > (state.balances[swap.from] || 0)) { toast(`Недостаточно ${swap.from} для обмена`); return; }
+
+        const label = btn.textContent;
+        btn.textContent = 'Отправлено в сеть…';
+        btn.classList.add('is-busy');
+
+        setTimeout(() => {
+            const rate = state.prices[swap.from] / state.prices[swap.to];
+            const got  = amount * rate * (1 - 0.003);   // комиссия как на настоящем dex
+
+            state.balances[swap.from] -= amount;
+            state.balances[swap.to]    = (state.balances[swap.to] || 0) + got;
+
+            addLogRow(swap.from, swap.to, got);
+            renderPortfolio();
+            give.value = '1';
+            renderTicket();
+
+            toast(`${qty(amount, swap.from)} ${swap.from} → ${qty(got, swap.to)} ${swap.to}`, 'ok');
+            btn.textContent = label;
+            btn.classList.remove('is-busy');
+        }, 1100);
+    });
+
+    renderTicket();
 };
 
-const showToast = (message, type = 'info') => {
-    const container = document.getElementById('toast-container');
-    if (!container) return;
+/* ── журнал ────────────────────────────────────────────────── */
 
-    const toast = document.createElement('div');
-    const isSuccess = type === 'success';
-    // растягиваем плашку на весь экран на телефонах
-    toast.className = `glass-card border px-5 py-4 rounded-2xl flex items-start gap-4 transform translate-y-10 opacity-0 transition-all duration-300 w-full sm:max-w-[360px] pointer-events-auto ${isSuccess ? 'border-accent-green/30' : 'border-accent-cyan/30'}`;
-    toast.innerHTML = `
-        ${isSuccess ? '<i class="ph-fill ph-check-circle text-accent-green text-2xl"></i>' : '<i class="ph-fill ph-info text-accent-cyan text-2xl"></i>'}
-        <p class="text-sm font-medium text-white leading-tight">${message}</p>
-    `;
-    container.appendChild(toast);
+const countLog = () => {
+    const n = document.querySelectorAll('#log-body tr').length;
+    document.getElementById('log-count').textContent = `${n} записей`;
+};
 
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-        toast.classList.remove('translate-y-10', 'opacity-0');
-        toast.classList.add('translate-y-0', 'opacity-100');
-    }));
+const addLogRow = (from, to, got) => {
+    const body = document.getElementById('log-body');
+    const now  = new Date();
+    const hash = `0x${Math.random().toString(16).slice(2, 6)}…${Math.random().toString(16).slice(2, 6)}`;
 
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td class="log__hash">только что</td>
+        <td class="log__side">ОБМЕН · ${from} → ${to}</td>
+        <td class="r num">${qty(got, to)}</td>
+        <td class="log__hash">smart contract</td>
+        <td><span class="st st--ok">исполнено</span></td>
+        <td class="r"><button class="lnk js-tx"
+            data-amount="${qty(got, to)} ${to}"
+            data-fiat="≈ $${money(got * (state.prices[to] || 1))}"
+            data-date="${now.toLocaleString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}"
+            data-network="Smart Contract"
+            data-hash="${hash}"
+            data-status="исполнено"
+            data-tone="ok">карточка</button></td>`;
+
+    body.prepend(tr);
+    while (body.children.length > 8) body.lastElementChild.remove();
+    countLog();
+};
+
+/* ── карточка операции ─────────────────────────────────────── */
+
+const setupSheet = () => {
+    const veil = document.getElementById('veil');
+    const close = () => veil.classList.remove('is-on');
+
+    // делегирование: строки журнала добавляются по ходу работы
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.js-tx');
+        if (!btn) return;
+
+        document.getElementById('s-amount').textContent = btn.dataset.amount;
+        document.getElementById('s-fiat').textContent   = btn.dataset.fiat;
+        document.getElementById('s-date').textContent   = btn.dataset.date;
+        document.getElementById('s-net').textContent    = btn.dataset.network;
+        document.getElementById('s-hash').textContent   = btn.dataset.hash;
+
+        const st = document.getElementById('s-status');
+        st.textContent = btn.dataset.status;
+        st.className = `st st--${btn.dataset.tone}`;
+
+        veil.classList.add('is-on');
+    });
+
+    document.getElementById('btn-close').addEventListener('click', close);
+    veil.addEventListener('click', (e) => { if (e.target === veil) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+};
+
+/* ── уведомления ───────────────────────────────────────────── */
+
+const toast = (text, kind) => {
+    const box = document.getElementById('toasts');
+    const el = document.createElement('div');
+    el.className = `toast${kind === 'ok' ? ' toast--ok' : ''}`;
+    el.textContent = text;
+    box.appendChild(el);
+
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('is-on')));
     setTimeout(() => {
-        toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-10', 'opacity-0');
-        setTimeout(() => toast.remove(), 300);
+        el.classList.remove('is-on');
+        setTimeout(() => el.remove(), 250);
     }, 4000);
 };
 
 const setupDemoButtons = () => {
-    const demoMsg = 'Эта функция недоступна, так как это один из проектов портфолио, а не полноценный ресурс 😉';
-
-    // btn-swap-direction и btn-select-token живут в setupExchange, здесь их нет
-    document.querySelectorAll('#wallet-list button, button.bg-accent-cyan, .btn-swap-settings').forEach(btn =>
-        btn.addEventListener('click', (e) => { e.preventDefault(); showToast(demoMsg, 'info'); })
-    );
-
-    const btnExchange = document.getElementById('btn-confirm-exchange');
-    if (btnExchange) {
-        btnExchange.addEventListener('click', () => {
-            const giveAmt = parseFloat(document.getElementById('swap-input-give').value) || 0;
-            const recAmt  = parseFloat(document.getElementById('swap-input-receive').value) || 0;
-
-            if (giveAmt <= 0) { showToast('Введите сумму больше нуля', 'info'); return; }
-            if (giveAmt > (state.balances[swap.from] || 0)) { showToast(`Недостаточно ${swap.from} для обмена`, 'info'); return; }
-
-            const originalHTML = btnExchange.innerHTML;
-            btnExchange.innerHTML = '<i class="ph ph-spinner animate-spin text-xl inline-block align-text-bottom"></i> Обработка...';
-            btnExchange.classList.add('opacity-80', 'pointer-events-none');
-
-            setTimeout(() => {
-                // реалистичная комиссия dex — баланс действительно уменьшается
-                const recAmtFinal = recAmt * (1 - 0.003);
-
-                state.balances[swap.from] = (state.balances[swap.from] || 0) - giveAmt;
-                state.balances[swap.to]   = (state.balances[swap.to]   || 0) + recAmtFinal;
-
-                updateWalletDisplay();
-                addTransactionRow(swap.from, swap.to, giveAmt, recAmtFinal);
-
-                document.getElementById('swap-input-give').value = '1';
-                renderSwapUI();
-
-                showToast(`${formatTokenAmount(giveAmt, swap.from)} ${swap.from} → ${formatTokenAmount(recAmtFinal, swap.to)} ${swap.to}`, 'success');
-
-                btnExchange.innerHTML = originalHTML;
-                btnExchange.classList.remove('opacity-80', 'pointer-events-none');
-            }, 1200);
-        });
-    }
-
-    document.querySelector('#notifications-dropdown button.text-accent-cyan')?.addEventListener('click', () => showToast(demoMsg, 'info'));
-    document.querySelector('aside .cursor-pointer')?.addEventListener('click', () => showToast(demoMsg, 'info'));
-    document.getElementById('modal-explorer-btn')?.addEventListener('click', () => showToast(demoMsg, 'info'));
+    const text = 'Это проект портфолио, а не рабочий терминал — кнопка ничего не делает 😉';
+    document.querySelectorAll('.js-demo').forEach(btn =>
+        btn.addEventListener('click', () => toast(text)));
 };
 
-const initDashboard = () => {
-    setupNavigation();
-    setupHeaderInteractivity();
-    setupModal();
-    setupExchange();
+/* ── запуск ────────────────────────────────────────────────── */
+
+document.addEventListener('DOMContentLoaded', () => {
+    startClock();
+    setupScreens();
+    setupFrames();
+    setupTicket();
+    setupSheet();
     setupDemoButtons();
-
-    document.querySelectorAll('.timeframe-btn').forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-            document.querySelectorAll('.timeframe-btn').forEach(b => b.className = 'timeframe-btn px-3 py-1 text-xs font-medium rounded-md text-slate-400 hover:text-white transition-colors');
-            e.target.className = 'timeframe-btn px-3 py-1 text-xs font-medium rounded-md bg-dark-border text-white shadow-sm';
-            const liveData = await fetchBinanceData(e.target.innerText);
-            renderMainChart(liveData.labels, liveData.data);
-        });
-    });
-
-    fetchBinanceData('1M').then(initialData => {
-        renderMainChart(initialData.labels, initialData.data);
-        const btcPrice = initialData.data[initialData.data.length - 1];
-        if (btcPrice) updateLiveBalances(btcPrice);
-    });
-};
-
-document.addEventListener('DOMContentLoaded', initDashboard);
+    renderWatchlist();
+    renderPortfolio();
+    countLog();
+    refreshQuotes().then(loadChart);
+    setInterval(refreshQuotes, 30000);
+});
