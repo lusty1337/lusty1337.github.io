@@ -117,7 +117,7 @@
     width: 100%;
     aspect-ratio: 4 / 3;
     padding: 0;
-    border-radius: 1.25rem;
+    border-radius: 0.875rem;
     overflow: hidden;
     position: relative;
     cursor: pointer;
@@ -272,12 +272,29 @@
     animation: case-fade 0.35s ease-out;
 }
 
+/* уход быстрее прихода: закрытие не должно заставлять ждать */
+.case-dialog.is-closing {
+    animation: case-out 0.3s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.case-dialog.is-closing::backdrop {
+    animation: case-fade-out 0.3s ease-in forwards;
+}
+
 @keyframes case-in {
     from { opacity: 0; transform: translateY(24px) scale(0.98); }
 }
 
+@keyframes case-out {
+    to { opacity: 0; transform: translateY(16px) scale(0.98); }
+}
+
 @keyframes case-fade {
     from { opacity: 0; }
+}
+
+@keyframes case-fade-out {
+    to { opacity: 0; }
 }
 
 .case-cover {
@@ -326,6 +343,10 @@
 
     @keyframes case-in {
         from { transform: translateY(100%); }
+    }
+
+    @keyframes case-out {
+        to { transform: translateY(100%); }
     }
 }
 

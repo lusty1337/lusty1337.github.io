@@ -578,8 +578,26 @@ if (mobileBtn) {
     });
 
     // клик мимо окна попадает в сам dialog (его подложку) — закрываем
-    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
-    dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+    // закрытие тоже анимированное: сперва проигрываем уход окна, и только потом close().
+    // пока идёт анимация, повторные нажатия ничего не делают
+    const shut = () => {
+        if (!dialog.open || dialog.classList.contains('is-closing')) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { dialog.close(); return; }
+        dialog.classList.add('is-closing');
+        const finish = () => {
+            if (!dialog.classList.contains('is-closing')) return;
+            dialog.classList.remove('is-closing');
+            dialog.close();
+        };
+        dialog.addEventListener('animationend', finish, { once: true });
+        // если конец анимации не придёт (вкладка в фоне и т. п.), окно всё равно закроется
+        setTimeout(finish, 450);
+    };
+
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) shut(); });
+    dialog.querySelector('[data-close]').addEventListener('click', shut);
+    // esc браузер закрывает сам и мгновенно — перехватываем и закрываем так же плавно
+    dialog.addEventListener('cancel', (e) => { e.preventDefault(); shut(); });
     dialog.addEventListener('close', () => {
         document.body.style.overflow = '';
         // фокус возвращается туда, откуда окно открыли, а не в начало страницы
@@ -588,14 +606,52 @@ if (mobileBtn) {
 
     const toggle = document.getElementById('archive-toggle');
     const archive = document.getElementById('archive');
-    toggle?.addEventListener('click', () => {
-        const opening = archive.hidden;
-        archive.hidden = !opening;
-        toggle.setAttribute('aria-expanded', String(opening));
+    if (!toggle || !archive) return;
+    const rows = archive.querySelectorAll('li');
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let expanded = false;
+
+    toggle.addEventListener('click', () => {
+        expanded = !expanded;
+        toggle.setAttribute('aria-expanded', String(expanded));
         toggle.querySelectorAll('[data-state]').forEach((s) => {
-            s.hidden = s.dataset.state !== (opening ? 'open' : 'closed');
+            s.hidden = s.dataset.state !== (expanded ? 'open' : 'closed');
         });
-        // высота страницы изменилась, триггеры появлений ниже надо пересчитать
-        ScrollTrigger.refresh();
+        // повторное нажатие посреди анимации подхватывает её с текущего места, а не начинает заново
+        gsap.killTweensOf([archive, rows]);
+
+        if (still) {
+            archive.hidden = !expanded;
+            ScrollTrigger.refresh();
+            return;
+        }
+
+        if (expanded) {
+            // если список ещё сворачивался, у него осталась высота в style — растём от неё, а не от нуля
+            const from = archive.style.height ? archive.offsetHeight : 0;
+            archive.hidden = false;
+            archive.style.overflow = 'hidden';
+            // высота раскрывается, а строки проявляются по одной, как появления на остальной странице
+            gsap.fromTo(archive, { height: from }, {
+                height: 'auto', duration: 0.7, ease: 'power3.out',
+                onComplete: () => { archive.style.overflow = ''; archive.style.height = ''; ScrollTrigger.refresh(); },
+            });
+            gsap.fromTo(rows, { opacity: 0, y: 14 }, {
+                opacity: 1, y: 0, duration: 0.55, ease: 'power3.out', stagger: 0.05, delay: 0.08, clearProps: 'transform',
+            });
+        } else {
+            archive.style.overflow = 'hidden';
+            // строки гаснут чуть раньше, чем уезжает высота, иначе список схлопывается поверх текста
+            gsap.to(rows, { opacity: 0, y: -6, duration: 0.25, ease: 'power2.in', stagger: { each: 0.03, from: 'end' } });
+            gsap.to(archive, {
+                height: 0, duration: 0.5, ease: 'power3.inOut', delay: 0.1,
+                onComplete: () => {
+                    archive.hidden = true;
+                    archive.style.overflow = '';
+                    archive.style.height = '';
+                    ScrollTrigger.refresh();
+                },
+            });
+        }
     });
 })();
