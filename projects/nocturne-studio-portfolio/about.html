@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>О студии и контакты — Nocturne Studio</title>
+<meta name="description" content="О фотографе Марине Волковой, принципах работы студии Nocturne и как записаться на съёмку.">
+<link rel="preload" as="image" href="assets/07_photographer_portrait.webp" fetchpriority="high">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <a href="index.html" class="logo">NOCTURNE</a>
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="gallery.html">Галерея</a></li>
+      <li><a href="about.html" class="is-current" aria-current="page">О студии</a></li>
+      <li><a href="about.html#contacts" class="is-current">Контакты</a></li>
+    </ul>
+  </nav>
+  <a href="about.html#contacts" class="btn-ghost">Записаться</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main class="page">
+
+  <section class="bio">
+    <div class="bio-media reveal">
+      <img src="assets/07_photographer_portrait.webp" alt="Марина Волкова, основатель Nocturne Studio, портрет с камерой" width="1024" height="1024" loading="eager">
+    </div>
+    <div class="bio-text reveal">
+      <span class="eyebrow">О студии</span>
+      <h1 class="section-title">Марина Волкова, основатель Nocturne</h1>
+      <p>Снимаю с 2018 года. Начинала с плёнки, сейчас работаю на цифру, сохраняя тот же принцип — минимум обработки, максимум присутствия в кадре. За плечами более 400 съёмок: портреты, свадьбы, коммерческий продакшн.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-num">8 лет</div><div class="stat-label">в профессии</div></div>
+        <div class="stat"><div class="stat-num">400+</div><div class="stat-label">съёмок</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">студии</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="philosophy">
+    <div class="philosophy-item reveal">
+      <span class="rule" style="margin-bottom:18px; display:block;"></span>
+      <h3 class="philosophy-title">Естественный свет</h3>
+      <p class="philosophy-text">Минимум искусственных источников — форма и тень создаются природой кадра.</p>
+    </div>
+    <div class="philosophy-item reveal reveal-delay-1">
+      <span class="rule" style="margin-bottom:18px; display:block;"></span>
+      <h3 class="philosophy-title">Тишина в кадре</h3>
+      <p class="philosophy-text">Никакой суеты — спокойные позы, честные эмоции, чистая композиция.</p>
+    </div>
+    <div class="philosophy-item reveal reveal-delay-2">
+      <span class="rule" style="margin-bottom:18px; display:block;"></span>
+      <h3 class="philosophy-title">Ручная обработка</h3>
+      <p class="philosophy-text">Каждый кадр обрабатывается вручную — без пресетов и шаблонных фильтров.</p>
+    </div>
+  </section>
+
+  <section class="contacts" id="contacts">
+    <div class="reveal">
+      <h2 class="section-title">Записаться на съёмку</h2>
+      <form class="form-field" id="bookingForm" novalidate>
+        <div class="field" id="fieldName">
+          <label for="inputName">Имя</label>
+          <input type="text" id="inputName" name="name" placeholder="Как к вам обращаться" autocomplete="name" required>
+          <span class="field-error">Пожалуйста, укажите имя (не менее 2 символов).</span>
+        </div>
+        <div class="field" id="fieldContact">
+          <label for="inputContact">Телефон или почта</label>
+          <input type="text" id="inputContact" name="contact" placeholder="+7 900 000-00-00 или email" autocomplete="tel" required>
+          <span class="field-error">Введите корректный телефон или email.</span>
+        </div>
+        <div class="field" id="fieldDate">
+          <label for="inputDate">Желаемая дата съёмки</label>
+          <input type="date" id="inputDate" name="date" required>
+          <span class="field-error">Выберите дату не раньше сегодняшнего дня.</span>
+        </div>
+        <div class="field" id="fieldMessage">
+          <label for="inputMessage">Сообщение</label>
+          <textarea id="inputMessage" name="message" rows="1" placeholder="Расскажите о съёмке"></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary">Отправить заявку</button>
+          <span class="form-status" id="formStatus" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="contact-block">
+        <div class="contact-block-label">Адрес</div>
+        <div class="contact-block-value">ул. Мастеров, 14, студия 3<br>Москва</div>
+      </div>
+      <div class="contact-block">
+        <div class="contact-block-label">Контакты</div>
+        <div class="contact-block-value">
+          <a href="tel:+79000000000">+7 900 000-00-00</a><br>
+          <a href="mailto:hello@nocturne.studio">hello@nocturne.studio</a>
+        </div>
+      </div>
+      <div class="contact-block">
+        <div class="contact-block-label">Часы работы</div>
+        <div class="contact-block-value">Пн–Сб, 10:00–20:00</div>
+      </div>
+      <div class="map-card" role="img" aria-label="Схематичная карта расположения студии Nocturne на улице Мастеров, 14">
+        <svg viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="200" fill="oklch(0.13 0.005 260)"></rect>
+          <g stroke="oklch(1 0 0 / 0.08)" stroke-width="1">
+            <line x1="0" y1="40" x2="400" y2="30"></line>
+            <line x1="0" y1="90" x2="400" y2="100"></line>
+            <line x1="0" y1="150" x2="400" y2="145"></line>
+            <line x1="70" y1="0" x2="60" y2="200"></line>
+            <line x1="180" y1="0" x2="190" y2="200"></line>
+            <line x1="300" y1="0" x2="310" y2="200"></line>
+          </g>
+        </svg>
+        <div class="map-pin">
+          <span class="map-pin-dot"></span>
+        </div>
+        <span class="map-label">ул. Мастеров, 14 — студия Nocturne</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="logo">NOCTURNE</div>
+  <div class="footer-links" style="flex-direction:row; gap:24px;">
+    <a href="#" aria-label="Instagram студии">Instagram</a>
+    <a href="#" aria-label="Telegram студии">Telegram</a>
+    <a href="#" aria-label="VK студии">VK</a>
+  </div>
+  <span class="footer-copy">© 2026 Nocturne Studio</span>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

@@ -294,24 +294,134 @@
             </div>
         </section>
 
-        <section id="projects" class="px-4 md:px-6 max-w-7xl mx-auto space-y-10 md:space-y-32 pt-8 md:pt-32 scroll-mt-32">
-            <div class="text-center reveal">
+        <section id="projects" class="px-4 md:px-6 max-w-7xl mx-auto pt-8 md:pt-32 scroll-mt-32">
+            <div class="text-center reveal mb-8 md:mb-16">
                 <h2 data-i18n="projects.h2" class="text-2xl md:text-6xl font-black text-slate-900 tracking-tight mb-2 md:mb-6">Проекты.</h2>
-                <!-- окно превью само по себе ссылка: люди жмут по картинке кейса, а не ищут кнопку ниже -->
                 <p data-i18n="projects.lead" class="text-sm md:text-lg text-slate-500 max-w-xl mx-auto">Живые демо — можно потыкать прямо здесь, в окне превью. Исходники открыты на GitHub.</p>
             </div>
 
-            <div
-                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
-                <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
-                    <a class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(17,36,56,0.25)]" href="https://egordev.com/meridian-noir/" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт Meridian Noir на весь экран">
-                        <img src="./preview-meridian.webp" alt="Превью Meridian Noir — сайт парфюмерного дома"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+            <!-- витрина: четыре лучших кейса по одному на каждое направление. подробности
+                 не лежат в карточке, а открываются в окне, иначе раздел снова растянется на десять экранов -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10 md:gap-y-14">
+                <article class="case-card reveal">
+                    <button type="button" class="sandbox-preview" data-case="meridian" data-glow="17,36,56">
+                        <img src="./preview-meridian.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                        <span class="sr-only"><span data-i18n="projects.more">Подробнее:</span> Meridian Noir</span>
+                    </button>
+                    <div class="mt-4 md:mt-6 px-1">
+                        <p data-i18n="meridian.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">3D-сайт</p>
+                        <h3 class="mt-1 text-xl md:text-3xl font-black text-slate-900 tracking-tight"><button type="button" class="case-title" data-case="meridian">Meridian Noir</button></h3>
+                        <p data-i18n="meridian.short" class="mt-1.5 md:mt-2 text-sm md:text-base text-slate-600 leading-relaxed">Парфюмерный дом с работающими солнечными часами и флаконом, написанным кодом.</p>
+                    </div>
+                </article>
+                <article class="case-card reveal">
+                    <button type="button" class="sandbox-preview dark-preview" data-case="keyboard" data-glow="132,204,22">
+                        <img src="./preview-keyboard.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                        <span class="sr-only"><span data-i18n="projects.more">Подробнее:</span> Keyboard Showcase</span>
+                    </button>
+                    <div class="mt-4 md:mt-6 px-1">
+                        <p data-i18n="keyboard.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">3D-презентация</p>
+                        <h3 class="mt-1 text-xl md:text-3xl font-black text-slate-900 tracking-tight"><button type="button" class="case-title" data-case="keyboard">Keyboard Showcase</button></h3>
+                        <p data-i18n="keyboard.short" class="mt-1.5 md:mt-2 text-sm md:text-base text-slate-600 leading-relaxed">Клавиатура, которую прокрутка разбирает на слои и собирает обратно.</p>
+                    </div>
+                </article>
+                <article class="case-card reveal">
+                    <button type="button" class="sandbox-preview" data-case="tin" data-glow="255,90,0">
+                        <img src="./preview-tin.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                        <span class="sr-only"><span data-i18n="projects.more">Подробнее:</span> Tin Master 3D</span>
+                    </button>
+                    <div class="mt-4 md:mt-6 px-1">
+                        <p data-i18n="tin.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">3D-конфигуратор</p>
+                        <h3 class="mt-1 text-xl md:text-3xl font-black text-slate-900 tracking-tight"><button type="button" class="case-title" data-case="tin">Tin Master 3D</button></h3>
+                        <p data-i18n="tin.short" class="mt-1.5 md:mt-2 text-sm md:text-base text-slate-600 leading-relaxed">Цех металлообработки: изделие крутится в 3D и красится по палитре RAL.</p>
+                    </div>
+                </article>
+                <article class="case-card reveal">
+                    <button type="button" class="sandbox-preview dark-preview" data-case="flowers" data-glow="124,196,207">
+                        <img src="./preview-flowers.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                        <span class="sr-only"><span data-i18n="projects.more">Подробнее:</span> Flowers Room</span>
+                    </button>
+                    <div class="mt-4 md:mt-6 px-1">
+                        <p data-i18n="flowers.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">Telegram Mini App</p>
+                        <h3 class="mt-1 text-xl md:text-3xl font-black text-slate-900 tracking-tight"><button type="button" class="case-title" data-case="flowers">Flowers Room</button></h3>
+                        <p data-i18n="flowers.short" class="mt-1.5 md:mt-2 text-sm md:text-base text-slate-600 leading-relaxed">Цветочный магазин с корзиной и доставкой прямо внутри Telegram.</p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- архив: всё, что не на витрине. новый сильный кейс вытесняет слабый сюда, а не добавляется пятым -->
+            <div class="mt-12 md:mt-20 reveal">
+                <button type="button" id="archive-toggle" class="archive-toggle" aria-expanded="false" aria-controls="archive">
+                    <span data-state="closed" data-i18n="projects.archiveOpen">Ещё проекты</span>
+                    <span data-state="open" data-i18n="projects.archiveClose" hidden>Свернуть</span>
+                    <span class="text-slate-400 font-medium">6</span>
+                    <span class="archive-toggle__arrow" aria-hidden="true">↓</span>
+                </button>
+                <ul id="archive" class="archive" hidden>
+                    <li>
+                        <button type="button" class="archive-row" data-case="nocturne">
+                            <span class="archive-name">Nocturne Studio</span>
+                            <span data-i18n="nocturne.short" class="archive-short">Фотостудия: галерея во весь экран со слайдером и фильтром.</span>
+                            <span data-i18n="nocturne.kind" class="archive-kind">Многостраничный сайт</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="archive-row" data-case="beton">
+                            <span class="archive-name">БЕТОН</span>
+                            <span data-i18n="beton.short" class="archive-short">Архитектурное бюро в брутализме: огромные заголовки и чертёжные линии.</span>
+                            <span data-i18n="beton.kind" class="archive-kind">Многостраничный сайт</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="archive-row" data-case="novafi">
+                            <span class="archive-name">NovaFi Terminal</span>
+                            <span data-i18n="novafi.short" class="archive-short">Терминал с живыми котировками, графиком и журналом операций.</span>
+                            <span data-i18n="novafi.kind" class="archive-kind">Веб-приложение</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="archive-row" data-case="pizza">
+                            <span class="archive-name">Pizza Landing</span>
+                            <span data-i18n="pizza.short" class="archive-short">Пиццерия: меню с фильтрами, выезжающая корзина и тач-свайпы.</span>
+                            <span data-i18n="pizza.kind" class="archive-kind">Лендинг</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="archive-row" data-case="smarty">
+                            <span class="archive-name">SmartySorter</span>
+                            <span data-i18n="smarty.short" class="archive-short">Раскладывает файлы по папкам в один клик и умеет всё отменить.</span>
+                            <span data-i18n="smarty.kind" class="archive-kind">Программа для Windows</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="archive-row" data-case="creator">
+                            <span class="archive-name">Creator Portfolio</span>
+                            <span data-i18n="creator.short" class="archive-short">Портфолио с тёмной и светлой темой.</span>
+                            <span data-i18n="creator.kind" class="archive-kind">Лендинг</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <dialog id="case-dialog" class="case-dialog">
+                <button type="button" class="case-close" data-close data-i18n-aria="projects.close" aria-label="Закрыть">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+                <article data-case="meridian" hidden aria-labelledby="case-meridian-title">
+                    <a class="case-cover" href="https://egordev.com/meridian-noir/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./preview-meridian.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
-                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
-                        <h3
-                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
-                            Meridian Noir</h3>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="meridian.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">3D-сайт</p>
+                            <h3 id="case-meridian-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">Meridian Noir</h3>
+                        </div>
                         <div class="flex flex-wrap gap-2">
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="34,211,238">Three.js · WebGL</span>
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="136,206,2">GSAP</span>
@@ -320,45 +430,37 @@
                         </div>
                         <div>
                             <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
-                            <p data-i18n="meridian.task" class="text-sm md:text-base text-slate-500 leading-relaxed">Сайт уровня Awwwards для вымышленного парфюмерного дома, и ни одного файла изображений. В центре работающие солнечные часы, а гномон в них — 3D-флакон, построенный кодом. Сайт должен плавно идти на телефоне и одинаково хорошо смотреться на десктопе и на iPhone.</p>
+                            <p data-i18n="meridian.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Сайт уровня Awwwards для вымышленного парфюмерного дома, и ни одного файла изображений. В центре работающие солнечные часы, а гномон в них — 3D-флакон, построенный кодом. Сайт должен плавно идти на телефоне и одинаково хорошо смотреться на десктопе и на iPhone.</p>
                         </div>
                         <div>
                             <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
-                            <p data-i18n="meridian.done" class="text-sm md:text-base text-slate-500 leading-relaxed">Солнечные часы с настоящим астрономическим расчётом для пяти площадок в обоих полушариях. Флакон написан кодом: гранёное стекло, настой с колыханием, помпа, этикетка и тень от стекла. Шесть сцен срежиссированы прокруткой, пять формул переключаются с перетеканием дня, а флакон крутится пальцем, не блокируя прокрутку.</p>
+                            <p data-i18n="meridian.done" class="text-sm md:text-base text-slate-600 leading-relaxed">Солнечные часы с настоящим астрономическим расчётом для пяти площадок в обоих полушариях. Флакон написан кодом: гранёное стекло, настой с колыханием, помпа, этикетка и тень от стекла. Шесть сцен срежиссированы прокруткой, пять формул переключаются с перетеканием дня, а флакон крутится пальцем, не блокируя прокрутку.</p>
                         </div>
-
-                        <div class="rounded-xl md:rounded-2xl bg-cyan-50/70 border border-cyan-100/80 px-4 py-3 md:px-5 md:py-4">
-                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-cyan-600 mb-1">Сколько это примерно стоит?</p>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
                             <p data-i18n="meridian.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">230 000 – 450 000 ₽</p>
-                            <p data-i18n="meridian.priceWhy" class="text-xs md:text-sm text-slate-500 leading-relaxed">Своя графика в реальном времени — верхний сегмент промо-сайтов: флакон и солнечные часы пишутся кодом вместо съёмки, плюс адаптив от телефона до 4K, доступность и запасные версии.</p>
+                            <p data-i18n="meridian.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Своя графика в реальном времени — верхний сегмент промо-сайтов: флакон и солнечные часы пишутся кодом вместо съёмки, плюс адаптив от телефона до 4K, доступность и запасные версии.</p>
                         </div>
-
-                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="https://egordev.com/meridian-noir/" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт Meridian Noir на весь экран"
-                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="https://egordev.com/meridian-noir/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 <span data-i18n="projects.openFull">Открыть на весь экран →</span>
                             </a>
-                            <a href="https://github.com/lusty1337/meridian-noir" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                            <a href="https://github.com/lusty1337/meridian-noir" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 <span data-i18n="projects.source">Исходный код</span>
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div
-                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
-                <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-12 items-center">
-                    <a class="sandbox-preview dark-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(132,204,22,0.25)]" href="https://egordev.com/void65/" target="_blank" rel="noopener noreferrer" aria-label="Открыть 3D-презентацию VOID65 на весь экран">
-                        <img src="./preview-keyboard.webp" alt="Превью VOID65 — 3D-презентация клавиатуры"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                </article>
+                <article data-case="keyboard" hidden aria-labelledby="case-keyboard-title">
+                    <a class="case-cover dark-preview" href="https://egordev.com/void65/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./preview-keyboard.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
-                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
-                        <h3
-                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
-                            Keyboard Showcase</h3>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="keyboard.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">3D-презентация</p>
+                            <h3 id="case-keyboard-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">Keyboard Showcase</h3>
+                        </div>
                         <div class="flex flex-wrap gap-2">
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="34,211,238">Three.js · R3F</span>
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="97,218,251">React</span>
@@ -367,45 +469,37 @@
                         </div>
                         <div>
                             <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
-                            <p data-i18n="keyboard.task" class="text-sm md:text-base text-slate-500 leading-relaxed">Сайт-презентация премиальной механической клавиатуры с настоящим 3D в браузере, на уровне продуктовых страниц Apple. Продукта физически не существует, поэтому модель, материалы и фирменный стиль нужно было придумать и собрать с нуля.</p>
+                            <p data-i18n="keyboard.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Сайт-презентация премиальной механической клавиатуры с настоящим 3D в браузере, на уровне продуктовых страниц Apple. Продукта физически не существует, поэтому модель, материалы и фирменный стиль нужно было придумать и собрать с нуля.</p>
                         </div>
                         <div>
                             <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
-                            <p data-i18n="keyboard.done" class="text-sm md:text-base text-slate-500 leading-relaxed">Клавиатура целиком построена кодом на React Three Fiber: семь слоёв, 68 клавиш, процедурные текстуры платы, ни одной сторонней модели. Вся сцена — чистая функция от прокрутки, поэтому идёт одинаково плавно вперёд и назад. Мобильная версия разворачивает композицию под портрет и снимает нагрузку по тому, чего на экране в ладонь всё равно не видно.</p>
+                            <p data-i18n="keyboard.done" class="text-sm md:text-base text-slate-600 leading-relaxed">Клавиатура целиком построена кодом на React Three Fiber: семь слоёв, 68 клавиш, процедурные текстуры платы, ни одной сторонней модели. Вся сцена — чистая функция от прокрутки, поэтому идёт одинаково плавно вперёд и назад. Мобильная версия разворачивает композицию под портрет и снимает нагрузку по тому, чего на экране в ладонь всё равно не видно.</p>
                         </div>
-
-                        <div class="rounded-xl md:rounded-2xl bg-cyan-50/70 border border-cyan-100/80 px-4 py-3 md:px-5 md:py-4">
-                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-cyan-600 mb-1">Сколько это примерно стоит?</p>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
                             <p data-i18n="keyboard.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">150 000 – 450 000 ₽</p>
-                            <p data-i18n="keyboard.priceWhy" class="text-xs md:text-sm text-slate-500 leading-relaxed">Процедурная 3D-сцена со скролл-анимацией — верхняя планка веб-разработки: геометрия, материалы и пост-обработка пишутся руками.</p>
+                            <p data-i18n="keyboard.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Процедурная 3D-сцена со скролл-анимацией — верхняя планка веб-разработки: геометрия, материалы и пост-обработка пишутся руками.</p>
                         </div>
-
-                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="https://egordev.com/void65/" target="_blank" rel="noopener noreferrer" aria-label="Открыть 3D-презентацию VOID65 на весь экран"
-                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="https://egordev.com/void65/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 <span data-i18n="projects.openFull">Открыть на весь экран →</span>
                             </a>
-                            <a href="https://github.com/lusty1337/void65" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                            <a href="https://github.com/lusty1337/void65" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 <span data-i18n="projects.source">Исходный код</span>
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div
-                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
-                <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
-                    <a class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(255,90,0,0.25)]" href="./projects/tin-workshop-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Tin Master 3D на весь экран">
-                        <img src="./preview-tin.webp" alt="Превью Tin Master 3D"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                </article>
+                <article data-case="tin" hidden aria-labelledby="case-tin-title">
+                    <a class="case-cover" href="./projects/tin-workshop-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./preview-tin.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
-                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
-                        <h3
-                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
-                            Tin Master 3D</h3>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="tin.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">3D-конфигуратор</p>
+                            <h3 id="case-tin-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">Tin Master 3D</h3>
+                        </div>
                         <div class="flex flex-wrap gap-2">
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="34,211,238">Three.js · WebGL</span>
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="6,182,212">Tailwind CSS</span>
@@ -413,44 +507,37 @@
                         </div>
                         <div>
                             <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
-                            <p data-i18n="tin.task" class="text-sm md:text-base text-slate-500 leading-relaxed">Сайт для цеха металлообработки: лазерная резка, гибка по чертежам, отливы, доборные элементы и профили под ключ. Клиенту нужно наглядно подбирать цвет изделия по палитре RAL.</p>
+                            <p data-i18n="tin.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Сайт для цеха металлообработки: лазерная резка, гибка по чертежам, отливы, доборные элементы и профили под ключ. Клиенту нужно наглядно подбирать цвет изделия по палитре RAL.</p>
                         </div>
                         <div>
                             <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
-                            <p data-i18n="tin.done" class="text-sm md:text-base text-slate-500 leading-relaxed">3D-конфигуратор на Three.js: управление камерой, смена цвета металла по палитре RAL в реальном времени, генерация геометрии отливов и доборных элементов, адаптив под телефон.</p>
+                            <p data-i18n="tin.done" class="text-sm md:text-base text-slate-600 leading-relaxed">3D-конфигуратор на Three.js: управление камерой, смена цвета металла по палитре RAL в реальном времени, генерация геометрии отливов и доборных элементов, адаптив под телефон.</p>
                         </div>
-
-                        <div class="rounded-xl md:rounded-2xl bg-cyan-50/70 border border-cyan-100/80 px-4 py-3 md:px-5 md:py-4">
-                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-cyan-600 mb-1">Сколько это примерно стоит?</p>
-                            <p data-i18n="tin.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">—</p>
-                            <p data-i18n="tin.priceWhy" class="text-xs md:text-sm text-slate-500 leading-relaxed">—</p>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
+                            <p data-i18n="tin.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">80 000 – 150 000 ₽</p>
+                            <p data-i18n="tin.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Интерактивное 3D в браузере — самая дорогая веб-разработка после игр: сцена, работа с геометрией и оптимизация под слабые телефоны. Студии берут за такой конфигуратор в разы больше.</p>
                         </div>
-                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="./projects/tin-workshop-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Tin Master 3D на весь экран"
-                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="./projects/tin-workshop-portfolio/index.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 <span data-i18n="projects.openFull">Открыть на весь экран →</span>
                             </a>
-                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/tin-workshop-portfolio" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/tin-workshop-portfolio" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 <span data-i18n="projects.source">Исходный код</span>
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div
-                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
-                <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-12 items-center">
-                    <a class="sandbox-preview dark-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(124,196,207,0.25)]" href="./projects/flowers-miniapp-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть «Flowers Room» в браузере">
-                        <img src="./preview-flowers.webp" alt="Превью Telegram Mini App «Flowers Room»"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                </article>
+                <article data-case="flowers" hidden aria-labelledby="case-flowers-title">
+                    <a class="case-cover dark-preview" href="https://t.me/lusty_flowers_bot/flowers" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./preview-flowers.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
-                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
-                        <h3
-                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
-                            Flowers Room</h3>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="flowers.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">Telegram Mini App</p>
+                            <h3 id="case-flowers-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">Flowers Room</h3>
+                        </div>
                         <div class="flex flex-wrap gap-2">
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="36,161,222">Telegram WebApp API</span>
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
@@ -458,92 +545,115 @@
                         </div>
                         <div>
                             <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
-                            <p data-i18n="flowers.task" class="text-sm md:text-base text-slate-500 leading-relaxed">Магазин цветов с доставкой внутри Telegram: клиент открывает каталог одним тапом, без установки приложений и переходов на сторонние сайты.</p>
+                            <p data-i18n="flowers.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Магазин цветов с доставкой внутри Telegram: клиент открывает каталог одним тапом, без установки приложений и переходов на сторонние сайты.</p>
                         </div>
                         <div>
                             <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
-                            <p data-i18n="flowers.done" class="text-sm md:text-base text-slate-500 leading-relaxed">Telegram Mini App на чистом JavaScript: работает и в самом Telegram, и в обычном браузере. Корзина с промокодом, оформление доставки, честный демо-режим оплаты. За кнопку действия и кнопку «Назад» отвечает сам Telegram, корзина хранится в его облаке, тема подстраивается под клиента автоматически.</p>
+                            <p data-i18n="flowers.done" class="text-sm md:text-base text-slate-600 leading-relaxed">Telegram Mini App на чистом JavaScript: работает и в самом Telegram, и в обычном браузере. Корзина с промокодом, оформление доставки, честный демо-режим оплаты. За кнопку действия и кнопку «Назад» отвечает сам Telegram, корзина хранится в его облаке, тема подстраивается под клиента автоматически.</p>
                         </div>
-
-                        <div class="rounded-xl md:rounded-2xl bg-cyan-50/70 border border-cyan-100/80 px-4 py-3 md:px-5 md:py-4">
-                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-cyan-600 mb-1">Сколько это примерно стоит?</p>
-                            <p data-i18n="flowers.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">—</p>
-                            <p data-i18n="flowers.priceWhy" class="text-xs md:text-sm text-slate-500 leading-relaxed">—</p>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
+                            <p data-i18n="flowers.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">30 000 – 60 000 ₽</p>
+                            <p data-i18n="flowers.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Это не сайт, а приложение: каталог, корзина, оформление, оплата и хранение состояния. Цена растёт от числа экранов и интеграции с платежами, а не от красоты картинки.</p>
                         </div>
-                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="https://t.me/lusty_flowers_bot/flowers" target="_blank" rel="noopener noreferrer" aria-label="Открыть «Flowers Room» в Telegram"
-                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="https://t.me/lusty_flowers_bot/flowers" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 <span data-i18n="projects.openTg">Открыть в Telegram →</span>
                             </a>
-                            <a href="./projects/flowers-miniapp-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть «Flowers Room» в браузере"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                            <a href="./projects/flowers-miniapp-portfolio/index.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
                                 <span data-i18n="projects.openBrowser">Открыть в браузере</span>
                             </a>
-                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/flowers-miniapp-portfolio" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/flowers-miniapp-portfolio" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 <span data-i18n="projects.source">Исходный код</span>
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div
-                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
-                <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
-                    <a class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(255,90,0,0.25)]" href="./projects/pizza-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Pizza Landing на весь экран">
-                        <img src="./preview-pizza.webp" alt="Превью Pizza Landing"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                </article>
+                <article data-case="nocturne" hidden aria-labelledby="case-nocturne-title">
+                    <a class="case-cover dark-preview" href="./projects/nocturne-studio-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./preview-nocturne.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
-                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
-                        <h3
-                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
-                            Pizza Landing</h3>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="nocturne.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">Многостраничный сайт</p>
+                            <h3 id="case-nocturne-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">Nocturne Studio</h3>
+                        </div>
                         <div class="flex flex-wrap gap-2">
-                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML / CSS</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML5 · CSS3</span>
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
                         </div>
                         <div>
                             <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
-                            <p data-i18n="pizza.task" class="text-sm md:text-base text-slate-500 leading-relaxed">Промо-лендинг пиццерии с атмосферным тёмным дизайном, интерактивным меню и UX, который хочется трогать.</p>
+                            <p data-i18n="nocturne.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Сайт фотостудии по готовому макету: тёмный минимализм, три страницы и галерея во весь экран. Всё на чистом HTML, CSS и JavaScript, без библиотек.</p>
                         </div>
                         <div>
                             <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
-                            <p data-i18n="pizza.done" class="text-sm md:text-base text-slate-500 leading-relaxed">Верстка с нуля: фильтрация меню по категориям, анимированные карточки, выезжающая корзина, тач-свайпы. Адаптив от 320px. Без сторонних JS-библиотек.</p>
+                            <p data-i18n="nocturne.done" class="text-sm md:text-base text-slate-600 leading-relaxed">Три адаптивные страницы от 1440 до 320 px, сетка пересобирается на каждом брейкпоинте. Слайдер галереи написан с нуля: стрелки, клавиатура, свайпы и полоса миниатюр. Фильтр категорий управляет слайдером и masonry-сеткой одновременно. Форма записи проверяет поля до отправки.</p>
                         </div>
-
-                        <div class="rounded-xl md:rounded-2xl bg-cyan-50/70 border border-cyan-100/80 px-4 py-3 md:px-5 md:py-4">
-                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-cyan-600 mb-1">Сколько это примерно стоит?</p>
-                            <p data-i18n="pizza.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">—</p>
-                            <p data-i18n="pizza.priceWhy" class="text-xs md:text-sm text-slate-500 leading-relaxed">—</p>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
+                            <p data-i18n="nocturne.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">30 000 – 45 000 ₽</p>
+                            <p data-i18n="nocturne.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Вёрстка по готовому макету: дизайна и сервера здесь нет, зато слайдер и фильтр написаны руками, а не взяты из библиотеки.</p>
                         </div>
-                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="./projects/pizza-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Pizza Landing на весь экран"
-                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="./projects/nocturne-studio-portfolio/index.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 <span data-i18n="projects.openFull">Открыть на весь экран →</span>
                             </a>
-                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/pizza-landing-portfolio" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/nocturne-studio-portfolio" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 <span data-i18n="projects.source">Исходный код</span>
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div
-                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
-                <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-12 items-center">
-                    <a class="sandbox-preview dark-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(99,102,241,0.3)]" href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть NovaFi Terminal на весь экран">
-                        <img src="./preview-novafi.webp" alt="Превью NovaFi Terminal"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                </article>
+                <article data-case="beton" hidden aria-labelledby="case-beton-title">
+                    <a class="case-cover" href="./projects/beton-architects-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./preview-beton.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
-                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
-                        <h3
-                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
-                            NovaFi Terminal</h3>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="beton.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">Многостраничный сайт</p>
+                            <h3 id="case-beton-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">БЕТОН</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML5 · CSS3</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="136,206,2">GSAP</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
+                        </div>
+                        <div>
+                            <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
+                            <p data-i18n="beton.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Сайт архитектурного бюро, который сразу считывается как «бюро с характером», а не шаблон: брутализм, огромные заголовки, жирные линии вместо теней и ощущение чертежа.</p>
+                        </div>
+                        <div>
+                            <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
+                            <p data-i18n="beton.done" class="text-sm md:text-base text-slate-600 leading-relaxed">Четыре страницы по макету на сложной 12-колоночной сетке: главная, проекты с фильтром и разворотом объекта, о бюро, контакты. Блоки собраны в систему и переиспользуются. Адаптив от 320 px, GSAP-анимации: заголовки собираются построчно, цифры считаются, бегущая строка подстраивается под ширину экрана.</p>
+                        </div>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
+                            <p data-i18n="beton.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">40 000 – 60 000 ₽</p>
+                            <p data-i18n="beton.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Четыре страницы со сложной сеткой и анимациями плюс подготовка фотографий под веб. Дороже одностраничника, потому что каждая страница собрана из своих блоков.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="./projects/beton-architects-portfolio/index.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                <span data-i18n="projects.openFull">Открыть на весь экран →</span>
+                            </a>
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/beton-architects-portfolio" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                <span data-i18n="projects.source">Исходный код</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                <article data-case="novafi" hidden aria-labelledby="case-novafi-title">
+                    <a class="case-cover dark-preview" href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./preview-novafi.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                    </a>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="novafi.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">Веб-приложение</p>
+                            <h3 id="case-novafi-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">NovaFi Terminal</h3>
+                        </div>
                         <div class="flex flex-wrap gap-2">
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS · SPA</span>
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="255,99,132">Chart.js</span>
@@ -551,44 +661,74 @@
                         </div>
                         <div>
                             <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
-                            <p data-i18n="novafi.task" class="text-sm md:text-base text-slate-500 leading-relaxed">Терминал с живыми котировками: график инструмента, заявки на обмен и журнал операций. Каркас, который одинаково подходит под панель управления, CRM и личный кабинет.</p>
+                            <p data-i18n="novafi.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Терминал с живыми котировками: график инструмента, заявки на обмен и журнал операций. Каркас, который одинаково подходит под панель управления, CRM и личный кабинет.</p>
                         </div>
                         <div>
                             <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
-                            <p data-i18n="novafi.done" class="text-sm md:text-base text-slate-500 leading-relaxed">SPA-навигация между разделами без перезагрузки, подтягивание данных из внешнего API, отрисовка графиков, формы с пересчётом значений на лету, модальные окна операций и тосты-уведомления. Всё на чистом JS, без React и сборщика состояний.</p>
+                            <p data-i18n="novafi.done" class="text-sm md:text-base text-slate-600 leading-relaxed">SPA-навигация между разделами без перезагрузки, подтягивание данных из внешнего API, отрисовка графиков, формы с пересчётом значений на лету, модальные окна операций и тосты-уведомления. Всё на чистом JS, без React и сборщика состояний.</p>
                         </div>
-
-                        <div class="rounded-xl md:rounded-2xl bg-cyan-50/70 border border-cyan-100/80 px-4 py-3 md:px-5 md:py-4">
-                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-cyan-600 mb-1">Сколько это примерно стоит?</p>
-                            <p data-i18n="novafi.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">—</p>
-                            <p data-i18n="novafi.priceWhy" class="text-xs md:text-sm text-slate-500 leading-relaxed">—</p>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
+                            <p data-i18n="novafi.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">30 000 – 90 000 ₽</p>
+                            <p data-i18n="novafi.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Терминал — это рабочий инструмент: живые данные, графики, формы с пересчётом, модальные окна. Дороже лендинга, потому что здесь логика, а не вёрстка.</p>
                         </div>
-                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть NovaFi Terminal на весь экран"
-                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 <span data-i18n="projects.openFull">Открыть на весь экран →</span>
                             </a>
-                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/crypto-dashboard-portfolio" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/crypto-dashboard-portfolio" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 <span data-i18n="projects.source">Исходный код</span>
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div
-                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
-                <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
-                    <a class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(168,85,247,0.3)]" href="https://github.com/lusty1337/SmartySorter" target="_blank" rel="noopener noreferrer" aria-label="Открыть SmartySorter на GitHub">
-                        <img src="./preview-smartysorter.webp" alt="Превью SmartySorter"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                </article>
+                <article data-case="pizza" hidden aria-labelledby="case-pizza-title">
+                    <a class="case-cover" href="./projects/pizza-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./preview-pizza.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
-                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
-                        <h3
-                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
-                            SmartySorter</h3>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="pizza.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">Лендинг</p>
+                            <h3 id="case-pizza-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">Pizza Landing</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML / CSS</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
+                        </div>
+                        <div>
+                            <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
+                            <p data-i18n="pizza.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Промо-лендинг пиццерии с атмосферным тёмным дизайном, интерактивным меню и UX, который хочется трогать.</p>
+                        </div>
+                        <div>
+                            <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
+                            <p data-i18n="pizza.done" class="text-sm md:text-base text-slate-600 leading-relaxed">Верстка с нуля: фильтрация меню по категориям, анимированные карточки, выезжающая корзина, тач-свайпы. Адаптив от 320px. Без сторонних JS-библиотек.</p>
+                        </div>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
+                            <p data-i18n="pizza.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">35 000 – 60 000 ₽</p>
+                            <p data-i18n="pizza.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Лендинг с живым интерактивом — фильтры, корзина, анимации — стоит примерно вдвое дороже статичной визитки. Основные часы уходят на адаптив и вылизывание поведения на телефоне.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="./projects/pizza-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                <span data-i18n="projects.openFull">Открыть на весь экран →</span>
+                            </a>
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/pizza-landing-portfolio" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                <span data-i18n="projects.source">Исходный код</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                <article data-case="smarty" hidden aria-labelledby="case-smarty-title">
+                    <a class="case-cover" href="https://github.com/lusty1337/SmartySorter/releases/latest" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./preview-smartysorter.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                    </a>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="smarty.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">Программа для Windows</p>
+                            <h3 id="case-smarty-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">SmartySorter</h3>
+                        </div>
                         <div class="flex flex-wrap gap-2">
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="55,118,171">Python</span>
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="99,102,241">pywebview</span>
@@ -596,44 +736,37 @@
                         </div>
                         <div>
                             <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
-                            <p data-i18n="smarty.task" class="text-sm md:text-base text-slate-500 leading-relaxed">Десктопный сортировщик файлов для Windows — с приятным интерфейсом, гибкой настройкой категорий и без единого стороннего фреймворка на фронте.</p>
+                            <p data-i18n="smarty.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Десктопный сортировщик файлов для Windows — с приятным интерфейсом, гибкой настройкой категорий и без единого стороннего фреймворка на фронте.</p>
                         </div>
                         <div>
                             <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
-                            <p data-i18n="smarty.done" class="text-sm md:text-base text-slate-500 leading-relaxed">Бэкенд на Python в связке с pywebview — нативное окно вместо Electron. Сортировка по категориям в один клик, полноценный undo с восстановлением структуры папок, защита от перезаписи при конфликте имён, редактируемые категории расширений, локализация на 3 языка и тёмная/светлая тема с синхронизацией с ОС.</p>
+                            <p data-i18n="smarty.done" class="text-sm md:text-base text-slate-600 leading-relaxed">Бэкенд на Python в связке с pywebview — нативное окно вместо Electron. Сортировка по категориям в один клик, полноценный undo с восстановлением структуры папок, защита от перезаписи при конфликте имён, редактируемые категории расширений, локализация на 3 языка и тёмная/светлая тема с синхронизацией с ОС.</p>
                         </div>
-
-                        <div class="rounded-xl md:rounded-2xl bg-cyan-50/70 border border-cyan-100/80 px-4 py-3 md:px-5 md:py-4">
-                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-cyan-600 mb-1">Сколько это примерно стоит?</p>
-                            <p data-i18n="smarty.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">—</p>
-                            <p data-i18n="smarty.priceWhy" class="text-xs md:text-sm text-slate-500 leading-relaxed">—</p>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
+                            <p data-i18n="smarty.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">5 000 – 25 000 ₽</p>
+                            <p data-i18n="smarty.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Десктоп дороже веба на сборке и тестах: собрать .exe, проверить на разных версиях Windows и сделать все операции с файлами отменяемыми.</p>
                         </div>
-                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="https://github.com/lusty1337/SmartySorter/releases/latest" target="_blank" rel="noopener noreferrer" aria-label="Скачать SmartySorter"
-                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="https://github.com/lusty1337/SmartySorter/releases/latest" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 <span data-i18n="projects.download">Скачать ↓</span>
                             </a>
-                            <a href="https://github.com/lusty1337/SmartySorter" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                            <a href="https://github.com/lusty1337/SmartySorter" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 <span data-i18n="projects.source">Исходный код</span>
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div
-                class="relative bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-xl shadow-cyan-900/5 hover:shadow-cyan-900/10 transition-shadow duration-700 ease-out reveal group">
-                <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-12 items-center">
-                    <a class="sandbox-preview hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_25px_50px_-12px_rgba(34,211,238,0.25)]" href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Creator Portfolio на весь экран">
-                        <img src="./preview-creator.webp" alt="Превью Creator Portfolio"
-                            class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                </article>
+                <article data-case="creator" hidden aria-labelledby="case-creator-title">
+                    <a class="case-cover" href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./preview-creator.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
-                    <div class="w-full lg:w-1/3 space-y-3 md:space-y-6">
-                        <h3
-                            class="text-xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-500 transition-colors duration-700">
-                            Creator Portfolio</h3>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="creator.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">Лендинг</p>
+                            <h3 id="case-creator-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">Creator Portfolio</h3>
+                        </div>
                         <div class="flex flex-wrap gap-2">
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML5</span>
                             <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="6,182,212">Tailwind CSS</span>
@@ -641,33 +774,29 @@
                         </div>
                         <div>
                             <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
-                            <p data-i18n="creator.task" class="text-sm md:text-base text-slate-500 leading-relaxed">Одностраничный лендинг-портфолио с тёмной и светлой темой и плавными переходами между секциями.</p>
+                            <p data-i18n="creator.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Одностраничный лендинг-портфолио с тёмной и светлой темой и плавными переходами между секциями.</p>
                         </div>
                         <div>
                             <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
-                            <p data-i18n="creator.done" class="text-sm md:text-base text-slate-500 leading-relaxed">Вёрстка с нуля, переключатель тёмной/светлой темы с сохранением в localStorage, модальные окна проектов, кастомные scroll-анимации и форма с валидацией. Ноль сторонних библиотек.</p>
+                            <p data-i18n="creator.done" class="text-sm md:text-base text-slate-600 leading-relaxed">Вёрстка с нуля, переключатель тёмной/светлой темы с сохранением в localStorage, модальные окна проектов, кастомные scroll-анимации и форма с валидацией. Ноль сторонних библиотек.</p>
                         </div>
-
-                        <div class="rounded-xl md:rounded-2xl bg-cyan-50/70 border border-cyan-100/80 px-4 py-3 md:px-5 md:py-4">
-                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-cyan-600 mb-1">Сколько это примерно стоит?</p>
-                            <p data-i18n="creator.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">—</p>
-                            <p data-i18n="creator.priceWhy" class="text-xs md:text-sm text-slate-500 leading-relaxed">—</p>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
+                            <p data-i18n="creator.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">10 000 – 35 000 ₽</p>
+                            <p data-i18n="creator.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Портфолио-лендинг — самый простой формат: одна страница и немного интерактива. Дешевле остальных кейсов ровно потому, что здесь нет серверной логики.</p>
                         </div>
-                        <div class="flex flex-wrap items-center gap-4 mt-1 md:mt-4">
-                            <a href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть Creator Portfolio на весь экран"
-                                class="inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
                                 <span data-i18n="projects.openFull">Открыть на весь экран →</span>
                             </a>
-                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/creator-landing-portfolio" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-slate-400 font-medium hover:text-slate-600 text-sm md:text-base transition-colors duration-700">
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/creator-landing-portfolio" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 <span data-i18n="projects.source">Исходный код</span>
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-
+                </article>
+            </dialog>
         </section>
 
         <section id="pricing" class="px-4 md:px-6 max-w-7xl mx-auto pt-12 md:pt-32 scroll-mt-32">

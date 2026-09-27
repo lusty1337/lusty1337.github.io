@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>Галерея — Nocturne Studio</title>
+<meta name="description" content="Полная галерея работ фотостудии Nocturne: портреты, события, продакшн, fashion.">
+<link rel="preload" as="image" href="assets/01_hero.webp" fetchpriority="high">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <a href="index.html" class="logo">NOCTURNE</a>
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="gallery.html" aria-current="page">Галерея</a></li>
+      <li><a href="about.html">О студии</a></li>
+      <li><a href="about.html#contacts">Контакты</a></li>
+    </ul>
+  </nav>
+  <a href="about.html#contacts" class="btn-ghost">Записаться</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main class="page">
+
+  <div class="gallery-filters" id="galleryFilters" role="tablist" aria-label="Фильтр по категориям">
+    <button type="button" class="is-active" data-filter="all" role="tab" aria-selected="true">Все работы</button>
+    <button type="button" data-filter="portraits" role="tab" aria-selected="false">Портреты</button>
+    <button type="button" data-filter="events" role="tab" aria-selected="false">События</button>
+    <button type="button" data-filter="production" role="tab" aria-selected="false">Продакшн</button>
+    <button type="button" data-filter="fashion" role="tab" aria-selected="false">Fashion</button>
+  </div>
+
+  <div class="slider" id="slider" aria-roledescription="карусель" aria-label="Просмотр работ">
+    <div class="slider-track" id="sliderTrack">
+
+      <figure class="slider-slide is-active" data-category="portraits">
+        <img src="assets/01_hero.webp" alt="Портрет, студийный свет, чёрно-белая съёмка" width="1024" height="1024" loading="eager">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Портрет №01</p>
+          <p class="slider-caption-sub">Студийный свет, ч/б, Nocturne Studio, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="portraits">
+        <img src="assets/03_portrait_bw.webp" alt="Портрет крупным планом, чёрно-белый" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Портрет №02</p>
+          <p class="slider-caption-sub">Крупный план, естественный контраст, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="portraits">
+        <img src="assets/09_family_portrait.webp" alt="Семейная съёмка в студии" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Семейный портрет №03</p>
+          <p class="slider-caption-sub">Съёмка в студии, тёплый свет, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="portraits">
+        <img src="assets/10_kids_portrait.webp" alt="Детский портрет у окна" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Детский портрет №04</p>
+          <p class="slider-caption-sub">Естественный свет, студия Nocturne, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="portraits">
+        <img src="assets/07_photographer_portrait.webp" alt="Портрет фотографа с камерой" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Портрет №05</p>
+          <p class="slider-caption-sub">Документальный стиль, чёрно-белый, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="events">
+        <img src="assets/04_wedding_couple.webp" alt="Свадебная пара в естественном свете" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Событие №06</p>
+          <p class="slider-caption-sub">Свадебная съёмка, natural light, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="events">
+        <img src="assets/12_event_photo.webp" alt="Гости на вечернем мероприятии" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Событие №07</p>
+          <p class="slider-caption-sub">Корпоративный вечер, репортаж, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="production">
+        <img src="assets/05_product_stilllife.webp" alt="Предметная фотосъёмка керамической бутылки" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Продакшн №08</p>
+          <p class="slider-caption-sub">Предметная съёмка, студийный свет, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="production">
+        <img src="assets/08_philosophy_pillars.webp" alt="Студийное оборудование и свет" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Продакшн №09</p>
+          <p class="slider-caption-sub">Атмосфера студии Nocturne, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="production">
+        <img src="assets/02_photographer_at_work.webp" alt="Фотограф за работой в студии" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Продакшн №10</p>
+          <p class="slider-caption-sub">Бэкстейдж съёмки, студия Nocturne, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="fashion">
+        <img src="assets/06_fashion_editorial.webp" alt="Fashion editorial съёмка, контрастный свет" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Fashion editorial №11</p>
+          <p class="slider-caption-sub">Съёмка для журнала, студия Nocturne, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="slider-slide" data-category="fashion">
+        <img src="assets/11_night_urban_portrait.webp" alt="Городской портрет ночью, fashion-стиль" width="1024" height="1024" loading="lazy">
+        <figcaption class="slider-caption">
+          <p class="slider-caption-title">Fashion editorial №12</p>
+          <p class="slider-caption-sub">Городская съёмка, вечерний свет, 2026</p>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <button type="button" class="slider-arrow prev" id="sliderPrev" aria-label="Предыдущее фото">←</button>
+    <button type="button" class="slider-arrow next" id="sliderNext" aria-label="Следующее фото">→</button>
+    <div class="slider-counter" id="sliderCounter">01 / 12</div>
+  </div>
+
+  <div class="thumb-strip" id="thumbStrip">
+    <button class="thumb is-active" data-index="0" aria-label="Перейти к фото 1"><img src="assets/01_hero.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="1" aria-label="Перейти к фото 2"><img src="assets/03_portrait_bw.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="2" aria-label="Перейти к фото 3"><img src="assets/09_family_portrait.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="3" aria-label="Перейти к фото 4"><img src="assets/10_kids_portrait.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="4" aria-label="Перейти к фото 5"><img src="assets/07_photographer_portrait.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="5" aria-label="Перейти к фото 6"><img src="assets/04_wedding_couple.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="6" aria-label="Перейти к фото 7"><img src="assets/12_event_photo.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="7" aria-label="Перейти к фото 8"><img src="assets/05_product_stilllife.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="8" aria-label="Перейти к фото 9"><img src="assets/08_philosophy_pillars.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="9" aria-label="Перейти к фото 10"><img src="assets/02_photographer_at_work.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="10" aria-label="Перейти к фото 11"><img src="assets/06_fashion_editorial.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+    <button class="thumb" data-index="11" aria-label="Перейти к фото 12"><img src="assets/11_night_urban_portrait.webp" alt="" width="1024" height="1024" loading="lazy"></button>
+  </div>
+
+  <section class="full-grid">
+    <h2 class="section-title reveal">Вся галерея</h2>
+    <div class="masonry" id="masonryGrid">
+      <a href="#" class="shot" data-category="portraits" style="height:300px" data-index="0">
+        <img src="assets/01_hero.webp" alt="Портрет, студийный свет" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Портрет, ч/б, студия</span>
+      </a>
+      <a href="#" class="shot" data-category="events" style="height:340px" data-index="5">
+        <img src="assets/04_wedding_couple.webp" alt="Свадебная пара" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Событие, свадьба</span>
+      </a>
+      <a href="#" class="shot" data-category="fashion" style="height:260px" data-index="10">
+        <img src="assets/06_fashion_editorial.webp" alt="Fashion editorial" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Fashion, контраст</span>
+      </a>
+      <a href="#" class="shot" data-category="production" style="height:220px" data-index="7">
+        <img src="assets/05_product_stilllife.webp" alt="Предметная съёмка" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Продукт, предметка</span>
+      </a>
+      <a href="#" class="shot" data-category="portraits" style="height:320px" data-index="1">
+        <img src="assets/03_portrait_bw.webp" alt="Портрет крупным планом" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Портрет, крупный план</span>
+      </a>
+      <a href="#" class="shot" data-category="portraits" style="height:260px" data-index="3">
+        <img src="assets/10_kids_portrait.webp" alt="Детский портрет" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Детский портрет</span>
+      </a>
+      <a href="#" class="shot" data-category="production" style="height:300px" data-index="8">
+        <img src="assets/08_philosophy_pillars.webp" alt="Атмосфера студии" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Студия, атмосфера света</span>
+      </a>
+      <a href="#" class="shot" data-category="fashion" style="height:340px" data-index="11">
+        <img src="assets/11_night_urban_portrait.webp" alt="Городской портрет, ночь" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Городской портрет, ночь</span>
+      </a>
+      <a href="#" class="shot" data-category="portraits" style="height:240px" data-index="2">
+        <img src="assets/09_family_portrait.webp" alt="Семейная съёмка" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Семейная съёмка</span>
+      </a>
+      <a href="#" class="shot" data-category="production" style="height:300px" data-index="9">
+        <img src="assets/02_photographer_at_work.webp" alt="Бэкстейдж съёмки" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Бэкстейдж съёмки</span>
+      </a>
+      <a href="#" class="shot" data-category="portraits" style="height:260px" data-index="4">
+        <img src="assets/07_photographer_portrait.webp" alt="Портрет фотографа" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Портрет фотографа</span>
+      </a>
+      <a href="#" class="shot" data-category="events" style="height:320px" data-index="6">
+        <img src="assets/12_event_photo.webp" alt="Съёмка события" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Съёмка события, вечер</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="logo">NOCTURNE</div>
+  <span class="footer-copy">© 2026 Nocturne Studio</span>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

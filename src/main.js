@@ -101,12 +101,10 @@ window.addEventListener('langchange', () => ScrollTrigger.refresh());
 // наклон + свечение на превью проектов, на тач-устройствах — то же по touchmove
 {
     const isHover = window.matchMedia('(hover: hover)').matches;
-    // цвет берётся по порядку карточек на странице: новая карточка сверху - её цвет
-    // в начало массива, иначе свечение у всех остальных съезжает на одну позицию
-    const glowColors = ['197,35,39', '34,211,238', '99,102,241', '255,90,0', '255,90,0', '168,85,247'];
-
-    document.querySelectorAll('.sandbox-preview').forEach((preview, i) => {
-        const c = glowColors[i] || glowColors[0];
+    // цвет свечения записан на самой обложке, а не по порядку карточек:
+    // витрина меняется, и счёт по номеру съезжал бы при каждой перестановке
+    document.querySelectorAll('.sandbox-preview').forEach((preview) => {
+        const c = preview.dataset.glow || '34,211,238';
         preview.style.transformStyle = 'preserve-3d';
 
         const tilt = (clientX, clientY) => {
@@ -368,8 +366,8 @@ if (mobileBtn) {
         badge._on = false;
     };
 
-    // секция стека + каждая проектная карточка — отдельные группы
-    const groups = [stackCard, ...document.querySelectorAll('#projects .reveal')];
+    // секция стека + каждый кейс в окне подробностей — отдельные группы
+    const groups = [stackCard, ...document.querySelectorAll('#case-dialog article')];
 
     groups.forEach(container => {
         const badges = container.querySelectorAll('.stack-badge');
@@ -554,5 +552,50 @@ if (mobileBtn) {
         } else if (e.key === 'Tab') {
             close();
         }
+    });
+})();
+
+// кейсы: обложка и название на витрине и строка архива открывают одно окно,
+// в нём показывается статья нужного кейса. статьи лежат в разметке целиком,
+// поэтому переключатель языка переводит их так же, как остальную страницу
+(() => {
+    const dialog = document.getElementById('case-dialog');
+    if (!dialog) return;
+    const articles = dialog.querySelectorAll('article[data-case]');
+    let opener = null;
+
+    const open = (id, from) => {
+        articles.forEach((a) => { a.hidden = a.dataset.case !== id; });
+        opener = from;
+        dialog.showModal();
+        dialog.scrollTop = 0;
+        document.body.style.overflow = 'hidden';
+    };
+
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-case]');
+        if (btn) open(btn.dataset.case, btn);
+    });
+
+    // клик мимо окна попадает в сам dialog (его подложку) — закрываем
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => {
+        document.body.style.overflow = '';
+        // фокус возвращается туда, откуда окно открыли, а не в начало страницы
+        opener?.focus({ preventScroll: true });
+    });
+
+    const toggle = document.getElementById('archive-toggle');
+    const archive = document.getElementById('archive');
+    toggle?.addEventListener('click', () => {
+        const opening = archive.hidden;
+        archive.hidden = !opening;
+        toggle.setAttribute('aria-expanded', String(opening));
+        toggle.querySelectorAll('[data-state]').forEach((s) => {
+            s.hidden = s.dataset.state !== (opening ? 'open' : 'closed');
+        });
+        // высота страницы изменилась, триггеры появлений ниже надо пересчитать
+        ScrollTrigger.refresh();
     });
 })();

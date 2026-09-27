@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>Nocturne Studio — фотостудия полного цикла</title>
+<meta name="description" content="Фотостудия Nocturne — портретная съёмка, события, продакшн для бренда. Минимализм в кадре, характер в деталях.">
+<link rel="preload" as="image" href="assets/01_hero.webp" fetchpriority="high">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <a href="index.html" class="logo">NOCTURNE</a>
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" aria-current="page">Главная</a></li>
+      <li><a href="gallery.html">Галерея</a></li>
+      <li><a href="about.html">О студии</a></li>
+      <li><a href="about.html#contacts">Контакты</a></li>
+    </ul>
+  </nav>
+  <a href="about.html#contacts" class="btn-ghost">Записаться</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main class="page">
+
+  <section class="hero">
+    <div class="hero-media" id="heroMedia">
+      <img src="assets/01_hero.webp" alt="Портрет в студийном свете, чёрно-белая съёмка Nocturne Studio" width="1024" height="1024" fetchpriority="high">
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Свет, который<br>остаётся с вами</h1>
+      <p class="hero-lead">Фотостудия полного цикла — портрет, съёмки событий, продакшн. Минимализм в кадре, характер в деталях.</p>
+      <div class="hero-actions">
+        <a href="gallery.html" class="btn btn-primary">Смотреть галерею</a>
+        <a href="about.html#contacts" class="btn btn-outline">Забронировать съёмку</a>
+      </div>
+    </div>
+    <span class="hero-scroll-hint">Прокрутите вниз</span>
+  </section>
+
+  <section class="about-teaser">
+    <div class="about-teaser-text reveal">
+      <span class="eyebrow">О фотографе</span>
+      <h2 class="section-title">Восемь лет снимаю тишину между кадрами</h2>
+      <p>Работаю в естественном и студийном свете, избегаю лишнего в композиции — только форма, тень и человек в кадре.</p>
+      <a href="about.html" class="link-arrow">Подробнее о студии →</a>
+    </div>
+    <div class="about-teaser-media reveal">
+      <img src="assets/02_photographer_at_work.webp" alt="Фотограф Nocturne Studio за работой в студии" width="1024" height="1024" loading="lazy">
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="section-head reveal">
+      <h2 class="section-title">Услуги и цены</h2>
+      <span class="note">Стоимость указана за 1 час съёмки</span>
+    </div>
+    <div class="services-grid">
+      <article class="service-card reveal">
+        <span class="rule"></span>
+        <h3 class="service-name">Портретная съёмка</h3>
+        <p class="service-desc">Индивидуальная студийная съёмка с полной пост-обработкой.</p>
+        <span class="service-price">8 000 ₽</span>
+      </article>
+      <article class="service-card reveal reveal-delay-1">
+        <span class="rule"></span>
+        <h3 class="service-name">Съёмка событий</h3>
+        <p class="service-desc">Помолвки, дни рождения, корпоративы — от подготовки до финала.</p>
+        <span class="service-price">15 000 ₽</span>
+      </article>
+      <article class="service-card reveal reveal-delay-2">
+        <span class="rule"></span>
+        <h3 class="service-name">Продакшн для бренда</h3>
+        <p class="service-desc">Предметная и имиджевая съёмка для каталогов и соцсетей.</p>
+        <span class="service-price">20 000 ₽</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="gallery-preview">
+    <div class="section-head reveal">
+      <h2 class="section-title">Избранные работы</h2>
+      <a href="gallery.html" class="link-arrow">Вся галерея →</a>
+    </div>
+    <div class="gallery-preview-grid">
+      <a href="gallery.html" class="shot reveal">
+        <img src="assets/03_portrait_bw.webp" alt="Портрет, студия, чёрно-белый" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Портрет, студия, ч/б</span>
+      </a>
+      <a href="gallery.html" class="shot reveal reveal-delay-1">
+        <img src="assets/04_wedding_couple.webp" alt="Свадебная пара в естественном свете" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Свадебная пара, natural light</span>
+      </a>
+      <a href="gallery.html" class="shot reveal reveal-delay-2">
+        <img src="assets/05_product_stilllife.webp" alt="Предметная фотосъёмка" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Продуктовая съёмка, предмет</span>
+      </a>
+      <a href="gallery.html" class="shot reveal reveal-delay-3">
+        <img src="assets/06_fashion_editorial.webp" alt="Fashion editorial съёмка" width="1024" height="1024" loading="lazy">
+        <span class="shot-label">Fashion editorial</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="reviews">
+    <h2 class="section-title reveal">Отзывы клиентов</h2>
+    <div class="reviews-grid">
+      <blockquote class="review reveal">
+        <p class="review-text">«Атмосфера съёмки была невероятно спокойной, а результат превзошёл ожидания.»</p>
+        <cite class="review-author">Анна К. — портретная съёмка</cite>
+      </blockquote>
+      <blockquote class="review reveal reveal-delay-1">
+        <p class="review-text">«Организовали съёмку помолвки за один день. Кадры получились живыми.»</p>
+        <cite class="review-author">Дмитрий и Полина — событие</cite>
+      </blockquote>
+      <blockquote class="review reveal reveal-delay-2">
+        <p class="review-text">«Продакшн для нашего бренда одежды — чисто, стильно, в срок.»</p>
+        <cite class="review-author">ТМ «Линия» — коммерческая съёмка</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="instagram">
+    <div class="section-head reveal">
+      <h2 class="section-title">@nocturne.studio</h2>
+      <a href="#" class="link-arrow" aria-label="Instagram студии">Подписаться →</a>
+    </div>
+    <div class="instagram-grid">
+      <a href="gallery.html" class="insta-shot reveal"><img src="assets/09_family_portrait.webp" alt="Семейная съёмка" width="1024" height="1024" loading="lazy"><span class="insta-tag">портрет</span></a>
+      <a href="gallery.html" class="insta-shot reveal"><img src="assets/12_event_photo.webp" alt="Съёмка события" width="1024" height="1024" loading="lazy"><span class="insta-tag">событие</span></a>
+      <a href="gallery.html" class="insta-shot reveal"><img src="assets/08_philosophy_pillars.webp" alt="Атмосфера студии" width="1024" height="1024" loading="lazy"><span class="insta-tag">детали</span></a>
+      <a href="gallery.html" class="insta-shot reveal"><img src="assets/05_product_stilllife.webp" alt="Предметная съёмка" width="1024" height="1024" loading="lazy"><span class="insta-tag">продакшн</span></a>
+      <a href="gallery.html" class="insta-shot reveal"><img src="assets/02_photographer_at_work.webp" alt="Бэкстейдж съёмки" width="1024" height="1024" loading="lazy"><span class="insta-tag">бэкстейдж</span></a>
+      <a href="gallery.html" class="insta-shot reveal"><img src="assets/11_night_urban_portrait.webp" alt="Городской портрет, fashion" width="1024" height="1024" loading="lazy"><span class="insta-tag">fashion</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div>
+    <div class="logo">NOCTURNE</div>
+    <p class="footer-about">Фотостудия в центре города. Съёмки в студии и на выезде.</p>
+  </div>
+  <nav class="footer-links">
+    <a href="index.html">Главная</a>
+    <a href="gallery.html">Галерея</a>
+    <a href="about.html">О студии</a>
+    <a href="about.html#contacts">Контакты</a>
+  </nav>
+  <div class="footer-contacts">
+    <span>ул. Мастеров, 14</span>
+    <a href="tel:+79000000000">+7 900 000-00-00</a>
+    <a href="mailto:hello@nocturne.studio">hello@nocturne.studio</a>
+  </div>
+  <span class="footer-copy">© 2026 Nocturne Studio</span>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
