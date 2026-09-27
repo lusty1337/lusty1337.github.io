@@ -38,7 +38,7 @@ const DICT = {
         'stack.title': 'Стек',
 
         'projects.h2': 'Проекты.',
-        'projects.lead': 'Живые демо — можно потыкать прямо здесь, в окне превью. Исходники открыты на GitHub.',
+        'projects.lead': 'Лучшие работы — по одной на каждое направление. Нажмите на карточку, чтобы увидеть задачу, решение и цену.',
         'projects.task': 'Задача',
         'projects.done': 'Что сделано',
         'projects.openFull': 'Открыть на весь экран →',
@@ -117,6 +117,12 @@ const DICT = {
         'beton.done': 'Четыре страницы по макету на сложной 12-колоночной сетке: главная, проекты с фильтром и разворотом объекта, о бюро, контакты. Блоки собраны в систему и переиспользуются. Адаптив от 320 px, GSAP-анимации: заголовки собираются построчно, цифры считаются, бегущая строка подстраивается под ширину экрана.',
         'beton.price': '40 000 – 60 000 ₽',
         'beton.priceWhy': 'Четыре страницы со сложной сеткой и анимациями плюс подготовка фотографий под веб. Дороже одностраничника, потому что каждая страница собрана из своих блоков.',
+        'dental.kind': 'Лендинг',
+        'dental.short': 'Стоматология: запись на приём, понятный прайс и спокойный тон вместо медицинского холода.',
+        'dental.task': 'Сайт стоматологии, который снимает тревогу перед визитом и ведёт к записи на приём. Аудитория — жители района 25–55 лет, которым важны прозрачные цены и спокойная атмосфера.',
+        'dental.done': 'Лендинг из десяти блоков по макету: адаптив под телефон и планшет, окно записи, маска телефона и проверка форм, подсветка раздела в меню. Картинки переведены в WebP и стали легче на 83%, а тяжёлая карта грузится только по нажатию.',
+        'dental.price': '35 000 – 50 000 ₽',
+        'dental.priceWhy': 'Вёрстка по готовому макету с формами и записью. Отправка заявок в почту, CRM или Telegram считается отдельно.',
 
         'pricing.h2': 'Сколько стоит?',
         'pricing.lead': 'Честные вилки, а не «цена по запросу». Нижняя граница — это реально маленькая задача, а не приманка.',
@@ -202,7 +208,7 @@ const DICT = {
         'stack.title': 'Stack',
 
         'projects.h2': 'Projects.',
-        'projects.lead': 'Live demos — you can poke at them right here in the preview. Source is open on GitHub.',
+        'projects.lead': 'My best work — one for each kind of project. Click a card to see the brief, the solution and the price.',
         'projects.task': 'The brief',
         'projects.done': 'What I built',
         'projects.openFull': 'Open full screen →',
@@ -281,6 +287,12 @@ const DICT = {
         'beton.done': 'Four pages from the mockup on a complex 12-column grid: home, projects with a filter and a project spread, about, contacts. Blocks form a reusable system. Responsive from 320px, GSAP animation: headlines assemble line by line, numbers count up, the ticker adapts to the screen width.',
         'beton.price': '$1,600 – 3,500',
         'beton.priceWhy': 'Four pages with a complex grid and animation, plus preparing the photos for the web. It costs more than a one-pager because every page is built from its own blocks.',
+        'dental.kind': 'Landing page',
+        'dental.short': 'A dental clinic: booking, a clear price list and a calm tone instead of clinical chill.',
+        'dental.task': 'A dental clinic website that eases anxiety before a visit and leads to booking an appointment. The audience is local residents aged 25–55 who care about transparent prices and a calm atmosphere.',
+        'dental.done': 'A ten-section landing page built from the mockup: phone and tablet layouts, a booking modal, a phone mask and form validation, active-section highlighting in the menu. Images were converted to WebP and got 83% lighter, and the heavy map only loads on tap.',
+        'dental.price': '$1,300 – 3,000',
+        'dental.priceWhy': 'Front-end work from a finished mockup, with forms and booking. Sending requests to email, a CRM or Telegram is priced separately.',
 
         'pricing.h2': 'Pricing',
         'pricing.lead': 'Real ranges, not "contact us for a quote". The lower bound is a genuinely small task, not bait.',

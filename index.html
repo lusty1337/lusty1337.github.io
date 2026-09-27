@@ -297,7 +297,7 @@
         <section id="projects" class="px-4 md:px-6 max-w-7xl mx-auto pt-8 md:pt-32 scroll-mt-32">
             <div class="text-center reveal mb-8 md:mb-16">
                 <h2 data-i18n="projects.h2" class="text-2xl md:text-6xl font-black text-slate-900 tracking-tight mb-2 md:mb-6">Проекты.</h2>
-                <p data-i18n="projects.lead" class="text-sm md:text-lg text-slate-500 max-w-xl mx-auto">Живые демо — можно потыкать прямо здесь, в окне превью. Исходники открыты на GitHub.</p>
+                <p data-i18n="projects.lead" class="text-sm md:text-lg text-slate-500 max-w-xl mx-auto">Лучшие работы — по одной на каждое направление. Нажмите на карточку, чтобы увидеть задачу, решение и цену.</p>
             </div>
 
             <!-- витрина: четыре лучших кейса по одному на каждое направление. подробности
@@ -305,7 +305,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10 md:gap-y-14">
                 <article class="case-card reveal">
                     <button type="button" class="sandbox-preview" data-case="meridian" data-glow="17,36,56">
-                        <img src="./preview-meridian.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-meridian.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
                         <span class="sr-only"><span data-i18n="projects.more">Подробнее:</span> Meridian Noir</span>
                     </button>
                     <div class="mt-4 md:mt-6 px-1">
@@ -316,7 +316,7 @@
                 </article>
                 <article class="case-card reveal">
                     <button type="button" class="sandbox-preview dark-preview" data-case="keyboard" data-glow="132,204,22">
-                        <img src="./preview-keyboard.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-keyboard.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
                         <span class="sr-only"><span data-i18n="projects.more">Подробнее:</span> Keyboard Showcase</span>
                     </button>
                     <div class="mt-4 md:mt-6 px-1">
@@ -327,7 +327,7 @@
                 </article>
                 <article class="case-card reveal">
                     <button type="button" class="sandbox-preview" data-case="tin" data-glow="255,90,0">
-                        <img src="./preview-tin.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-tin.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
                         <span class="sr-only"><span data-i18n="projects.more">Подробнее:</span> Tin Master 3D</span>
                     </button>
                     <div class="mt-4 md:mt-6 px-1">
@@ -338,7 +338,7 @@
                 </article>
                 <article class="case-card reveal">
                     <button type="button" class="sandbox-preview dark-preview" data-case="flowers" data-glow="124,196,207">
-                        <img src="./preview-flowers.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-flowers.webp" alt="" class="w-full h-full object-cover absolute inset-0" loading="lazy" width="800" height="600">
                         <span class="sr-only"><span data-i18n="projects.more">Подробнее:</span> Flowers Room</span>
                     </button>
                     <div class="mt-4 md:mt-6 px-1">
@@ -354,7 +354,7 @@
                 <button type="button" id="archive-toggle" class="archive-toggle" aria-expanded="false" aria-controls="archive">
                     <span data-state="closed" data-i18n="projects.archiveOpen">Ещё проекты</span>
                     <span data-state="open" data-i18n="projects.archiveClose" hidden>Свернуть</span>
-                    <span class="text-slate-400 font-medium">6</span>
+                    <span class="text-slate-400 font-medium">7</span>
                     <span class="archive-toggle__arrow" aria-hidden="true">↓</span>
                 </button>
                 <ul id="archive" class="archive" hidden>
@@ -371,6 +371,14 @@
                             <span class="archive-name">БЕТОН</span>
                             <span data-i18n="beton.short" class="archive-short">Архитектурное бюро в брутализме: огромные заголовки и чертёжные линии.</span>
                             <span data-i18n="beton.kind" class="archive-kind">Многостраничный сайт</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="archive-row" data-case="dental">
+                            <span class="archive-name">Ясный День</span>
+                            <span data-i18n="dental.short" class="archive-short">Стоматология: запись на приём, понятный прайс и спокойный тон вместо медицинского холода.</span>
+                            <span data-i18n="dental.kind" class="archive-kind">Лендинг</span>
                             <span class="archive-arrow" aria-hidden="true">→</span>
                         </button>
                     </li>
@@ -415,7 +423,7 @@
                 </button>
                 <article data-case="meridian" hidden aria-labelledby="case-meridian-title">
                     <a class="case-cover" href="https://egordev.com/meridian-noir/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                        <img src="./preview-meridian.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-meridian.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
                     <div class="p-5 md:p-10 space-y-4 md:space-y-6">
                         <div>
@@ -454,7 +462,7 @@
                 </article>
                 <article data-case="keyboard" hidden aria-labelledby="case-keyboard-title">
                     <a class="case-cover dark-preview" href="https://egordev.com/void65/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                        <img src="./preview-keyboard.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-keyboard.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
                     <div class="p-5 md:p-10 space-y-4 md:space-y-6">
                         <div>
@@ -493,7 +501,7 @@
                 </article>
                 <article data-case="tin" hidden aria-labelledby="case-tin-title">
                     <a class="case-cover" href="./projects/tin-workshop-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                        <img src="./preview-tin.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-tin.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
                     <div class="p-5 md:p-10 space-y-4 md:space-y-6">
                         <div>
@@ -531,7 +539,7 @@
                 </article>
                 <article data-case="flowers" hidden aria-labelledby="case-flowers-title">
                     <a class="case-cover dark-preview" href="https://t.me/lusty_flowers_bot/flowers" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                        <img src="./preview-flowers.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-flowers.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
                     <div class="p-5 md:p-10 space-y-4 md:space-y-6">
                         <div>
@@ -572,7 +580,7 @@
                 </article>
                 <article data-case="nocturne" hidden aria-labelledby="case-nocturne-title">
                     <a class="case-cover dark-preview" href="./projects/nocturne-studio-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                        <img src="./preview-nocturne.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-nocturne.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
                     <div class="p-5 md:p-10 space-y-4 md:space-y-6">
                         <div>
@@ -609,7 +617,7 @@
                 </article>
                 <article data-case="beton" hidden aria-labelledby="case-beton-title">
                     <a class="case-cover" href="./projects/beton-architects-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                        <img src="./preview-beton.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-beton.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
                     <div class="p-5 md:p-10 space-y-4 md:space-y-6">
                         <div>
@@ -645,9 +653,46 @@
                         </div>
                     </div>
                 </article>
+                <article data-case="dental" hidden aria-labelledby="case-dental-title">
+                    <a class="case-cover" href="./projects/dental-clinic-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="./previews/preview-dental.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                    </a>
+                    <div class="p-5 md:p-10 space-y-4 md:space-y-6">
+                        <div>
+                            <p data-i18n="dental.kind" class="text-xs md:text-sm font-semibold uppercase tracking-wider text-slate-500">Лендинг</p>
+                            <h3 id="case-dental-title" class="mt-1 text-2xl md:text-4xl font-black text-slate-900 tracking-tight">Ясный День</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="228,77,38">HTML5 · CSS3</span>
+                            <span class="stack-badge px-3 py-1 rounded-full bg-white/60 border border-slate-900/5 text-xs font-medium text-slate-600" data-brand="247,223,30">Vanilla JS</span>
+                        </div>
+                        <div>
+                            <p data-i18n="projects.task" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Задача</p>
+                            <p data-i18n="dental.task" class="text-sm md:text-base text-slate-600 leading-relaxed">Сайт стоматологии, который снимает тревогу перед визитом и ведёт к записи на приём. Аудитория — жители района 25–55 лет, которым важны прозрачные цены и спокойная атмосфера.</p>
+                        </div>
+                        <div>
+                            <p data-i18n="projects.done" class="text-sm md:text-base font-bold uppercase tracking-wider text-slate-600 mb-1">Что сделано</p>
+                            <p data-i18n="dental.done" class="text-sm md:text-base text-slate-600 leading-relaxed">Лендинг из десяти блоков по макету: адаптив под телефон и планшет, окно записи, маска телефона и проверка форм, подсветка раздела в меню. Картинки переведены в WebP и стали легче на 83%, а тяжёлая карта грузится только по нажатию.</p>
+                        </div>
+                        <div class="rounded-xl md:rounded-2xl bg-slate-900/[0.03] border border-slate-900/5 px-4 py-3 md:px-5 md:py-4">
+                            <p data-i18n="projects.priceLabel" class="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Сколько это примерно стоит?</p>
+                            <p data-i18n="dental.price" class="text-lg md:text-2xl font-black text-slate-900 tracking-tight mb-1.5">35 000 – 50 000 ₽</p>
+                            <p data-i18n="dental.priceWhy" class="text-xs md:text-sm text-slate-600 leading-relaxed">Вёрстка по готовому макету с формами и записью. Отправка заявок в почту, CRM или Telegram считается отдельно.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                            <a href="./projects/dental-clinic-portfolio/index.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan-600 font-bold hover:gap-3 text-sm md:text-base transition-all duration-700">
+                                <span data-i18n="projects.openFull">Открыть на весь экран →</span>
+                            </a>
+                            <a href="https://github.com/lusty1337/lusty1337.github.io/tree/main/projects/dental-clinic-portfolio" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-500 font-medium hover:text-slate-700 text-sm md:text-base transition-colors duration-700">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                <span data-i18n="projects.source">Исходный код</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
                 <article data-case="novafi" hidden aria-labelledby="case-novafi-title">
                     <a class="case-cover dark-preview" href="./projects/crypto-dashboard-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                        <img src="./preview-novafi.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-novafi.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
                     <div class="p-5 md:p-10 space-y-4 md:space-y-6">
                         <div>
@@ -685,7 +730,7 @@
                 </article>
                 <article data-case="pizza" hidden aria-labelledby="case-pizza-title">
                     <a class="case-cover" href="./projects/pizza-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                        <img src="./preview-pizza.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-pizza.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
                     <div class="p-5 md:p-10 space-y-4 md:space-y-6">
                         <div>
@@ -722,7 +767,7 @@
                 </article>
                 <article data-case="smarty" hidden aria-labelledby="case-smarty-title">
                     <a class="case-cover" href="https://github.com/lusty1337/SmartySorter/releases/latest" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                        <img src="./preview-smartysorter.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-smartysorter.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
                     <div class="p-5 md:p-10 space-y-4 md:space-y-6">
                         <div>
@@ -760,7 +805,7 @@
                 </article>
                 <article data-case="creator" hidden aria-labelledby="case-creator-title">
                     <a class="case-cover" href="./projects/creator-landing-portfolio/index.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                        <img src="./preview-creator.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
+                        <img src="./previews/preview-creator.webp" alt="" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                     </a>
                     <div class="p-5 md:p-10 space-y-4 md:space-y-6">
                         <div>

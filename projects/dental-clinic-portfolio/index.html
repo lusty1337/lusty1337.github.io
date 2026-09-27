@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ясный День — стоматология без боли и очередей</title>
+<meta name="description" content="Стоматологическая клиника «Ясный День» в Москве: гигиена, терапия, имплантация, ортодонтия, эстетика и детская стоматология. Фиксированная смета, гарантия на работы, запись без очередей.">
+
+
+<!-- шрифты грузятся не блокируя рендер: media=print держит их вне критического пути, onload переключает на all -->
+<link rel="stylesheet" href="css/fonts.css">
+
+<link rel="preload" as="image" href="assets/hero-patient-smile.webp" type="image/webp" fetchpriority="high">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css?v=4">
+</head>
+<body>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo">
+        <span class="logo__icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3C9 3 6.5 5 6.5 8.5c0 2.5 1 3.6 1.3 6 .3 2.3.6 5 1.7 5 1.3 0 1.2-3.7 1.6-5.4.2-.8.5-1.1.9-1.1s.7.3.9 1.1c.4 1.7.3 5.4 1.6 5.4 1.1 0 1.4-2.7 1.7-5 .3-2.4 1.3-3.5 1.3-6C17.5 5 15 3 12 3Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="logo__text">Ясный День</span>
+      </a>
+
+      <nav class="nav" id="navLinks">
+        <a href="#services">Услуги</a>
+        <a href="#about">О клинике</a>
+        <a href="#doctors">Врачи</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="tel:+74951234567" class="header__phone">+7 (495) 123-45-67</a>
+        <button type="button" class="btn btn--accent header__cta" data-open-modal>Записаться</button>
+        <button type="button" class="burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#services">Услуги</a>
+      <a href="#about">О клинике</a>
+      <a href="#doctors">Врачи</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+      <a href="tel:+74951234567" class="mobile-menu__phone">+7 (495) 123-45-67</a>
+      <button type="button" class="btn btn--accent" data-open-modal>Записаться</button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content reveal">
+          <div class="badge">
+            <span class="badge__dot"></span>
+            Приём без очередей и тревоги
+          </div>
+          <h1 class="hero__title">Стоматология без боли<br>и <span class="accent-text">очередей</span></h1>
+          <p class="hero__lead">Светлые кабинеты, бережные врачи и современное оборудование — мы делаем лечение зубов спокойным и понятным на каждом шаге.</p>
+          <div class="hero__actions">
+            <button type="button" class="btn btn--accent btn--lg" data-open-modal>Записаться на приём</button>
+            <button type="button" class="btn btn--ghost btn--lg" data-open-modal>Бесплатная консультация</button>
+          </div>
+          <div class="hero__stats">
+            <div class="stat">
+              <div class="stat__value">15 лет</div>
+              <div class="stat__label">на рынке</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">12 400+</div>
+              <div class="stat__label">довольных пациентов</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">3 года</div>
+              <div class="stat__label">гарантии на работы</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero__image reveal">
+          <picture>
+            <source srcset="assets/hero-patient-smile.webp" type="image/webp">
+            <img src="assets/hero-patient-smile.jpg" alt="Пациентка клиники улыбается после приёма у стоматолога" width="1024" height="1024" fetchpriority="high" loading="eager">
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div class="container trust-strip__grid">
+        <div class="trust-item">
+          <div class="trust-item__value">15 лет</div>
+          <div class="trust-item__label">опыта работы</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-item__value">12 400+</div>
+          <div class="trust-item__label">пациентов</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-item__value">4.9 / 5</div>
+          <div class="trust-item__label">средний рейтинг</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-item__value">3 года</div>
+          <div class="trust-item__label">гарантии</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-tag">Услуги</div>
+          <h2 class="section-title">Всё для здоровья вашей улыбки</h2>
+          <p class="section-desc">От профилактики до сложной имплантации — прозрачные цены и понятный план лечения.</p>
+        </div>
+
+        <div class="services__grid">
+          <article class="service-card reveal">            <h3 class="service-card__title">Гигиена и профилактика</h3>
+            <p class="service-card__desc">Профессиональная чистка, снятие налёта и полировка эмали.</p>
+            <div class="service-card__price">от 3 900 ₽</div>
+          </article>
+
+          <article class="service-card reveal">            <h3 class="service-card__title">Терапия и лечение кариеса</h3>
+            <p class="service-card__desc">Лечение под микроскопом с гарантией на пломбы.</p>
+            <div class="service-card__price">от 5 200 ₽</div>
+          </article>
+
+          <article class="service-card reveal">            <h3 class="service-card__title">Имплантация</h3>
+            <p class="service-card__desc">Установка имплантов с 3D-планированием и гарантией 10 лет.</p>
+            <div class="service-card__price">от 42 000 ₽</div>
+          </article>
+
+          <article class="service-card reveal">            <h3 class="service-card__title">Ортодонтия</h3>
+            <p class="service-card__desc">Брекет-системы и элайнеры для исправления прикуса.</p>
+            <div class="service-card__price">от 68 000 ₽</div>
+          </article>
+
+          <article class="service-card reveal">            <h3 class="service-card__title">Эстетическая реставрация</h3>
+            <p class="service-card__desc">Виниры и художественная реставрация формы зубов.</p>
+            <div class="service-card__price">от 12 500 ₽</div>
+          </article>
+
+          <article class="service-card reveal">            <h3 class="service-card__title">Детская стоматология</h3>
+            <p class="service-card__desc">Мягкий подход и лечение без страха для маленьких пациентов.</p>
+            <div class="service-card__price">от 2 800 ₽</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section section--alt about">
+      <div class="container about__grid">
+        <div class="about__image reveal">
+          <picture>
+            <source srcset="assets/clinic-interior-light.webp" type="image/webp">
+            <img src="assets/clinic-interior-light.jpg" alt="Светлый интерьер кабинета клиники «Ясный День»" width="1024" height="1024" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="reveal">
+          <div class="section-tag">О клинике</div>
+          <h2 class="section-title section-title--left">Пространство, где легко расслабиться</h2>
+          <p class="about__lead">Мы спроектировали клинику так, чтобы визит к стоматологу не вызывал тревоги: мягкий свет, тишина в кабинетах и врачи, которые всегда объясняют, что происходит и почему.</p>
+          <ul class="about__points">
+            <li>
+              <span class="check-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              Стерилизация по международным протоколам ISO
+            </li>
+            <li>
+              <span class="check-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              Цифровая диагностика: 3D-томография и внутриротовой сканер
+            </li>
+            <li>
+              <span class="check-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              Фиксированная смета до начала лечения — без скрытых доплат
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="doctors" class="section doctors">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-tag">Команда</div>
+          <h2 class="section-title">Врачи, которым доверяют</h2>
+          <p class="section-desc">Каждый специалист проходит регулярное обучение и работает по единому протоколу качества.</p>
+        </div>
+
+        <div class="doctors__grid">
+          <article class="doctor-card reveal">
+            <div class="doctor-card__photo">
+              <picture>
+                <source srcset="assets/doctor-sokolova.webp" type="image/webp">
+                <img src="assets/doctor-sokolova.jpg" alt="Ирина Соколова, врач-терапевт" width="820" height="820" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="doctor-card__body">
+              <h3 class="doctor-card__name">Ирина Соколова</h3>
+              <div class="doctor-card__role">Врач-терапевт, стаж 12 лет</div>
+              <p class="doctor-card__bio">Специализируется на лечении кариеса и эстетической реставрации.</p>
+            </div>
+          </article>
+
+          <article class="doctor-card reveal">
+            <div class="doctor-card__photo">
+              <picture>
+                <source srcset="assets/doctor-volkov.webp" type="image/webp">
+                <img src="assets/doctor-volkov.jpg" alt="Дмитрий Волков, врач-ортодонт" width="820" height="820" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="doctor-card__body">
+              <h3 class="doctor-card__name">Дмитрий Волков</h3>
+              <div class="doctor-card__role">Врач-ортодонт, стаж 9 лет</div>
+              <p class="doctor-card__bio">Более 600 пациентов на брекет-системах и элайнерах.</p>
+            </div>
+          </article>
+
+          <article class="doctor-card reveal">
+            <div class="doctor-card__photo">
+              <picture>
+                <source srcset="assets/doctor-belova.webp" type="image/webp">
+                <img src="assets/doctor-belova.jpg" alt="Анна Белова, хирург-имплантолог" width="820" height="820" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="doctor-card__body">
+              <h3 class="doctor-card__name">Анна Белова</h3>
+              <div class="doctor-card__role">Хирург-имплантолог, стаж 14 лет</div>
+              <p class="doctor-card__bio">Проводит имплантацию любой сложности с гарантией результата.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews" class="section section--alt reviews">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-tag">Отзывы</div>
+          <h2 class="section-title">Что говорят наши пациенты</h2>
+        </div>
+
+        <div class="reviews__grid">
+          <article class="review-card reveal">
+            <div class="review-card__stars" aria-label="Оценка 5 из 5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+            </div>
+            <p class="review-card__text">«Впервые не боялась идти к стоматологу — врач всё объяснял по шагам. Результат отличный.»</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar">МК</div>
+              <div>
+                <div class="review-card__name">Мария К.</div>
+                <div class="review-card__detail">Лечение кариеса</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="review-card__stars" aria-label="Оценка 5 из 5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+            </div>
+            <p class="review-card__text">«Поставил имплант, всё прошло быстро и без боли. Персонал очень внимательный.»</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar">СП</div>
+              <div>
+                <div class="review-card__name">Сергей П.</div>
+                <div class="review-card__detail">Имплантация</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="review-card__stars" aria-label="Оценка 5 из 5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.5 7.2L12 18l-6.5 3.7 1.5-7.2-5.3-5 7.2-.9L12 2z"/></svg>
+            </div>
+            <p class="review-card__text">«Дочка перестала бояться зубного врача после этой клиники. Спасибо за терпение!»</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar">ОТ</div>
+              <div>
+                <div class="review-card__name">Ольга Т.</div>
+                <div class="review-card__detail">Детский приём</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner-wrap">
+      <div class="container">
+        <div class="cta-banner reveal">
+          <div>
+            <h2 class="cta-banner__title">Готовы улыбаться увереннее?</h2>
+            <p class="cta-banner__text">Оставьте номер — подберём удобное время и врача в течение 15 минут.</p>
+          </div>
+          <button type="button" class="btn btn--accent btn--lg" data-open-modal>Записаться на приём</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="section contacts">
+      <div class="container contacts__grid">
+        <div class="reveal">
+          <div class="section-tag">Контакты</div>
+          <h2 class="section-title section-title--left">Приходите — мы рядом</h2>
+
+          <div class="contacts__list">
+            <div class="contact-item">
+              <div class="contact-item__label">Адрес</div>
+              <div class="contact-item__value">г. Москва, ул. Садовая, д. 14, 1 этаж</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item__label">Телефон</div>
+              <div class="contact-item__value"><a href="tel:+74951234567">+7 (495) 123-45-67</a></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item__label">Часы работы</div>
+              <div class="contact-item__value">Пн–Сб: 9:00–21:00, Вс: 10:00–18:00</div>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="contact-form__field">
+              <input type="text" name="name" placeholder="Ваше имя" aria-label="Ваше имя" autocomplete="name" required>
+              <span class="contact-form__error"></span>
+            </div>
+            <div class="contact-form__field">
+              <input type="tel" name="phone" placeholder="Телефон" aria-label="Телефон" autocomplete="tel" required>
+              <span class="contact-form__error"></span>
+            </div>
+            <button type="submit" class="btn btn--accent">Отправить заявку</button>
+            <p class="contact-form__success" id="formSuccess" role="status">Заявка отправлена! Мы свяжемся с вами в течение 15 минут.</p>
+          </form>
+        </div>
+
+        <div class="contacts__map" id="mapContainer" data-map-src="https://yandex.ru/map-widget/v1/?ll=37.617300%2C55.755800&amp;z=16&amp;l=map&amp;pt=37.617300,55.755800,pm2rdm" data-map-title="Клиника «Ясный День» на карте, ул. Садовая, 14">
+          <button type="button" class="map-placeholder" id="mapPlaceholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.6" stroke="currentColor" stroke-width="1.6"/></svg>
+            Показать карту
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__top">
+      <div class="footer__about">
+        <div class="logo logo--footer">
+          <span class="logo__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3C9 3 6.5 5 6.5 8.5c0 2.5 1 3.6 1.3 6 .3 2.3.6 5 1.7 5 1.3 0 1.2-3.7 1.6-5.4.2-.8.5-1.1.9-1.1s.7.3.9 1.1c.4 1.7.3 5.4 1.6 5.4 1.1 0 1.4-2.7 1.7-5 .3-2.4 1.3-3.5 1.3-6C17.5 5 15 3 12 3Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="logo__text logo__text--light">Ясный День</span>
+        </div>
+        <p class="footer__desc">Стоматологическая клиника в Москве. Бережное лечение и честные цены с 2011 года.</p>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__heading">Разделы</div>
+        <a href="#services">Услуги</a>
+        <a href="#about">О клинике</a>
+        <a href="#doctors">Врачи</a>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__heading">Пациентам</div>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__heading">Связаться</div>
+        <div class="footer__contact"><a href="tel:+74951234567">+7 (495) 123-45-67</a></div>
+        <div class="footer__contact"><a href="mailto:hello@yasny-den.ru">hello@yasny-den.ru</a></div>
+      </div>
+    </div>
+    <div class="container footer__bottom">© 2026 Стоматология «Ясный День». Все права защищены.</div>
+  </footer>
+
+  <div class="modal" id="bookingModal" aria-hidden="true">
+    <div class="modal__overlay" data-close-modal></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button type="button" class="modal__close" data-close-modal aria-label="Закрыть">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <h3 class="modal__title" id="modalTitle">Записаться на приём</h3>
+      <p class="modal__text">Оставьте телефон — перезвоним в течение 15 минут и подберём удобное время.</p>
+      <form class="contact-form" id="modalForm" novalidate>
+        <div class="contact-form__field">
+          <input type="text" name="name" placeholder="Ваше имя" aria-label="Ваше имя" autocomplete="name" required>
+          <span class="contact-form__error"></span>
+        </div>
+        <div class="contact-form__field">
+          <input type="tel" name="phone" placeholder="Телефон" aria-label="Телефон" autocomplete="tel" required>
+          <span class="contact-form__error"></span>
+        </div>
+        <button type="submit" class="btn btn--accent">Отправить заявку</button>
+        <p class="contact-form__success" id="modalSuccess" role="status">Заявка отправлена! Мы свяжемся с вами в течение 15 минут.</p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js?v=2" defer></script>
+</body>
+</html>
