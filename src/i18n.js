@@ -27,8 +27,9 @@ const DICT = {
         'hero.title2': 'автоматизация.',
         'hero.lead': 'Делаю лендинги и многостраничные сайты, Telegram‑ботов и Mini Apps, 3D‑сайты на WebGL. Всё быстро грузится и аккуратно выглядит на любом экране.',
         'hero.cta': 'Смотреть проекты',
+        'hero.status': 'Открыт для новых проектов',
 
-        'about.h2': 'Привет! Я Егор Белов.',
+        'about.h2': 'Привет! Я Егор.',
         'about.lead': 'Fullstack-разработчик: закрываю проект целиком, от вёрстки до сервера. Пишу на чистом коде — HTML, Tailwind CSS, JavaScript — и подключаю тяжёлые библиотеки только там, где они реально нужны. Беру на себя весь цикл: интерфейс, логика, интеграции с API, деплой и поддержка.',
         'about.more': 'Подробнее обо мне →',
         'about.compTitle': 'Мои компетенции',
@@ -182,7 +183,7 @@ const DICT = {
         'form.errNet': 'Сеть недоступна. Напишите в Telegram или на почту.',
         'form.notWired': 'Форма ещё не подключена — напишите в Telegram или на почту.',
 
-        'footer.copy': '© 2026, Егор Белов. Все права защищены.',
+        'footer.copy': '© 2026, Егор. Все права защищены.',
         'nf.title': 'Страница не найдена — Егор Белов',
         'nf.h1': 'Такой страницы нет',
         'nf.text': 'Возможно, ссылка устарела или в адресе опечатка.',
@@ -269,8 +270,9 @@ const DICT = {
         'hero.title2': 'automation.',
         'hero.lead': 'I build landing pages and multi-page websites, Telegram bots and Mini Apps, and 3D websites with WebGL. Everything loads fast and looks clean on any screen.',
         'hero.cta': 'View projects',
+        'hero.status': 'Open for new projects',
 
-        'about.h2': "Hi! I'm Egor Belov.",
+        'about.h2': "Hi! I'm Egor.",
         'about.lead': 'Fullstack developer: I take a project end to end, from markup to server. I write plain code — HTML, Tailwind CSS, JavaScript — and reach for heavy libraries only where they genuinely earn their place. Interface, logic, API integrations, deployment and support are all on me.',
         'about.more': 'More about me →',
         'about.compTitle': 'What I do',
@@ -424,7 +426,7 @@ const DICT = {
         'form.errNet': 'Network unavailable. Message me on Telegram or by email.',
         'form.notWired': 'The form is not wired up yet — message me on Telegram or by email.',
 
-        'footer.copy': '© 2026, Egor Belov. All rights reserved.',
+        'footer.copy': '© 2026, Egor. All rights reserved.',
         'nf.title': 'Page not found — Egor Belov',
         'nf.h1': 'This page does not exist',
         'nf.text': 'The link may be outdated, or there is a typo in the address.',

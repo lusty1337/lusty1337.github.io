@@ -496,3 +496,88 @@
         filter: none;
     }
 }
+
+/* первый экран на телефоне. на 36px заголовок не доходил до краёв, и экран
+   читался как недогруженный. кегль считаем от ширины: "автоматизация." самое
+   длинное слово и должно встать в строку с полями по 16px */
+@media (max-width: 767px) {
+    /* низ секции отдан под строку статуса и линию прокрутки. без этого запаса
+       на коротких экранах кнопка садилась вплотную к статусу */
+    .hero {
+        padding-bottom: calc(8rem + env(safe-area-inset-bottom));
+    }
+
+    .hero h1 {
+        font-size: min(11.4vw, 3.25rem);
+    }
+
+    .hero-status {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: calc(4.75rem + env(safe-area-inset-bottom));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        font-size: 0.8125rem;
+        color: rgb(100 116 139);
+    }
+
+    .hero-dot {
+        position: relative;
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 9999px;
+        background: #2dd4bf;
+    }
+
+    .hero-dot::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: inherit;
+        animation: hero-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    /* тонкая линия с бегущим бликом вместо стрелки "листайте вниз" */
+    .hero-scroll {
+        position: absolute;
+        left: 50%;
+        bottom: calc(1.5rem + env(safe-area-inset-bottom));
+        width: 1px;
+        height: 2.5rem;
+        overflow: hidden;
+        background: rgb(148 163 184 / 0.3);
+    }
+
+    .hero-scroll::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 40%;
+        background: linear-gradient(to bottom, transparent, #22d3ee);
+        animation: hero-scroll 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+}
+
+@keyframes hero-ping {
+    75%, 100% {
+        transform: scale(2.6);
+        opacity: 0;
+    }
+}
+
+@keyframes hero-scroll {
+    from { top: -40%; }
+    to { top: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-dot::after,
+    .hero-scroll::after {
+        animation: none;
+    }
+}
