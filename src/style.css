@@ -460,3 +460,39 @@
         grid-template-columns: 8rem 1fr auto 1.5rem;
     }
 }
+
+/* баннер куки выезжает снизу с лёгким перелётом. visibility, а не hidden:
+   у display:none нет промежуточных кадров, и выход бы просто обрывался */
+.cookie-banner {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(32px) scale(0.94);
+    filter: blur(6px);
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        filter 0.5s ease,
+        visibility 0s linear 0.5s;
+}
+
+.cookie-banner.is-shown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    filter: none;
+    transition:
+        opacity 0.7s ease,
+        transform 1s cubic-bezier(0.34, 1.45, 0.5, 1),
+        filter 0.7s ease,
+        visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cookie-banner,
+    .cookie-banner.is-shown {
+        transform: none;
+        filter: none;
+    }
+}

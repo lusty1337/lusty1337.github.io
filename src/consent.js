@@ -70,15 +70,22 @@ function buildBanner() {
     document.body.appendChild(banner);
 }
 
+// пауза при первом заходе: баннер, который выскочил вместе со страницей, читается
+// как помеха. появившись чуть позже и движением, он замечается, но не перебивает
+const FIRST_DELAY = 1400;
+
 function showBanner() {
     if (!banner) buildBanner();
-    banner.hidden = false;
+    // чтение размера фиксирует начальное состояние только что вставленного баннера,
+    // иначе переход не сыграет. rAF тут не годится - в фоновой вкладке он не приходит
+    void banner.offsetWidth;
+    banner.classList.add('is-shown');
 }
 
 function decide(value) {
     const before = read();
     write(value);
-    banner.hidden = true;
+    banner.classList.remove('is-shown');
     if (value === 'granted') loadMetrika();
     else if (before === 'granted') { forgetMetrika(); location.reload(); }
 }
@@ -86,7 +93,7 @@ function decide(value) {
 export function initConsent() {
     const saved = read();
     if (saved === 'granted') loadMetrika();
-    else if (saved !== 'denied') showBanner();
+    else if (saved !== 'denied') setTimeout(showBanner, FIRST_DELAY);
 
     // кнопка "настройки куки" в подвале: решение можно поменять в любой момент
     document.querySelectorAll('[data-cookie-settings]').forEach((btn) => {

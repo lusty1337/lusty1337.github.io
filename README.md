@@ -62,7 +62,7 @@ Cost of a project like this: **$7,500 – 12,000**
 
 ---
 
-### [Keyboard Showcase — VOID65](https://egordev.com/void65/)
+### [VOID65](https://egordev.com/void65/)
 A promo page for a premium mechanical keyboard: the whole page is one continuous 3D scene. The keyboard is built in code, with no third-party models: seven layers, 68 keys, procedural PCB textures, and legends printed into the keycap material by a custom shader. The camera choreography is a pure function of scroll, so the scene plays equally smoothly forward and backward.
 
 `Three.js · R3F` `React` `GSAP` `TypeScript`
@@ -71,7 +71,7 @@ Cost of a project like this: **$4,500 – 7,500**
 
 ---
 
-### [Tin Master 3D](https://egordev.com/projects/tin-workshop-portfolio/index.html)
+### [ЖестьМастер](https://egordev.com/projects/tin-workshop-portfolio/index.html)
 A 3D configurator for a metalworking shop: camera controls, real-time metal color changes from the RAL palette, responsive down to phones.
 
 `Three.js · WebGL` `Tailwind CSS` `Vanilla JS`
@@ -143,7 +143,7 @@ Cost of a project like this: **$300 – 750**
 
 ---
 
-### [Creator Portfolio](https://egordev.com/projects/creator-landing-portfolio/index.html)
+### [Creator](https://egordev.com/projects/creator-landing-portfolio/index.html)
 A single-page portfolio landing with dark and light themes, modals, scroll animations and a validated form. Zero third-party libraries.
 
 `HTML5` `Tailwind CSS` `Vanilla JS`
@@ -235,7 +235,7 @@ Write to me — I'll reply within a day, and we'll discuss the task, timeline an
 
 ---
 
-### [Keyboard Showcase — VOID65](https://egordev.com/void65/)
+### [VOID65](https://egordev.com/void65/)
 Промо-страница премиальной механической клавиатуры: вся страница — одна непрерывная 3D-сцена. Клавиатура построена кодом, без сторонних моделей: семь слоёв, 68 клавиш, процедурные текстуры платы, надписи впечатаны в материал колпачка собственным шейдером. Хореография камеры — чистая функция от прокрутки, поэтому сцена идёт одинаково плавно вперёд и назад.
 
 `Three.js · R3F` `React` `GSAP` `TypeScript`
@@ -244,7 +244,7 @@ Write to me — I'll reply within a day, and we'll discuss the task, timeline an
 
 ---
 
-### [Tin Master 3D](https://egordev.com/projects/tin-workshop-portfolio/index.html)
+### [ЖестьМастер](https://egordev.com/projects/tin-workshop-portfolio/index.html)
 3D-конфигуратор для цеха металлообработки: управление камерой, смена цвета металла по палитре RAL в реальном времени, адаптив под телефон.
 
 `Three.js · WebGL` `Tailwind CSS` `Vanilla JS`
@@ -316,7 +316,7 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 
 ---
 
-### [Creator Portfolio](https://egordev.com/projects/creator-landing-portfolio/index.html)
+### [Creator](https://egordev.com/projects/creator-landing-portfolio/index.html)
 Одностраничный лендинг-портфолио с тёмной и светлой темой, модальными окнами, scroll-анимациями и формой с валидацией. Ноль сторонних библиотек.
 
 `HTML5` `Tailwind CSS` `Vanilla JS`
