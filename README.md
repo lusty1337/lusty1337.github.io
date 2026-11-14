@@ -56,7 +56,7 @@ A promo site for a fictional perfume house without a single image file. At its c
 
 `Three.js · WebGL` `GSAP` `Lenis` `TypeScript`
 
-Estimated cost of similar work: **$5,000 – 11,000**
+Cost of a project like this: **$7,500 – 12,000**
 
 ---
 
@@ -65,7 +65,7 @@ A promo page for a premium mechanical keyboard: the whole page is one continuous
 
 `Three.js · R3F` `React` `GSAP` `TypeScript`
 
-Estimated cost of similar work: **$3,500 – 17,000**
+Cost of a project like this: **$4,500 – 7,500**
 
 ---
 
@@ -74,7 +74,7 @@ A 3D configurator for a metalworking shop: camera controls, real-time metal colo
 
 `Three.js · WebGL` `Tailwind CSS` `Vanilla JS`
 
-Estimated cost of similar work: **$3,000 – 6,500**
+Cost of a project like this: **$2,400 – 4,500**
 
 ---
 
@@ -83,7 +83,7 @@ A Telegram Mini App — a flower shop with delivery: catalog, cart with promo co
 
 `Telegram WebApp API` `Vanilla JS` `CSS3`
 
-Estimated cost of similar work: **$1,200 – 3,000**
+Cost of a project like this: **$1,800 – 3,000**
 
 ---
 
@@ -92,7 +92,7 @@ A promo landing page for a pizzeria with a moody dark design: menu filtering by 
 
 `HTML5` `CSS3` `Vanilla JS`
 
-Estimated cost of similar work: **$1,000 – 2,800**
+Cost of a project like this: **$1,200 – 2,100**
 
 ---
 
@@ -101,7 +101,7 @@ A crypto dashboard: SPA navigation, live data from an exchange API, Chart.js cha
 
 `Vanilla JS · SPA` `Chart.js` `REST API`
 
-Estimated cost of similar work: **$1,800 – 4,500**
+Cost of a project like this: **$1,200 – 2,700**
 
 ---
 
@@ -110,7 +110,7 @@ A Windows desktop app: sorts files into folders in one click, undoes the operati
 
 `Python` `pywebview` `Desktop App`
 
-Estimated cost of similar work: **$1,500 – 3,800**
+Cost of a project like this: **$300 – 750**
 
 ---
 
@@ -119,7 +119,7 @@ A single-page portfolio landing with dark and light themes, modals, scroll anima
 
 `HTML5` `Tailwind CSS` `Vanilla JS`
 
-Estimated cost of similar work: **$800 – 2,200**
+Cost of a project like this: **$750 – 1,200**
 
 ---
 
@@ -199,7 +199,7 @@ Write to me — I'll reply within a day, and we'll discuss the task, timeline an
 
 `Three.js · WebGL` `GSAP` `Lenis` `TypeScript`
 
-Примерная стоимость такой работы: **230 000 – 450 000 ₽** · для западных клиентов $5 000 – 11 000
+Стоимость такого проекта: **250 000 – 400 000 ₽** · для зарубежных клиентов $7 500 – 12 000
 
 ---
 
@@ -208,7 +208,7 @@ Write to me — I'll reply within a day, and we'll discuss the task, timeline an
 
 `Three.js · R3F` `React` `GSAP` `TypeScript`
 
-Примерная стоимость такой работы: **150 000 – 450 000 ₽** · для западных клиентов $3 500 – 17 000
+Стоимость такого проекта: **150 000 – 250 000 ₽** · для зарубежных клиентов $4 500 – 7 500
 
 ---
 
@@ -217,7 +217,7 @@ Write to me — I'll reply within a day, and we'll discuss the task, timeline an
 
 `Three.js · WebGL` `Tailwind CSS` `Vanilla JS`
 
-Примерная стоимость такой работы: **80 000 – 150 000 ₽** · для западных клиентов $3 000 – 6 500
+Стоимость такого проекта: **80 000 – 150 000 ₽** · для зарубежных клиентов $2 400 – 4 500
 
 ---
 
@@ -226,7 +226,7 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 
 `Telegram WebApp API` `Vanilla JS` `CSS3`
 
-Примерная стоимость такой работы: **30 000 – 60 000 ₽** · для западных клиентов $1 200 – 3 000
+Стоимость такого проекта: **60 000 – 100 000 ₽** · для зарубежных клиентов $1 800 – 3 000
 
 ---
 
@@ -235,7 +235,7 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 
 `HTML5` `CSS3` `Vanilla JS`
 
-Примерная стоимость такой работы: **35 000 – 60 000 ₽** · для западных клиентов $1 000 – 2 800
+Стоимость такого проекта: **40 000 – 70 000 ₽** · для зарубежных клиентов $1 200 – 2 100
 
 ---
 
@@ -244,7 +244,7 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 
 `Vanilla JS · SPA` `Chart.js` `REST API`
 
-Примерная стоимость такой работы: **30 000 – 90 000 ₽** · для западных клиентов $1 800 – 4 500
+Стоимость такого проекта: **40 000 – 90 000 ₽** · для зарубежных клиентов $1 200 – 2 700
 
 ---
 
@@ -253,7 +253,7 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 
 `Python` `pywebview` `Desktop App`
 
-Примерная стоимость такой работы: **5 000 – 25 000 ₽** · для западных клиентов $1 500 – 3 800
+Стоимость такого проекта: **10 000 – 25 000 ₽** · для зарубежных клиентов $300 – 750
 
 ---
 
@@ -262,7 +262,7 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 
 `HTML5` `Tailwind CSS` `Vanilla JS`
 
-Примерная стоимость такой работы: **10 000 – 35 000 ₽** · для западных клиентов $800 – 2 200
+Стоимость такого проекта: **25 000 – 40 000 ₽** · для зарубежных клиентов $750 – 1 200
 
 ---
 
