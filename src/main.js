@@ -658,3 +658,27 @@ if (mobileBtn) {
         }
     });
 })();
+
+// обложки-петли играют, только пока карточка в кадре: четыре видео разом
+// грели бы телефон и тянули трафик ради того, чего никто не видит.
+// при "уменьшить движение" и экономии трафика остаётся неподвижный первый кадр
+(() => {
+    const loops = document.querySelectorAll('video.case-loop');
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = navigator.connection && navigator.connection.saveData;
+    if (!loops.length || still || saveData || !('IntersectionObserver' in window)) return;
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+            // play() отклоняется, если браузер всё же запретил автозапуск - тогда просто остаётся постер
+            if (isIntersecting) target.play().catch(() => {});
+            else target.pause();
+        });
+    }, { threshold: 0.35 });
+
+    loops.forEach((video) => {
+        // атрибута muted iOS не всегда достаточно для автозапуска, свойство надёжнее
+        video.muted = true;
+        io.observe(video);
+    });
+})();
