@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth overflow-x-hidden bg-[#FDFBF9] text-slate-600" data-title-key="ab.title">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Егор Белов — обо мне</title>
+
+    <link rel="canonical" href="https://egordev.com/about/">
+    <link rel="alternate" hreflang="ru" href="https://egordev.com/about/">
+    <link rel="alternate" hreflang="en" href="https://egordev.com/about/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://egordev.com/about/">
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="description" data-i18n-content="ab.desc" content="Егор Белов, fullstack-разработчик из Белгорода: как я пришёл в разработку, как работаю и как отношусь к нейросетям.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://egordev.com/about/">
+    <meta property="og:title" data-i18n-content="ab.title" content="Егор Белов — обо мне">
+    <meta property="og:description" data-i18n-content="ab.desc" content="Егор Белов, fullstack-разработчик из Белгорода: как я пришёл в разработку, как работаю и как отношусь к нейросетям.">
+    <meta property="og:image" content="https://egordev.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:site_name" content="Егор Белов">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://egordev.com/og-image.png">
+
+    <link rel="stylesheet" href="/src/style.css">
+    <!-- та же персона, что на главной: по @id поисковик склеит обе страницы в одного человека -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "url": "https://egordev.com/about/",
+      "mainEntity": { "@id": "https://egordev.com/#person" }
+    }
+    </script>
+    <!-- счётчик Яндекс.Метрики -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(111103163, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <!-- /счётчик Яндекс.Метрики -->
+    <script>
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('anim-on');
+        }
+    </script>
+</head>
+
+<body
+    class="font-sans antialiased overflow-x-hidden relative min-h-screen selection:bg-cyan-200 selection:text-cyan-900">
+    <noscript><div><img src="https://mc.yandex.ru/watch/111103163" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-100/40 blur-[120px]"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-teal-100/30 blur-[150px]">
+        </div>
+    </div>
+
+    <!-- шапка как на главной, только якоря ведут обратно на неё -->
+    <header
+        class="page-fade w-full py-3 md:py-6 px-4 md:px-6 fixed top-0 z-[60] bg-[#FDFBF9]/80 md:bg-[#FDFBF9]/50 backdrop-blur-md md:backdrop-blur-xl border-b border-white/50 transition-all duration-700 ease-out">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative z-[61] md:grid md:grid-cols-[1fr_auto_1fr]">
+            <a href="/" data-i18n="brand"
+                class="text-xl md:text-2xl font-black text-slate-900 tracking-tighter hover:opacity-70 transition-opacity duration-700">Егор.</a>
+            <nav class="hidden md:flex gap-12">
+                <a href="/" data-i18n="nav.home"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Главная</a>
+                <a href="/about/" data-i18n="nav.about" aria-current="page"
+                    class="text-sm font-medium text-cyan-500 transition-colors duration-700">Обо мне</a>
+                <a href="/#projects" data-i18n="nav.projects"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Проекты</a>
+                <a href="/#pricing" data-i18n="nav.pricing"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Цены</a>
+                <a href="/#contact" data-i18n="nav.contact"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Связь</a>
+            </nav>
+            <div class="flex items-center gap-2 md:gap-3 md:justify-self-end">
+                <button type="button" data-lang-switch class="lang-toggle" aria-label="Switch to English">
+                    <span class="lang-toggle-knob" aria-hidden="true"></span>
+                    <span class="lang-toggle-opt" data-lang-opt="ru">RU</span>
+                    <span class="lang-toggle-opt" data-lang-opt="en">EN</span>
+                </button>
+                <a href="/#contact" data-i18n="nav.cta"
+                    class="btn-water hidden md:inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-semibold text-sm shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:shadow-[0_0_50px_rgba(34,211,238,0.5)] transition-all duration-700 ease-out">
+                    Начать проект
+                </a>
+                <button id="mobile-menu-btn" data-i18n-aria="nav.menu" aria-label="Открыть меню" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+                    <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                    <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                    <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="fixed inset-0 bg-[#FDFBF9]/95 backdrop-blur-lg z-[60] flex flex-col items-center justify-center gap-10 opacity-0 pointer-events-none transition-all duration-500 h-screen">
+            <nav class="flex flex-col items-center gap-8 text-2xl font-medium text-slate-800">
+                <a href="/" data-i18n="nav.home" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Главная</a>
+                <a href="/about/" data-i18n="nav.about" aria-current="page" class="mobile-link text-cyan-500 transition-colors duration-300">Обо мне</a>
+                <a href="/#projects" data-i18n="nav.projects" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Проекты</a>
+                <a href="/#pricing" data-i18n="nav.pricing" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Цены</a>
+                <a href="/#contact" data-i18n="nav.contact" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Связь</a>
+            </nav>
+            <a href="/#contact" data-i18n="nav.cta" class="mobile-link btn-water inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-semibold text-base shadow-[0_0_30px_rgba(34,211,238,0.3)] mt-4">
+                Начать проект
+            </a>
+        </div>
+    </header>
+
+    <!-- одна узкая колонка: страницу читают как письмо, а не сканируют как витрину -->
+    <main class="page-fade relative z-10 w-full overflow-hidden px-4 md:px-6 pt-28 md:pt-44 pb-16 md:pb-28">
+        <div class="max-w-3xl mx-auto space-y-16 md:space-y-28">
+
+            <section class="reveal">
+                <a href="/" data-i18n="ab.back"
+                    class="inline-block mb-8 md:mb-12 text-sm font-medium text-slate-400 hover:text-cyan-500 transition-colors duration-700">← На главную</a>
+                <p data-i18n="ab.eyebrow" class="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-cyan-500 mb-3 md:mb-5">Обо мне</p>
+                <h1 data-i18n="ab.name"
+                    class="text-5xl xs:text-6xl md:text-8xl font-black text-slate-900 tracking-tighter leading-[0.95] mb-5 md:mb-8">Егор Белов</h1>
+                <p data-i18n="ab.lead" class="text-lg md:text-2xl text-slate-500 font-light leading-relaxed">Fullstack-разработчик из Белгорода. Делаю чистые и быстрые сайты, Telegram-ботов и 3D в браузере.</p>
+            </section>
+
+            <section class="reveal">
+                <h2 data-i18n="ab.storyH" class="text-2xl md:text-4xl font-black text-slate-900 tracking-tight mb-5 md:mb-8">Как я пришёл в разработку</h2>
+                <div class="space-y-4 md:space-y-5 text-base md:text-lg leading-relaxed">
+                    <p data-i18n="ab.story1">Начинал с C#, потому что хотел делать игры на Unity. Игры не сложились, а язык остался. От C# до Java недалеко, и на Java я написал плагины для своего сервера в Minecraft и какое-то время его поддерживал. Сейчас сервер готовится ко второму сезону.</p>
+                    <p data-i18n="ab.story2">На плагинах я понял, что мне нравится делать вещи своими руками. Тогда я присмотрелся к сайтам вокруг. Большинство были перегружены текстом и баннерами, глаз уставал уже через минуту. Меня зацепил минимализм Apple: много воздуха и ничего лишнего. Захотел делать так же и перешёл на HTML, CSS и JavaScript.</p>
+                    <p data-i18n="ab.story3">Нигде не учился, всё осваивал сам. Программирую около полутора лет.</p>
+                </div>
+            </section>
+
+            <section class="reveal">
+                <h2 data-i18n="ab.honestH" class="text-2xl md:text-4xl font-black text-slate-900 tracking-tight mb-5 md:mb-8">Честно о себе</h2>
+                <p data-i18n="ab.honest" class="text-base md:text-lg leading-relaxed">Я в коммерческой разработке недавно, и отзывов от заказчиков у меня пока нет. Поэтому каждый проект для меня — лицо портфолио. Я делаю его так, чтобы следующему клиенту было что показать.</p>
+            </section>
+
+            <section class="reveal">
+                <h2 data-i18n="ab.diffH" class="text-2xl md:text-4xl font-black text-slate-900 tracking-tight mb-6 md:mb-10">Чем я отличаюсь</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8 md:gap-y-10">
+                    <div class="border-t border-slate-900/10 pt-5">
+                        <h3 data-i18n="ab.diff1t" class="text-lg md:text-xl font-bold text-slate-900 mb-2">Свой стиль</h3>
+                        <p data-i18n="ab.diff1" class="text-sm md:text-base leading-relaxed text-slate-500">Чистые страницы без перегруза: много воздуха и ничего, что отвлекает от главного.</p>
+                    </div>
+                    <div class="border-t border-slate-900/10 pt-5">
+                        <h3 data-i18n="ab.diff2t" class="text-lg md:text-xl font-bold text-slate-900 mb-2">Ничего не скрываю</h3>
+                        <p data-i18n="ab.diff2" class="text-sm md:text-base leading-relaxed text-slate-500">Цены опубликованы и объяснены. Исходный код каждого кейса лежит на GitHub: можно посмотреть, как всё устроено внутри.</p>
+                    </div>
+                    <div class="border-t border-slate-900/10 pt-5">
+                        <h3 data-i18n="ab.diff3t" class="text-lg md:text-xl font-bold text-slate-900 mb-2">Весь проект в одних руках</h3>
+                        <p data-i18n="ab.diff3" class="text-sm md:text-base leading-relaxed text-slate-500">Вёрстка, сервер, Telegram-боты и 3D в браузере. Не нужно искать трёх разных исполнителей.</p>
+                    </div>
+                    <div class="border-t border-slate-900/10 pt-5">
+                        <h3 data-i18n="ab.diff4t" class="text-lg md:text-xl font-bold text-slate-900 mb-2">Понятные условия</h3>
+                        <p data-i18n="ab.diff4" class="text-sm md:text-base leading-relaxed text-slate-500">Цена разбита по этапам, предоплата 50%, после сдачи месяц бесплатных правок.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reveal">
+                <h2 data-i18n="ab.processH" class="text-2xl md:text-4xl font-black text-slate-900 tracking-tight mb-6 md:mb-10">Как я работаю</h2>
+                <ol class="border-t border-slate-900/10">
+                    <li class="grid grid-cols-[2.5rem_1fr] md:grid-cols-[4rem_1fr] gap-x-2 py-5 md:py-6 border-b border-slate-900/10">
+                        <span class="text-sm md:text-base font-black text-cyan-500 pt-0.5" aria-hidden="true">01</span>
+                        <div>
+                            <h3 data-i18n="ab.step1t" class="text-base md:text-lg font-bold text-slate-900 mb-1">Знакомимся</h3>
+                            <p data-i18n="ab.step1" class="text-sm md:text-base leading-relaxed text-slate-500">Расспрашиваю о задаче, сроках и примерах, которые вам нравятся.</p>
+                        </div>
+                    </li>
+                    <li class="grid grid-cols-[2.5rem_1fr] md:grid-cols-[4rem_1fr] gap-x-2 py-5 md:py-6 border-b border-slate-900/10">
+                        <span class="text-sm md:text-base font-black text-cyan-500 pt-0.5" aria-hidden="true">02</span>
+                        <div>
+                            <h3 data-i18n="ab.step2t" class="text-base md:text-lg font-bold text-slate-900 mb-1">План и смета</h3>
+                            <p data-i18n="ab.step2" class="text-sm md:text-base leading-relaxed text-slate-500">Расписываю работу по этапам, у каждого своя цена. Начинаем, когда всё согласовано.</p>
+                        </div>
+                    </li>
+                    <li class="grid grid-cols-[2.5rem_1fr] md:grid-cols-[4rem_1fr] gap-x-2 py-5 md:py-6 border-b border-slate-900/10">
+                        <span class="text-sm md:text-base font-black text-cyan-500 pt-0.5" aria-hidden="true">03</span>
+                        <div>
+                            <h3 data-i18n="ab.step3t" class="text-base md:text-lg font-bold text-slate-900 mb-1">Предоплата 50%</h3>
+                            <p data-i18n="ab.step3" class="text-sm md:text-base leading-relaxed text-slate-500">Остальное — после сдачи.</p>
+                        </div>
+                    </li>
+                    <li class="grid grid-cols-[2.5rem_1fr] md:grid-cols-[4rem_1fr] gap-x-2 py-5 md:py-6 border-b border-slate-900/10">
+                        <span class="text-sm md:text-base font-black text-cyan-500 pt-0.5" aria-hidden="true">04</span>
+                        <div>
+                            <h3 data-i18n="ab.step4t" class="text-base md:text-lg font-bold text-slate-900 mb-1">Показываю по ходу</h3>
+                            <p data-i18n="ab.step4" class="text-sm md:text-base leading-relaxed text-slate-500">Вы видите промежуточный результат и можете поменять направление, пока работа не закончена.</p>
+                        </div>
+                    </li>
+                    <li class="grid grid-cols-[2.5rem_1fr] md:grid-cols-[4rem_1fr] gap-x-2 py-5 md:py-6 border-b border-slate-900/10">
+                        <span class="text-sm md:text-base font-black text-cyan-500 pt-0.5" aria-hidden="true">05</span>
+                        <div>
+                            <h3 data-i18n="ab.step5t" class="text-base md:text-lg font-bold text-slate-900 mb-1">Сдача и месяц поддержки</h3>
+                            <p data-i18n="ab.step5" class="text-sm md:text-base leading-relaxed text-slate-500">Месяц правок бесплатно и помощь, если что-то пойдёт не так.</p>
+                        </div>
+                    </li>
+                </ol>
+                <p data-i18n="ab.hours" class="mt-5 md:mt-6 text-sm md:text-base text-slate-500">На связи с 9:00 до 22:00 по Москве, отвечаю как можно быстрее.</p>
+            </section>
+
+            <section class="reveal">
+                <h2 data-i18n="ab.aiH" class="text-2xl md:text-4xl font-black text-slate-900 tracking-tight mb-6 md:mb-10">Моё отношение к нейросетям</h2>
+                <blockquote class="border-l-2 border-cyan-400 pl-5 md:pl-8 mb-6 md:mb-8">
+                    <p data-i18n="ab.ai1" class="text-xl md:text-3xl font-light text-slate-800 leading-snug">Отношусь хорошо. Нейросеть — это инструмент, как молоток. Гвоздь можно забить и рукой, но молотком быстрее, если умеешь им пользоваться и не бьёшь себя по пальцам.</p>
+                </blockquote>
+                <p data-i18n="ab.ai2" class="text-base md:text-lg leading-relaxed">Пользуюсь ли я нейросетями? Да, но с головой. Они ускоряют рутину, а решения и качество остаются на мне: я знаю, что делаю, и отвечаю за каждую строчку в проекте.</p>
+            </section>
+
+            <section class="reveal">
+                <h2 data-i18n="ab.musicH" class="text-2xl md:text-4xl font-black text-slate-900 tracking-tight mb-5 md:mb-8">Музыка</h2>
+                <p data-i18n="ab.music" class="text-base md:text-lg leading-relaxed mb-6">Кроме кода, пишу биты. Все они авторские, выкладываю их в свой канал.</p>
+                <a href="https://t.me/lusty1337mp3" target="_blank" rel="noopener noreferrer"
+                    class="btn-water inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/70 border border-white/60 text-slate-700 text-sm md:text-base font-semibold shadow-xl shadow-cyan-900/5 hover:text-cyan-500 hover:border-cyan-300 transition-all duration-700 ease-out">
+                    lusty.mp3 <span aria-hidden="true">→</span>
+                </a>
+            </section>
+
+            <section class="reveal">
+                <h2 data-i18n="ab.findH" class="text-2xl md:text-4xl font-black text-slate-900 tracking-tight mb-5 md:mb-8">Где ещё меня найти</h2>
+                <!-- строки как в архиве проектов на главной, чтобы страницы говорили на одном языке -->
+                <ul class="archive archive--narrow">
+                    <li>
+                        <a class="archive-row" href="https://t.me/lusty1337" target="_blank" rel="noopener noreferrer">
+                            <span class="archive-name">Telegram</span>
+                            <span data-i18n="ab.tg" class="archive-short">Для связи.</span>
+                            <span class="archive-kind">@lusty1337</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="archive-row" href="https://t.me/dev1337html" target="_blank" rel="noopener noreferrer">
+                            <span class="archive-name">lusty.html</span>
+                            <span data-i18n="ab.dev" class="archive-short">Канал про разработку: работы изнутри и мысли о них.</span>
+                            <span class="archive-kind">Telegram</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="archive-row" href="https://www.youtube.com/@lustyinyourmind" target="_blank" rel="noopener noreferrer">
+                            <span class="archive-name">YouTube</span>
+                            <span data-i18n="ab.yt" class="archive-short">Летсплеи с друзьями и всё, что для души.</span>
+                            <span class="archive-kind">@lustyinyourmind</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="archive-row" href="https://www.tiktok.com/@1337lusty" target="_blank" rel="noopener noreferrer">
+                            <span class="archive-name">TikTok</span>
+                            <span data-i18n="ab.tt" class="archive-short">Тоже для души. К работе не относится, но это тоже я.</span>
+                            <span class="archive-kind">@1337lusty</span>
+                            <span class="archive-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="reveal text-center pt-4">
+                <h2 data-i18n="ab.ctaH" class="text-3xl md:text-6xl font-black text-slate-900 tracking-tight mb-3 md:mb-6">Есть задача?</h2>
+                <p data-i18n="ab.ctaLead" class="text-base md:text-xl text-slate-500 font-light mb-8 md:mb-10">Напишите в Telegram или оставьте заявку, отвечу в течение дня.</p>
+                <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+                    <a href="https://t.me/lusty1337" target="_blank" rel="noopener noreferrer"
+                        class="btn-water inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white text-sm md:text-base font-semibold shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:shadow-[0_0_50px_rgba(34,211,238,0.5)] transition-all duration-700 ease-out">
+                        Telegram
+                    </a>
+                    <a href="/#contact" data-i18n="ab.ctaForm"
+                        class="btn-water inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-white/70 border border-white/60 text-slate-700 text-sm md:text-base font-semibold shadow-xl shadow-cyan-900/5 hover:text-cyan-500 hover:border-cyan-300 transition-all duration-700 ease-out">
+                        Оставить заявку
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="page-fade pt-8 md:pt-12 pb-4 md:pb-6 border-t border-white/50 text-center">
+        <p data-i18n="footer.copy" class="text-slate-500 font-medium">© 2026, Егор Белов. Все права защищены.</p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

@@ -452,3 +452,11 @@
     background-color: rgba(6, 182, 212, 0.06);
     font-weight: 600;
 }
+
+/* на странице "обо мне" колонка текста в два раза уже главной, и сетка архива
+   с колонками 14rem и 13rem сжимает описание до переносов на каждой строке */
+@media (min-width: 768px) {
+    .archive--narrow .archive-row {
+        grid-template-columns: 8rem 1fr auto 1.5rem;
+    }
+}
