@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth overflow-x-hidden bg-[#FDFBF9] text-slate-600" data-title-key="pv.title">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности — Егор Белов</title>
+
+    <link rel="canonical" href="https://egordev.com/privacy/">
+    <link rel="alternate" hreflang="ru" href="https://egordev.com/privacy/">
+    <link rel="alternate" hreflang="en" href="https://egordev.com/privacy/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://egordev.com/privacy/">
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta name="description" data-i18n-content="pv.desc" content="Как сайт egordev.com обрабатывает персональные данные: форма заявки, куки и Яндекс.Метрика.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://egordev.com/privacy/">
+    <meta property="og:title" data-i18n-content="pv.title" content="Политика конфиденциальности — Егор Белов">
+    <meta property="og:description" data-i18n-content="pv.desc" content="Как сайт egordev.com обрабатывает персональные данные: форма заявки, куки и Яндекс.Метрика.">
+    <meta property="og:image" content="https://egordev.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:site_name" content="Егор Белов">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://egordev.com/og-image.png">
+
+    <link rel="stylesheet" href="/src/style.css">
+    <script>
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('anim-on');
+        }
+    </script>
+</head>
+
+<body
+    class="font-sans antialiased overflow-x-hidden relative min-h-screen selection:bg-cyan-200 selection:text-cyan-900">
+
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-100/40 blur-[120px]"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-teal-100/30 blur-[150px]">
+        </div>
+    </div>
+
+    <!-- шапка как на главной, только якоря ведут обратно на неё -->
+    <header
+        class="page-fade w-full py-3 md:py-6 px-4 md:px-6 fixed top-0 z-[60] bg-[#FDFBF9]/80 md:bg-[#FDFBF9]/50 backdrop-blur-md md:backdrop-blur-xl border-b border-white/50 transition-all duration-700 ease-out">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative z-[61] md:grid md:grid-cols-[1fr_auto_1fr]">
+            <a href="/" data-i18n="brand"
+                class="text-xl md:text-2xl font-black text-slate-900 tracking-tighter hover:opacity-70 transition-opacity duration-700">Егор.</a>
+            <nav class="hidden md:flex gap-12">
+                <a href="/" data-i18n="nav.home"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Главная</a>
+                <a href="/about/" data-i18n="nav.about"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Обо мне</a>
+                <a href="/#projects" data-i18n="nav.projects"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Проекты</a>
+                <a href="/#pricing" data-i18n="nav.pricing"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Цены</a>
+                <a href="/#contact" data-i18n="nav.contact"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Связь</a>
+            </nav>
+            <div class="flex items-center gap-2 md:gap-3 md:justify-self-end">
+                <button type="button" data-lang-switch class="lang-toggle" aria-label="Switch to English">
+                    <span class="lang-toggle-knob" aria-hidden="true"></span>
+                    <span class="lang-toggle-opt" data-lang-opt="ru">RU</span>
+                    <span class="lang-toggle-opt" data-lang-opt="en">EN</span>
+                </button>
+                <a href="/#contact" data-i18n="nav.cta"
+                    class="btn-water hidden md:inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-semibold text-sm shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:shadow-[0_0_50px_rgba(34,211,238,0.5)] transition-all duration-700 ease-out">
+                    Начать проект
+                </a>
+                <button id="mobile-menu-btn" data-i18n-aria="nav.menu" aria-label="Открыть меню" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+                    <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                    <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                    <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="fixed inset-0 bg-[#FDFBF9]/95 backdrop-blur-lg z-[60] flex flex-col items-center justify-center gap-10 opacity-0 pointer-events-none transition-all duration-500 h-screen">
+            <nav class="flex flex-col items-center gap-8 text-2xl font-medium text-slate-800">
+                <a href="/" data-i18n="nav.home" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Главная</a>
+                <a href="/about/" data-i18n="nav.about" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Обо мне</a>
+                <a href="/#projects" data-i18n="nav.projects" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Проекты</a>
+                <a href="/#pricing" data-i18n="nav.pricing" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Цены</a>
+                <a href="/#contact" data-i18n="nav.contact" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Связь</a>
+            </nav>
+            <a href="/#contact" data-i18n="nav.cta" class="mobile-link btn-water inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-semibold text-base shadow-[0_0_30px_rgba(34,211,238,0.3)] mt-4">
+                Начать проект
+            </a>
+        </div>
+    </header>
+
+    <!-- документ живёт на обоих языках в одной разметке: переключатель прячет неактивный блок через data-lang-only -->
+    <main class="page-fade relative z-10 w-full overflow-hidden px-4 md:px-6 pt-28 md:pt-44 pb-16 md:pb-28">
+        <div class="max-w-3xl mx-auto">
+            <a href="/" data-i18n="ab.back"
+                class="inline-block mb-8 md:mb-12 text-sm font-medium text-slate-400 hover:text-cyan-500 transition-colors duration-700">← На главную</a>
+
+            <div data-lang-only="ru">
+                <h1 class="text-3xl xs:text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-[1.05] mb-3 md:mb-5">Политика обработки персональных данных</h1>
+                <p class="text-sm text-slate-400 mb-8 md:mb-10">Редакция от 14 ноября 2026 г.</p>
+                <div class="legal space-y-3 text-base md:text-lg leading-relaxed text-slate-600">
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">1. Общие положения</h2>
+                    <p>1.1. Политика описывает, как обрабатываются персональные данные посетителей сайта egordev.com (далее — Сайт). Она составлена в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
+                    <p>1.2. Оператор персональных данных — Белов Егор (далее — Оператор). Контакт по вопросам персональных данных: <a href="mailto:hellolusty@proton.me" class="text-cyan-600 hover:text-teal-600 underline underline-offset-2">hellolusty@proton.me</a>.</p>
+                    <p>1.3. Политика опубликована в свободном доступе по адресу https://egordev.com/privacy/.</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">2. Какие данные обрабатываются</h2>
+                    <p>2.1. Данные из формы заявки: имя, адрес электронной почты, выбранный тип задачи, описание задачи и всё, что вы сами в нём укажете.</p>
+                    <p>2.2. Технические данные — только если вы разрешили куки (раздел 5): идентификатор в файлах куки, IP-адрес, сведения о браузере и устройстве, адреса просмотренных страниц, источник перехода, клики.</p>
+                    <p>2.3. Если вы пишете Оператору напрямую в Telegram или на почту, обрабатываются данные, которые вы сами сообщили в переписке.</p>
+                    <p>2.4. Оператор не собирает специальные категории персональных данных и биометрические данные. Пожалуйста, не указывайте их в описании задачи.</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">3. Цели и правовые основания</h2>
+                    <ul class="list-disc pl-5 space-y-1.5"><li>Ответить на заявку, обсудить задачу, подготовить предложение и договор. Основания: ваше согласие (п. 1 ч. 1 ст. 6 152-ФЗ) и заключение договора по вашей инициативе (п. 5 ч. 1 ст. 6 152-ФЗ).</li><li>Вести статистику посещений, чтобы улучшать Сайт. Основание: ваше согласие на куки.</li></ul>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">4. Как обрабатываются данные</h2>
+                    <p>4.1. С данными совершаются действия: сбор, запись, систематизация, накопление, хранение, уточнение, извлечение, использование, передача (предоставление, доступ), удаление, уничтожение. Обработка ведётся с использованием средств автоматизации и без них.</p>
+                    <p>4.2. Заявка из формы передаётся через сервис Web3Forms (США) и приходит на почтовый ящик Оператора в сервисе Proton Mail (Швейцария). Отправляя форму, вы соглашаетесь на трансграничную передачу данных в эти страны.</p>
+                    <p>4.3. Сайт размещён на GitHub Pages (GitHub, Inc., США). Хостинг может технически обрабатывать IP-адрес посетителя, чтобы доставить страницу.</p>
+                    <p>4.4. Данные не продаются и не передаются третьим лицам для рекламы.</p>
+                    <p>4.5. Данные заявки хранятся до достижения цели обработки, но не дольше одного года с вашего последнего обращения, либо до отзыва согласия. После этого они удаляются.</p>
+                    <p>4.6. Оператор принимает необходимые правовые, организационные и технические меры, чтобы защитить данные от неправомерного или случайного доступа, изменения и уничтожения.</p>
+                    <h2 id="cookies" class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">5. Куки и Яндекс.Метрика</h2>
+                    <p>5.1. Сайт использует сервис веб-аналитики Яндекс.Метрика (ООО «ЯНДЕКС», Россия). Метрика ставит файлы куки и собирает данные из п. 2.2. Запись сессий (Вебвизор) отключена.</p>
+                    <p>5.2. Метрика включается только после того, как вы нажмёте «Принять» в баннере. Если вы отказались, счётчик не загружается.</p>
+                    <p>5.3. Решение можно изменить в любой момент кнопкой «Настройки куки» внизу страницы. Также куки можно запретить в настройках браузера.</p>
+                    <p>5.4. Сайт хранит в вашем браузере выбранный язык и решение о куки (localStorage). Эти сведения не покидают ваше устройство.</p>
+                    <p>5.5. Демонстрационные проекты в разделе «Проекты» могут загружать шрифты Google Fonts (Google LLC, США) и Яндекс.Карты (ООО «ЯНДЕКС», Россия). Эти сервисы получают ваш IP-адрес и обрабатывают его по своим правилам.</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">6. Ваши права</h2>
+                    <ul class="list-disc pl-5 space-y-1.5"><li>получить сведения об обработке ваших данных;</li><li>потребовать уточнить, заблокировать или удалить данные;</li><li>отозвать согласие на обработку;</li><li>обжаловать действия Оператора в Роскомнадзоре или в суде.</li></ul>
+                    <p>Запросы направляйте на <a href="mailto:hellolusty@proton.me" class="text-cyan-600 hover:text-teal-600 underline underline-offset-2">hellolusty@proton.me</a>. Оператор отвечает в течение 10 рабочих дней. После отзыва согласия обработка прекращается, а данные уничтожаются в течение 30 дней, если нет других законных оснований для их хранения.</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">7. Изменения политики</h2>
+                    <p>Оператор может обновлять Политику. Актуальная редакция всегда доступна по этому адресу, дата редакции указана в начале документа.</p>
+                </div>
+            </div>
+
+            <div data-lang-only="en" hidden>
+                <h1 class="text-3xl xs:text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-[1.05] mb-3 md:mb-5">Personal Data Processing Policy</h1>
+                <p class="text-sm text-slate-400 mb-8 md:mb-10">Revision of 14 November 2026</p>
+                <div class="legal space-y-3 text-base md:text-lg leading-relaxed text-slate-600">
+                    <p>This is an English translation provided for convenience. In case of any discrepancy, the Russian version prevails.</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">1. General provisions</h2>
+                    <p>1.1. This Policy explains how personal data of visitors to egordev.com (the Site) is processed. It is drawn up in accordance with Russian Federal Law No. 152-FZ of 27 July 2006 "On Personal Data".</p>
+                    <p>1.2. The data controller is Egor Belov (the Controller). Contact for personal data questions: <a href="mailto:hellolusty@proton.me" class="text-cyan-600 hover:text-teal-600 underline underline-offset-2">hellolusty@proton.me</a>.</p>
+                    <p>1.3. The Policy is publicly available at https://egordev.com/privacy/.</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">2. What data is processed</h2>
+                    <p>2.1. Data from the request form: name, email address, the selected task type, the task description and anything you choose to include in it.</p>
+                    <p>2.2. Technical data, only if you allowed cookies (section 5): a cookie identifier, IP address, browser and device details, pages viewed, referrer and clicks.</p>
+                    <p>2.3. If you contact the Controller directly on Telegram or by email, the data you share in that conversation is processed.</p>
+                    <p>2.4. The Controller does not collect special categories of personal data or biometric data. Please do not include them in your task description.</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">3. Purposes and legal grounds</h2>
+                    <ul class="list-disc pl-5 space-y-1.5"><li>To reply to your request, discuss the task, and prepare a proposal and a contract. Grounds: your consent and entering into a contract at your request.</li><li>To keep visit statistics and improve the Site. Grounds: your consent to cookies.</li></ul>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">4. How data is processed</h2>
+                    <p>4.1. Data may be collected, recorded, organised, stored, updated, retrieved, used, transferred (provided, accessed), deleted and destroyed, both with and without automated means.</p>
+                    <p>4.2. Form requests are delivered through Web3Forms (USA) to the Controller's Proton Mail mailbox (Switzerland). By submitting the form you agree to the cross-border transfer of your data to these countries.</p>
+                    <p>4.3. The Site is hosted on GitHub Pages (GitHub, Inc., USA). The host may technically process visitors' IP addresses to deliver pages.</p>
+                    <p>4.4. Data is never sold or shared with third parties for advertising.</p>
+                    <p>4.5. Request data is kept until its purpose is achieved, but no longer than one year after your last contact, or until you withdraw consent. It is then deleted.</p>
+                    <p>4.6. The Controller takes the necessary legal, organisational and technical measures to protect data from unauthorised or accidental access, alteration and destruction.</p>
+                    <h2 id="cookies-en" class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">5. Cookies and Yandex Metrica</h2>
+                    <p>5.1. The Site uses the Yandex Metrica web analytics service (YANDEX LLC, Russia). Metrica sets cookies and collects the data listed in 2.2. Session recording (Webvisor) is turned off.</p>
+                    <p>5.2. Metrica starts only after you click "Accept" in the banner. If you decline, the counter is not loaded.</p>
+                    <p>5.3. You can change your choice at any time with the "Cookie settings" button at the bottom of the page, or block cookies in your browser settings.</p>
+                    <p>5.4. The Site stores your language choice and cookie decision in your browser (localStorage). This information never leaves your device.</p>
+                    <p>5.5. Demo projects in the Projects section may load Google Fonts (Google LLC, USA) and Yandex Maps (YANDEX LLC, Russia). These services receive your IP address and process it under their own policies.</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">6. Your rights</h2>
+                    <ul class="list-disc pl-5 space-y-1.5"><li>to get information about how your data is processed;</li><li>to have your data corrected, blocked or deleted;</li><li>to withdraw your consent;</li><li>to lodge a complaint with Roskomnadzor (the Russian data protection authority) or a court.</li></ul>
+                    <p>Send requests to <a href="mailto:hellolusty@proton.me" class="text-cyan-600 hover:text-teal-600 underline underline-offset-2">hellolusty@proton.me</a>. The Controller replies within 10 working days. After consent is withdrawn, processing stops and the data is destroyed within 30 days unless another legal ground requires keeping it.</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mt-10 md:mt-14 mb-3 md:mb-4 scroll-mt-28">7. Changes to this Policy</h2>
+                    <p>The Controller may update this Policy. The current version is always available at this address, with the revision date shown at the top.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="page-fade pt-8 md:pt-12 pb-4 md:pb-6 border-t border-white/50 text-center">
+        <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-3 md:mb-4 px-4 text-sm text-slate-400">
+            <a href="/privacy/" data-i18n="footer.privacy" class="hover:text-cyan-500 transition-colors duration-300">Политика конфиденциальности</a>
+            <a href="/consent/" data-i18n="footer.consent" class="hover:text-cyan-500 transition-colors duration-300">Согласие на обработку данных</a>
+            <button type="button" data-cookie-settings data-i18n="footer.cookies" class="hover:text-cyan-500 transition-colors duration-300">Настройки куки</button>
+        </nav>
+        <p data-i18n="footer.copy" class="text-slate-500 font-medium">© 2026, Егор Белов. Все права защищены.</p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

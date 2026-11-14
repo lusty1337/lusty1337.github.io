@@ -1,11 +1,13 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { t, apply as applyI18n, initLangSwitch } from './i18n.js'
+import { initConsent } from './consent.js'
 
 // язык подставляем до всего остального: секции ещё скрыты классом anim-on,
 // поэтому подмена текста не мелькает перед глазами
 applyI18n();
 initLangSwitch();
+initConsent();
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -447,6 +449,7 @@ if (mobileBtn) {
         if (!data.name.trim()) return say(t('form.errName'), false);
         if (!EMAIL_RE.test(data.email.trim())) return say(t('form.errEmail'), false);
         if (data.message.trim().length < 10) return say(t('form.errMessage'), false);
+        if (!data.consent) return say(t('form.errConsent'), false);
 
         submit.disabled = true;
         submit.textContent = t('form.sending');

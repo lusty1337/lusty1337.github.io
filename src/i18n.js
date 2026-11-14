@@ -183,6 +183,20 @@ const DICT = {
         'form.notWired': 'Форма ещё не подключена — напишите в Telegram или на почту.',
 
         'footer.copy': '© 2026, Егор Белов. Все права защищены.',
+        'footer.privacy': 'Политика конфиденциальности',
+        'footer.consent': 'Согласие на обработку данных',
+        'footer.cookies': 'Настройки куки',
+        'cookie.text': 'Сайт использует куки и Яндекс.Метрику, чтобы считать посещения. Метрика включится, только если вы согласитесь.',
+        'cookie.more': 'Подробнее',
+        'cookie.accept': 'Принять',
+        'cookie.decline': 'Отклонить',
+        'form.agree': 'Даю',
+        'form.agreeLink': 'согласие на обработку персональных данных',
+        'form.errConsent': 'Отметьте согласие на обработку данных: без него я не могу принять заявку.',
+        'pv.title': 'Политика конфиденциальности — Егор Белов',
+        'pv.desc': 'Как сайт egordev.com обрабатывает персональные данные: форма заявки, куки и Яндекс.Метрика.',
+        'cs.title': 'Согласие на обработку персональных данных — Егор Белов',
+        'cs.desc': 'Текст согласия на обработку персональных данных при отправке заявки на egordev.com.',
 
         // страница "обо мне" (about/index.html)
         'ab.title': 'Егор Белов — обо мне',
@@ -407,6 +421,20 @@ const DICT = {
         'form.notWired': 'The form is not wired up yet — message me on Telegram or by email.',
 
         'footer.copy': '© 2026, Egor Belov. All rights reserved.',
+        'footer.privacy': 'Privacy policy',
+        'footer.consent': 'Consent to data processing',
+        'footer.cookies': 'Cookie settings',
+        'cookie.text': 'This site uses cookies and Yandex Metrica to count visits. Metrica only starts if you agree.',
+        'cookie.more': 'Learn more',
+        'cookie.accept': 'Accept',
+        'cookie.decline': 'Decline',
+        'form.agree': 'I give my',
+        'form.agreeLink': 'consent to the processing of my personal data',
+        'form.errConsent': 'Please tick the consent box: without it I cannot accept your request.',
+        'pv.title': 'Privacy policy — Egor Belov',
+        'pv.desc': 'How egordev.com processes personal data: the request form, cookies and Yandex Metrica.',
+        'cs.title': 'Consent to personal data processing — Egor Belov',
+        'cs.desc': 'The consent text for personal data processing when sending a request on egordev.com.',
 
         // about page (about/index.html)
         'ab.title': 'Egor Belov — about me',
@@ -484,7 +512,7 @@ export function getLang() {
     return current;
 }
 
-function applyTo(root) {
+export function applyTo(root) {
     root.querySelectorAll('[data-i18n]').forEach((el) => {
         el.textContent = t(el.dataset.i18n);
     });

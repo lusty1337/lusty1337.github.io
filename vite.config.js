@@ -8,11 +8,13 @@ export default defineConfig({
     },
     build: {
         assetsInlineLimit: 0,
-        // без явного списка vite собирает только корневой index.html, и /about/ в dist не попадёт
+        // без явного списка vite собирает только корневой index.html, и остальные страницы в dist не попадут
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html'),
                 about: resolve(__dirname, 'about/index.html'),
+                privacy: resolve(__dirname, 'privacy/index.html'),
+                consent: resolve(__dirname, 'consent/index.html'),
             },
         },
     },
