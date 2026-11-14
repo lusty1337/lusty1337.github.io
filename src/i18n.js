@@ -25,7 +25,7 @@ const DICT = {
 
         'hero.title1': 'Сайты, боты,',
         'hero.title2': 'автоматизация.',
-        'hero.lead': 'Разрабатываю сайты и лендинги (сайты-визитки) любой сложности, Telegram-ботов и Telegram Mini Apps. Чистый код без тяжёлых библиотек, адаптив под любой экран и устройство, быстрая загрузка.',
+        'hero.lead': 'Делаю лендинги и многостраничные сайты, Telegram‑ботов и Mini Apps, 3D‑сайты на WebGL. Всё быстро грузится и аккуратно выглядит на любом экране.',
         'hero.cta': 'Смотреть проекты',
 
         'about.h2': 'Привет! Я Егор Белов.',
@@ -267,7 +267,7 @@ const DICT = {
 
         'hero.title1': 'Websites, bots,',
         'hero.title2': 'automation.',
-        'hero.lead': 'I build websites and landing pages of any complexity, Telegram bots and Telegram Mini Apps. Clean code without heavy libraries, responsive on every screen, and fast to load.',
+        'hero.lead': 'I build landing pages and multi-page websites, Telegram bots and Mini Apps, and 3D websites with WebGL. Everything loads fast and looks clean on any screen.',
         'hero.cta': 'View projects',
 
         'about.h2': "Hi! I'm Egor Belov.",
