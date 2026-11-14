@@ -15,6 +15,8 @@ export default defineConfig({
                 about: resolve(__dirname, 'about/index.html'),
                 privacy: resolve(__dirname, 'privacy/index.html'),
                 consent: resolve(__dirname, 'consent/index.html'),
+                // github pages отдаёт /404.html на любой неизвестный адрес, поэтому файл должен лежать в корне dist
+                notFound: resolve(__dirname, '404.html'),
             },
         },
     },

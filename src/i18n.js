@@ -10,8 +10,8 @@
 
 const DICT = {
     ru: {
-        'meta.title': 'Егор Белов | Портфолио',
-        'meta.desc': 'Разработка сайтов, дашбордов и Telegram-ботов. Чистый код на Tailwind, адаптив, интеграции с API и автоматизация.',
+        'meta.title': 'Егор Белов — разработка сайтов, Telegram-ботов и 3D',
+        'meta.desc': 'Fullstack-разработчик: лендинги, Telegram-боты и Mini Apps, 3D-сайты на WebGL. Открытые цены от 2 000 ₽ и исходный код каждого кейса на GitHub.',
         'meta.ogTitle': 'Егор Белов — сайты, боты, автоматизация',
 
         'brand': 'Егор.',
@@ -183,6 +183,10 @@ const DICT = {
         'form.notWired': 'Форма ещё не подключена — напишите в Telegram или на почту.',
 
         'footer.copy': '© 2026, Егор Белов. Все права защищены.',
+        'nf.title': 'Страница не найдена — Егор Белов',
+        'nf.h1': 'Такой страницы нет',
+        'nf.text': 'Возможно, ссылка устарела или в адресе опечатка.',
+        'nf.home': 'На главную',
         'footer.privacy': 'Политика конфиденциальности',
         'footer.consent': 'Согласие на обработку данных',
         'footer.cookies': 'Настройки куки',
@@ -248,8 +252,8 @@ const DICT = {
     },
 
     en: {
-        'meta.title': 'Egor Belov | Portfolio',
-        'meta.desc': 'Websites, dashboards and Telegram bots. Clean hand-written code, Tailwind, responsive layouts, API integrations and automation.',
+        'meta.title': 'Egor Belov — websites, Telegram bots and 3D',
+        'meta.desc': 'Fullstack developer: landing pages, Telegram bots and Mini Apps, 3D websites with WebGL. Open pricing from $60 and source code for every case on GitHub.',
         'meta.ogTitle': 'Egor Belov — websites, bots, automation',
 
         'brand': 'Egor.',
@@ -421,6 +425,10 @@ const DICT = {
         'form.notWired': 'The form is not wired up yet — message me on Telegram or by email.',
 
         'footer.copy': '© 2026, Egor Belov. All rights reserved.',
+        'nf.title': 'Page not found — Egor Belov',
+        'nf.h1': 'This page does not exist',
+        'nf.text': 'The link may be outdated, or there is a typo in the address.',
+        'nf.home': 'Back to home',
         'footer.privacy': 'Privacy policy',
         'footer.consent': 'Consent to data processing',
         'footer.cookies': 'Cookie settings',

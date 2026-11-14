@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth overflow-x-hidden bg-[#FDFBF9] text-slate-600" data-title-key="nf.title">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница не найдена — Егор Белов</title>
+    <meta name="robots" content="noindex">
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="/src/style.css">
+    <script>
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('anim-on');
+        }
+    </script>
+</head>
+
+<body
+    class="font-sans antialiased overflow-x-hidden relative min-h-screen selection:bg-cyan-200 selection:text-cyan-900">
+
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-100/40 blur-[120px]"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-teal-100/30 blur-[150px]">
+        </div>
+    </div>
+
+    <!-- шапка как на главной, только якоря ведут обратно на неё -->
+    <header
+        class="page-fade w-full py-3 md:py-6 px-4 md:px-6 fixed top-0 z-[60] bg-[#FDFBF9]/80 md:bg-[#FDFBF9]/50 backdrop-blur-md md:backdrop-blur-xl border-b border-white/50 transition-all duration-700 ease-out">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative z-[61] md:grid md:grid-cols-[1fr_auto_1fr]">
+            <a href="/" data-i18n="brand"
+                class="text-xl md:text-2xl font-black text-slate-900 tracking-tighter hover:opacity-70 transition-opacity duration-700">Егор.</a>
+            <nav class="hidden md:flex gap-12">
+                <a href="/" data-i18n="nav.home"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Главная</a>
+                <a href="/about/" data-i18n="nav.about"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Обо мне</a>
+                <a href="/#projects" data-i18n="nav.projects"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Проекты</a>
+                <a href="/#pricing" data-i18n="nav.pricing"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Цены</a>
+                <a href="/#contact" data-i18n="nav.contact"
+                    class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-colors duration-700">Связь</a>
+            </nav>
+            <div class="flex items-center gap-2 md:gap-3 md:justify-self-end">
+                <button type="button" data-lang-switch class="lang-toggle" aria-label="Switch to English">
+                    <span class="lang-toggle-knob" aria-hidden="true"></span>
+                    <span class="lang-toggle-opt" data-lang-opt="ru">RU</span>
+                    <span class="lang-toggle-opt" data-lang-opt="en">EN</span>
+                </button>
+                <a href="/#contact" data-i18n="nav.cta"
+                    class="btn-water hidden md:inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-semibold text-sm shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:shadow-[0_0_50px_rgba(34,211,238,0.5)] transition-all duration-700 ease-out">
+                    Начать проект
+                </a>
+                <button id="mobile-menu-btn" data-i18n-aria="nav.menu" aria-label="Открыть меню" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+                    <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                    <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                    <span class="w-6 h-0.5 bg-slate-900 transition-[transform,opacity] duration-300 will-change-transform rounded-sm"></span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="fixed inset-0 bg-[#FDFBF9]/95 backdrop-blur-lg z-[60] flex flex-col items-center justify-center gap-10 opacity-0 pointer-events-none transition-all duration-500 h-screen">
+            <nav class="flex flex-col items-center gap-8 text-2xl font-medium text-slate-800">
+                <a href="/" data-i18n="nav.home" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Главная</a>
+                <a href="/about/" data-i18n="nav.about" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Обо мне</a>
+                <a href="/#projects" data-i18n="nav.projects" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Проекты</a>
+                <a href="/#pricing" data-i18n="nav.pricing" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Цены</a>
+                <a href="/#contact" data-i18n="nav.contact" class="mobile-link hover:text-cyan-500 transition-colors duration-300">Связь</a>
+            </nav>
+            <a href="/#contact" data-i18n="nav.cta" class="mobile-link btn-water inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-semibold text-base shadow-[0_0_30px_rgba(34,211,238,0.3)] mt-4">
+                Начать проект
+            </a>
+        </div>
+    </header>
+
+    <main class="page-fade relative z-10 w-full overflow-hidden px-4 md:px-6 min-h-[100svh] flex items-center justify-center text-center">
+        <div class="max-w-xl mx-auto py-28">
+            <p class="text-7xl md:text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-4 md:mb-6">404</p>
+            <h1 data-i18n="nf.h1" class="text-2xl md:text-4xl font-black text-slate-900 tracking-tight mb-3 md:mb-5">Такой страницы нет</h1>
+            <p data-i18n="nf.text" class="text-base md:text-xl text-slate-500 font-light mb-8 md:mb-10">Возможно, ссылка устарела или в адресе опечатка.</p>
+            <a href="/" data-i18n="nf.home"
+                class="btn-water inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white text-sm md:text-base font-semibold shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:shadow-[0_0_50px_rgba(34,211,238,0.5)] transition-all duration-700 ease-out">
+                На главную
+            </a>
+        </div>
+    </main>
+
+    <footer class="page-fade pt-8 md:pt-12 pb-4 md:pb-6 border-t border-white/50 text-center">
+        <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-3 md:mb-4 px-4 text-sm text-slate-400">
+            <a href="/privacy/" data-i18n="footer.privacy" class="hover:text-cyan-500 transition-colors duration-300">Политика конфиденциальности</a>
+            <a href="/consent/" data-i18n="footer.consent" class="hover:text-cyan-500 transition-colors duration-300">Согласие на обработку данных</a>
+            <button type="button" data-cookie-settings data-i18n="footer.cookies" class="hover:text-cyan-500 transition-colors duration-300">Настройки куки</button>
+        </nav>
+        <p data-i18n="footer.copy" class="text-slate-500 font-medium">© 2026, Егор Белов. Все права защищены.</p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
