@@ -2,9 +2,9 @@
 
 <div align="center">
 
-# Egor — full-stack developer
+# Egor Belov — full-stack developer
 
-**I build websites, landing pages and Telegram bots from scratch — clean code, no site builders**
+**I build websites, Telegram bots and 3D for the web from scratch — clean code, no site builders**
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-egordev.com-0ea5e9?style=flat-square)](https://egordev.com)
 [![Telegram](https://img.shields.io/badge/Telegram-@lusty1337-26A5E4?style=flat-square&logo=telegram&logoColor=white)](https://t.me/lusty1337)
@@ -19,9 +19,11 @@
 - **Landing pages and multi-page websites** — responsive from 320px, animations, fast loading
 - **Telegram bots** — bookings, catalogs, mailings, automation for business tasks
 - **Telegram Mini Apps** — full-fledged apps inside Telegram
+- **3D and WebGL** — product configurators, scroll-driven scenes, real-time graphics
+- **Windows apps** — lightweight .exe tools for file processing, reports and routine automation
 - **API integrations and scrapers** — external services, process automation
 
-I take a project end to end — from layout to server. I'm taking my first orders at a reduced price in exchange for an honest review.
+I take a project end to end — from layout to server. Prices are public and explained on the [website](https://egordev.com/#pricing), and how I work is described on the [About page](https://egordev.com/about/).
 
 ---
 
@@ -87,21 +89,48 @@ Cost of a project like this: **$1,800 – 3,000**
 
 ---
 
+### [Nocturne Studio](https://egordev.com/projects/nocturne-studio-portfolio/index.html)
+A photo studio website built from a finished mockup: dark minimalism, three pages and a full-screen gallery. The gallery slider is written from scratch — arrows, keyboard, swipes and a thumbnail strip — and one category filter drives both the slider and the masonry grid. Responsive from 1440 down to 320px.
+
+`HTML5 · CSS3` `Vanilla JS`
+
+Cost of a project like this: **$900 – 1,400**
+
+---
+
+### [БЕТОН — architecture firm](https://egordev.com/projects/beton-architects-portfolio/index.html)
+A brutalist website for an architecture firm: huge headlines, heavy rules instead of shadows and the feel of a technical drawing. Four pages on a complex 12-column grid — home, projects with a filter and a project spread, about, contacts — with GSAP animation and layouts down to 320px.
+
+`HTML5 · CSS3` `GSAP` `Vanilla JS`
+
+Cost of a project like this: **$1,200 – 1,800**
+
+---
+
+### [Ясный День — dental clinic](https://egordev.com/projects/dental-clinic-portfolio/index.html)
+A dental clinic landing page that eases anxiety before a visit and leads to booking: ten sections built from the mockup, a booking modal, a phone mask and form validation. Images were converted to WebP and got 83% lighter, and the heavy map only loads on tap.
+
+`HTML5 · CSS3` `Vanilla JS`
+
+Cost of a project like this: **$1,100 – 1,500**
+
+---
+
+### [NovaFi Terminal](https://egordev.com/projects/crypto-dashboard-portfolio/index.html)
+A terminal with live quotes: an instrument chart, swap tickets and an operations log. SPA navigation with no reloads, data from an external API, forms that recalculate as you type, transaction modals and toast notifications — all in plain JS.
+
+`Vanilla JS · SPA` `Chart.js` `REST API`
+
+Cost of a project like this: **$1,200 – 2,700**
+
+---
+
 ### [FORNO — pizzeria](https://egordev.com/projects/pizza-landing-portfolio/index.html)
 A promo landing page for a pizzeria with a moody dark design: menu filtering by category, animated cards, a slide-out cart, touch swipes. Responsive from 320px. No third-party JS libraries.
 
 `HTML5` `CSS3` `Vanilla JS`
 
 Cost of a project like this: **$1,200 – 2,100**
-
----
-
-### [NovaFi Dashboard](https://egordev.com/projects/crypto-dashboard-portfolio/index.html)
-A crypto dashboard: SPA navigation, live data from an exchange API, Chart.js charts, a working swap that recalculates the balance, transaction modals.
-
-`Vanilla JS · SPA` `Chart.js` `REST API`
-
-Cost of a project like this: **$1,200 – 2,700**
 
 ---
 
@@ -135,7 +164,8 @@ Write to me — I'll reply within a day, and we'll discuss the task, timeline an
 
 **Telegram:** [@lusty1337](https://t.me/lusty1337)  
 **Email:** [hellolusty@proton.me](mailto:hellolusty@proton.me)  
-**Portfolio:** [egordev.com](https://egordev.com)
+**Portfolio:** [egordev.com](https://egordev.com)  
+**About me:** [egordev.com/about](https://egordev.com/about/)
 
 ---
 
@@ -145,9 +175,9 @@ Write to me — I'll reply within a day, and we'll discuss the task, timeline an
 
 <div align="center">
 
-# Егор — fullstack-разработчик
+# Егор Белов — fullstack-разработчик
 
-**Делаю сайты, лендинги и Telegram-боты с нуля — чистый код, без конструкторов**
+**Делаю сайты, Telegram-ботов и 3D для веба с нуля — чистый код, без конструкторов**
 
 [![Portfolio](https://img.shields.io/badge/Портфолио-egordev.com-0ea5e9?style=flat-square)](https://egordev.com)
 [![Telegram](https://img.shields.io/badge/Telegram-@lusty1337-26A5E4?style=flat-square&logo=telegram&logoColor=white)](https://t.me/lusty1337)
@@ -162,9 +192,11 @@ Write to me — I'll reply within a day, and we'll discuss the task, timeline an
 - **Лендинги и многостраничные сайты** — адаптив от 320px, анимации, быстрая загрузка
 - **Telegram-боты** — запись, каталог, рассылки, автоматизация под бизнес-задачи
 - **Telegram Mini Apps** — полноценные приложения внутри Telegram
+- **3D и WebGL** — конфигураторы товаров, сцены на прокрутке, графика в реальном времени
+- **Программы для Windows** — лёгкие .exe для обработки файлов, отчётов и автоматизации рутины
 - **Интеграции API и парсеры** — внешние сервисы, автоматизация процессов
 
-Закрываю проект целиком — от вёрстки до сервера. Беру первые заказы по сниженному ценнику в обмен на честный отзыв.
+Закрываю проект целиком — от вёрстки до сервера. Цены открыты и объяснены [на сайте](https://egordev.com/#pricing), а как я работаю — на [странице обо мне](https://egordev.com/about/).
 
 ---
 
@@ -230,21 +262,48 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 
 ---
 
+### [Nocturne Studio](https://egordev.com/projects/nocturne-studio-portfolio/index.html)
+Сайт фотостудии по готовому макету: тёмный минимализм, три страницы и галерея во весь экран. Слайдер написан с нуля — стрелки, клавиатура, свайпы и полоса миниатюр, а один фильтр категорий управляет и слайдером, и masonry-сеткой. Адаптив от 1440 до 320 px.
+
+`HTML5 · CSS3` `Vanilla JS`
+
+Стоимость такого проекта: **30 000 – 45 000 ₽** · для зарубежных клиентов $900 – 1 400
+
+---
+
+### [БЕТОН — архитектурное бюро](https://egordev.com/projects/beton-architects-portfolio/index.html)
+Сайт архитектурного бюро в брутализме: огромные заголовки, жирные линии вместо теней и ощущение чертежа. Четыре страницы на сложной 12-колоночной сетке — главная, проекты с фильтром и разворотом объекта, о бюро, контакты — с GSAP-анимациями и адаптивом от 320 px.
+
+`HTML5 · CSS3` `GSAP` `Vanilla JS`
+
+Стоимость такого проекта: **40 000 – 60 000 ₽** · для зарубежных клиентов $1 200 – 1 800
+
+---
+
+### [Ясный День — стоматология](https://egordev.com/projects/dental-clinic-portfolio/index.html)
+Лендинг стоматологии, который снимает тревогу перед визитом и ведёт к записи: десять блоков по макету, окно записи, маска телефона и проверка форм. Картинки переведены в WebP и стали легче на 83%, а тяжёлая карта грузится только по тапу.
+
+`HTML5 · CSS3` `Vanilla JS`
+
+Стоимость такого проекта: **35 000 – 50 000 ₽** · для зарубежных клиентов $1 100 – 1 500
+
+---
+
+### [NovaFi Terminal](https://egordev.com/projects/crypto-dashboard-portfolio/index.html)
+Терминал с живыми котировками: график инструмента, заявки на обмен и журнал операций. SPA-навигация без перезагрузки, данные из внешнего API, формы с пересчётом на лету, модальные окна и уведомления — всё на чистом JS.
+
+`Vanilla JS · SPA` `Chart.js` `REST API`
+
+Стоимость такого проекта: **40 000 – 90 000 ₽** · для зарубежных клиентов $1 200 – 2 700
+
+---
+
 ### [FORNO — пиццерия](https://egordev.com/projects/pizza-landing-portfolio/index.html)
 Промо-лендинг пиццерии с атмосферным тёмным дизайном: фильтрация меню по категориям, анимированные карточки, выезжающая корзина, тач-свайпы. Адаптив от 320px. Без сторонних JS-библиотек.
 
 `HTML5` `CSS3` `Vanilla JS`
 
 Стоимость такого проекта: **40 000 – 70 000 ₽** · для зарубежных клиентов $1 200 – 2 100
-
----
-
-### [NovaFi Dashboard](https://egordev.com/projects/crypto-dashboard-portfolio/index.html)
-Крипто-дашборд: SPA-навигация, живые данные с API биржи, графики Chart.js, рабочий своп с пересчётом баланса, модалки транзакций.
-
-`Vanilla JS · SPA` `Chart.js` `REST API`
-
-Стоимость такого проекта: **40 000 – 90 000 ₽** · для зарубежных клиентов $1 200 – 2 700
 
 ---
 
@@ -278,4 +337,5 @@ Telegram Mini App — магазин цветов с доставкой: кат�
 
 **Telegram:** [@lusty1337](https://t.me/lusty1337)  
 **Email:** [hellolusty@proton.me](mailto:hellolusty@proton.me)  
-**Портфолио:** [egordev.com](https://egordev.com)
+**Портфолио:** [egordev.com](https://egordev.com)  
+**Обо мне:** [egordev.com/about](https://egordev.com/about/)
